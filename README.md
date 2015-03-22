@@ -18,7 +18,7 @@ categories: MVP and Not-MVP; where those requirements under the MVP (minimum via
 product) are necessary for a barebones alpha release of the software. Requirements are
 listed in order of descending priority.
 
-####MVP
+######MVP
 - [ ] As a user I want to be able to create an account with my name, email, password, and
 whether I am a student or instructor
 - [ ] As an instructor I want to be able to create a new class
@@ -27,7 +27,7 @@ whether I am a student or instructor
 - [ ] As a student I want to be able to answer multiple choice questions
 - [ ] As an instructor I want to display questions and their answers in real time
 
-####NOT-MVP
+######NOT-MVP
 - [ ] As an instructor I want to have the ability to organize the software around multiple
 courses, multiple sessions of a course, and multiple days in a session
 	- Ex: CS292, Winter 2015, Jan 19
