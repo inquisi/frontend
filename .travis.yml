@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+ - 0.12
+notifications:
+	email: false
+	slack: slack: inquisi:tN28qlf1uc3wVDVt0Uqvucha#frontend
+
+#cache: 
