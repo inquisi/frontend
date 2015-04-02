@@ -1,34 +1,35 @@
 {
-	"name": "frontend",
-	"version": "1.0.0",
-	"description": "####Welcome to iNQUiSi's Frontend Repo!  Want to go to the backend? Go [there](https://github.com/inquisi/backend) now!",
-	"main": "index.js",
-	"scripts": {
-		"start": "gulp",
-		"test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
-		"copyLibs": "bower-installer"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/inquisi/frontend.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/inquisi/frontend/issues"
-	},
-	"homepage": "https://github.com/inquisi/frontend",
-	"devDependencies": {
-		"bower-installer": "^1.2.0",
-		"gulp": "^3.8.11",
-		"gulp-concat": "^2.5.2",
-		"gulp-uglifyjs": "^0.6.1",
-		"gulp-webserver": "^0.9.0",
-		"http-server": "^0.8.0",
-		"jasmine-core": "^2.2.0",
-		"karma": "^0.12.31",
-		"karma-jasmine": "^0.2.2",
-		"karma-phantomjs-launcher": "^0.1.4",
-		"phantomjs": "^1.9.16"
-	}
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "####Welcome to iNQUiSi's Frontend Repo!  Want to go to the backend? Go [there](https://github.com/inquisi/backend) now!",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS",
+    "copyLibs": "bower-installer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inquisi/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inquisi/frontend/issues"
+  },
+  "homepage": "https://github.com/inquisi/frontend",
+  "devDependencies": {
+    "bower-installer": "^1.2.0",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-less": "^3.0.2",
+    "gulp-uglifyjs": "^0.6.1",
+    "gulp-webserver": "^0.9.0",
+    "http-server": "^0.8.0",
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-jasmine": "^0.2.2",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "phantomjs": "^1.9.16"
+  }
 }

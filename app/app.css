@@ -1,0 +1,120 @@
+.panel-branded {
+  margin-top: 20px;
+  border: 0;
+}
+.panel-branded .panel-heading {
+  background-color: #838d97;
+  text-align: center;
+}
+.panel-branded .panel-heading img {
+  width: 40%;
+  min-width: 100px;
+  max-width: 160px;
+  margin: 10px auto 0;
+}
+.panel-branded .panel-body p {
+  text-align: center;
+  margin: 5px 0;
+}
+.panel-branded .panel-footer {
+  background-color: #FFF;
+  text-align: center;
+  border: 0;
+  border-top: 1px solid #e6e9ec;
+}
+.panel-branded .form-row {
+  margin-top: 20px;
+}
+.panel-branded .form-row:last-child {
+  margin-top: 0px;
+}
+.panel-branded .form-row:last-child button {
+  margin-top: 0px;
+}
+.panel-branded .form-row button {
+  width: 100%;
+  margin-top: 20px;
+}
+.panel-branded .form-row a {
+  width: 100%;
+}
+.panel-branded .form-row p {
+  margin: 0;
+}
+.panel-branded .form-row label {
+  font-weight: normal;
+}
+.panel-branded .input-group {
+  width: 100%;
+}
+.form-name .input-group:last-child {
+  margin-top: 10px;
+}
+.input-group .form-control:first-child {
+  border-radius: 4px;
+}
+.fourOhFour {
+  text-align: center;
+  width: 305px;
+  margin: 200px auto 0;
+}
+.fourOhFour h1 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 5px;
+}
+.fourOhFour h3 {
+  margin-top: 0;
+  margin-bottom: 50px;
+  font-size: 23.52px;
+}
+.fourOhFour .form-row input {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.fourOhFour .form-row .input-group-addon {
+  background-color: #FFF;
+  border-color: #b6c1cb;
+}
+.fourOhFour .redirectLinks {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #b6c1cb;
+  font-size: 12px;
+}
+.fourOhFour .redirectLinks a {
+  color: #b6c1cb;
+}
+.fourOhFour .redirectLinks a:hover {
+  color: #899bab;
+  text-decoration: none;
+}
+.verticalSpace {
+  margin-top: 25px;
+}
+.appHeader {
+  background-color: #838d97;
+  height: 60px;
+}
+.appHeader img {
+  width: 100px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+body {
+  background-color: #e6e9ec;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+}
+#copyright {
+  font-size: 12px;
+}
