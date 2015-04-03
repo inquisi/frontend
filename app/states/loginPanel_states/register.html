@@ -1,41 +1,107 @@
-<p>Sign up and start your free trial now!</p>
-<form>
-    <div class="form-row">
-        <label class="control-label">Email</label>
+<p>Create an account!</p>
+<form name="form" ng-submit="form.submitForm(form.$valid, data)" novalidate>
+
+    <div class="form-row"> <!-- Email -->
+        <label for="register_email" class="control-label">Email</label>           
+        <p ng-show="form.email.$invalid && form.email.$dirty" class="help-block">Please enter a valid email.</p>
             <div class="input-group">
-                <input class="form-control" autocomplete="email" type="email" placeholder="Enter email">
-                <span class="form-control-feedback text-muted fui-mail"></span>
+                <input class="form-control" autocomplete="email" type="email" placeholder="Enter email" id="register_email" 
+                    name="email" ng-model="user.email" required>
+                <span ng-show="form.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
+                <span class="form-control-feedback" 
+                      ng-hide="form.email.$pristine" 
+                      ng-class="
+                        {true: 'green fui-check',
+                         false: 'red fui-cross'}
+                         [form.email.$valid]"></span>
             </div>
     </div>
-    <div class="form-row">
-        <label class="control-label">Password</label>
+    <div class="form-row"> <!-- Password 1 -->
+        <label for="register_pass1" class="control-label">Password</label>
+        <p ng-show="form.password.$error.required && form.password.$dirty" class="help-block">Please enter a password</p>
+        <p ng-show="form.confirm.$error.equals && form.confirm.$dirty" class="help-block">Your passwords do not match.</p>
             <div class="input-group">
-                <input class="form-control" autocomplete="password" type="password" placeholder="Enter password">
-                <span class="form-control-feedback text-muted fui-lock"></span>
+                <input class="form-control" autocomplete="password" type="password" placeholder="Enter password" id="register_pass1" 
+                    name="password" ng-model="user.password" equals="{{user.confirm}}" required>
+                <span ng-show="form.password.$pristine" class="form-control-feedback text-muted fui-lock"></span>
+                <span ng-hide="form.password.$pristine" class="form-control-feedback"
+                      ng-class="(form.password.$error.required || form.password.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
+                
             </div>
     </div>
-    <div class="form-row">
-        <label class="control-label">Confirm Password</label>
+    <div class="form-row"> <!-- Password 2 -->
+        <label for="register_pass2" class="control-label">Confirm Password</label>
+        <p ng-show="form.confirm.$error.required && form.confirm.$dirty" class="help-block">Please confirm your password</p>
             <div class="input-group">
-                <input class="form-control" autocomplete="off" type="password" placeholder="Re-enter password">
-                <span class="form-control-feedback text-muted fui-lock"></span>
+                <input class="form-control" autocomplete="off" type="password" placeholder="Re-enter password" id="register_pass2"
+                    name="confirm" equals="{{user.password}}" ng-model="user.confirm" required>
+                <span ng-show="form.confirm.$pristine" class="form-control-feedback text-muted fui-lock"></span>
+                <span ng-hide="form.confirm.$pristine" class="form-control-feedback"
+                      ng-class="(form.confirm.$error.required || form.confirm.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
+
             </div>
     </div>
 
-    <div class="form-row form-name">
-        <label class="control-label">Name</label>
+    <div class="form-row form-name"> <!-- Name -->
+        <label for="register_name" class="control-label">Name</label>
+        <p ng-show="form.fname.$invalid && form.fname.$dirty || form.lname.$invalid && form.lname.$dirty" class="help-block">Please enter your name.</p>
                 <div class="input-group">
-                    <input class="form-control" autocomplete="fname" type="text" placeholder="First Name">
-                    <span class="form-control-feedback text-muted fui-user"></span>
+                    <input class="form-control" autocomplete="fname" type="text" placeholder="First Name" id="register_name"
+                        name="fname" ng-model="user.first_name" required>
+                    <span ng-show="form.fname.$pristine"
+                          class="form-control-feedback text-muted fui-user"></span>
+                    <span class="form-control-feedback" 
+                      ng-hide="form.fname.$pristine" 
+                      ng-class="
+                        {true: 'green fui-check',
+                         false: 'red fui-cross'}
+                         [form.fname.$valid]"></span>
                 </div>
+
             <div class="input-group">
-                    <input class="form-control" autocomplete="lname" type="text" placeholder="Last Name">
-                    <span class="form-control-feedback text-muted fui-user"></span>
+                    <input class="form-control" autocomplete="lname" type="text" placeholder="Last Name"
+                        name="lname" ng-model="user.last_name" required>
+                    <span ng-show="form.lname.$pristine"
+                          class="form-control-feedback text-muted fui-user"></span>
+                    <span class="form-control-feedback" 
+                      ng-hide="form.lname.$pristine" 
+                      ng-class="
+                        {true: 'green fui-check',
+                         false: 'red fui-cross'}
+                         [form.lname.$valid]"></span>
             </div>
     </div>
 
-    <div class="form-row">
-            <button type="button" class="btn btn-info">
+    <div class="form-row"> <!-- Role -->
+        <label for="register_role" class="control-label">Role</label>
+                <div class="input-group">
+                    <select class="form-control" id="register_role"
+                         name="role" ng-model="user.role" ng-options="value.id as value.value for value in objects" required>
+                        <option value="student">Student</option>
+                        <option value="instructor">Instructor</option>
+                    </select>
+                </div>
+    </div>
+
+    <div ng-if="user.role == 'instructor'" class="form-row"> <!-- Institution (conditional) -->
+        <label for="register_institution" class="control-label">Institution</label>           
+        <p ng-show="form.institution.$invalid && form.institution.$dirty" class="help-block">Please enter your institution.</p>
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Enter institution" id="register_institution" 
+                    name="institution" ng-model="user.institution" required>
+                <span ng-show="form.institution.$pristine" class="form-control-feedback text-muted fui-home"></span>
+                <span class="form-control-feedback" 
+                      ng-hide="form.institution.$pristine" 
+                      ng-class="
+                        {true: 'green fui-check',
+                         false: 'red fui-cross'}
+                         [form.institution.$valid]"></span>
+            </div>
+    </div>
+
+    <div class="form-row"> <!-- Submit Button -->
+            <button type="button" class="btn btn-info" 
+                ng-disabled="form.$invalid">
                 Create Account
             </button>
     </div>

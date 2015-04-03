@@ -1,3 +1,10 @@
+.help-block {
+  color: #e94e41;
+  padding-top: 5px;
+  padding-left: 3px;
+  display: inline;
+  font-size: 12px;
+}
 .panel-branded {
   margin-top: 20px;
   border: 0;
@@ -104,6 +111,15 @@
   bottom: 0;
   margin: auto 0;
 }
+.ng-invalid.ng-dirty {
+  border-color: #e94e41;
+}
+.ng-valid.ng-dirty {
+  border-color: #5cbb60;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #e6f1f9 inset;
+}
 body {
   background-color: #e6e9ec;
 }
@@ -117,4 +133,19 @@ h6 {
 }
 #copyright {
   font-size: 12px;
+}
+.yellow {
+  color: #fec32f !important;
+}
+.green {
+  color: #5cbb60 !important;
+}
+.blue {
+  color: #4493cf !important;
+}
+.orange {
+  color: #f68b32 !important;
+}
+.red {
+  color: #e94e41 !important;
 }

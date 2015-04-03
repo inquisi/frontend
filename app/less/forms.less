@@ -1,0 +1,14 @@
+.ng-invalid.ng-dirty{
+	border-color: @brand-danger;
+}
+
+.ng-valid.ng-dirty{
+	border-color: @brand-success;
+}
+
+@autofill-bg: lighten(@brand-info, 40%);
+
+// Remove Chrome Autofill thing
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px  @autofill-bg inset;
+}

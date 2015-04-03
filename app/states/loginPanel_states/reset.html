@@ -1,9 +1,18 @@
 <p>Please enter your email to reset your password.</p>
-<form>
+<form name="reset" ng-submit="form.submitForm(form.$valid, data)">
 	<div class="form-row">
+            <label for="reset_email" class="control-label">Email</label>   
+            <p ng-show="reset.email.$invalid && reset.email.$dirty" class="help-block">Please enter a valid email.</p>
             <div class="input-group">
-                <input class="form-control" autocomplete="email" type="email" placeholder="Email">
-                <span class="form-control-feedback text-muted fui-mail"></span>
+                <input class="form-control"  autocomplete="email" type="email" placeholder="Enter email" id="reset_email"
+                    name="email" ng-model="user.email" required>
+                <span ng-show="reset.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
+                <span class="form-control-feedback" 
+                      ng-hide="reset.email.$pristine" 
+                      ng-class="
+                        {true: 'green fui-check',
+                         false: 'red fui-cross'}
+                         [reset.email.$valid]"></span>
             </div>
     </div>
     <div class="form-row">
@@ -11,7 +20,7 @@
             	Send Reset Instructions
             </button>
     </div>
-    <p style="margin-top:30px;"> Just kidding? You remember? </p>
+    <p style="margin-top:30px;"> Just kidding? </p>
     <div class="form-row">
             <a href="/login" role="button" class="btn btn-default">
                 Sign In

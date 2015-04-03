@@ -7,7 +7,7 @@
 							<img src="img/inquisi-logo.svg">
 						</div>
 						<!-- Begin Panel Body -->
-						<div class="panel-body">
+						<div class="panel-body" ng-controller="validationController as validate">
 
 							<div ui-view />
 							
@@ -16,7 +16,7 @@
 						</div>
 						<!-- End Panel Body -->
 						<div class="panel-footer">
-							<span id="copyright">{{copyright}}</span> 
+							<span id="copyright">{{main.copyright}}</span> 
 						</div>
 					</div>
 					<!-- End Panel -->
