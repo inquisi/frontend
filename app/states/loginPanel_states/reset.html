@@ -1,29 +1,22 @@
 <p>Please enter your email to reset your password.</p>
-<form name="reset" ng-submit="form.submitForm(form.$valid, data)">
+<form name="reset" ng-submit="submit('reset', reset.$valid, user)" novalidate>
 	<div class="form-row">
             <label for="reset_email" class="control-label">Email</label>   
-            <p ng-show="reset.email.$invalid && reset.email.$dirty" class="help-block">Please enter a valid email.</p>
             <div class="input-group">
                 <input class="form-control"  autocomplete="email" type="email" placeholder="Enter email" id="reset_email"
-                    name="email" ng-model="user.email" required>
-                <span ng-show="reset.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
-                <span class="form-control-feedback" 
-                      ng-hide="reset.email.$pristine" 
-                      ng-class="
-                        {true: 'green fui-check',
-                         false: 'red fui-cross'}
-                         [reset.email.$valid]"></span>
+                    name="email" ng-model="user.email" disable-Validators>
+                <span class="form-control-feedback text-muted fui-mail"></span>
             </div>
     </div>
     <div class="form-row">
-            <button type="button" style="margin-top:20px;" class="btn btn-danger">
+            <button type="submit" style="margin-top:20px;" class="btn btn-danger">
             	Send Reset Instructions
             </button>
     </div>
+    </form>
     <p style="margin-top:30px;"> Just kidding? </p>
-    <div class="form-row">
+    <div class="row">
             <a href="/login" role="button" class="btn btn-default">
                 Sign In
             </a>
     </div>
-</form>

@@ -1,12 +1,16 @@
-.ng-invalid.ng-dirty{
-	border-color: @brand-danger;
+#registerForm{
+	.ng-invalid.ng-dirty{
+		border-color: @brand-danger;
+	}
+
+	.ng-valid.ng-dirty{
+		border-color: @brand-success;
+	}
 }
 
-.ng-valid.ng-dirty{
-	border-color: @brand-success;
-}
 
-@autofill-bg: lighten(@brand-info, 40%);
+
+@autofill-bg: lighten(@brand-primary, 35%);
 
 // Remove Chrome Autofill thing
 input:-webkit-autofill {

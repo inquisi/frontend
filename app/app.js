@@ -47,19 +47,21 @@
         this.copyright = "\u00A9 " + year + " | iNQUiSi";
     });
 
-    app.controller('validationController', function($scope, $http) {
-
+    app.controller('validationController', function($scope, $http, $window) {
         $scope.user ={role:"student"};
         $scope.objects = [{id: "student", value: "Student"}, {id: "instructor", value: "Instructor"}];
 
         // function to submit the form after all validation has occurred            
-        this.submitForm = function(isValid, data) {
+         $scope.submit = function(form, isValid, data) {
 
             // check to make sure the form is completely valid
-            if (!isValid) return;
-
-            //submit the data to the server
-            $http.post('/api/submit', data);
+            if (isValid && (form == 'registration')){
+               $window.alert(data.email + " tried to use the " + form + " form.");
+            }  else if (form == 'login' || form == 'reset'){
+                $window.alert(data.email + " tried to use the " + form + " form.");
+            } else {
+                $window.alert("Invalid");
+            };
         };
     });
 
@@ -84,6 +86,19 @@
     });
 
 // Directives
+    app.directive('disableValidators', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl) {
+                var validator = function(value) {
+                    return value;
+                };
+
+                // replace the email validators
+                ctrl.$validators = {email: validator};
+            }
+        }
+    });
 
     app.directive('equals', function() {
           return {

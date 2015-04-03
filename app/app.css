@@ -32,12 +32,6 @@
 .panel-branded .form-row {
   margin-top: 20px;
 }
-.panel-branded .form-row:last-child {
-  margin-top: 0px;
-}
-.panel-branded .form-row:last-child button {
-  margin-top: 0px;
-}
 .panel-branded .form-row button {
   width: 100%;
   margin-top: 20px;
@@ -52,6 +46,16 @@
   font-weight: normal;
 }
 .panel-branded .input-group {
+  width: 100%;
+}
+.panel-branded .row {
+  margin-top: 0px;
+  box-sizing: border-box;
+  display: block;
+  padding: 0 15px;
+}
+.panel-branded .row a {
+  display: inline-block;
   width: 100%;
 }
 .form-name .input-group:last-child {
@@ -111,14 +115,14 @@
   bottom: 0;
   margin: auto 0;
 }
-.ng-invalid.ng-dirty {
+#registerForm .ng-invalid.ng-dirty {
   border-color: #e94e41;
 }
-.ng-valid.ng-dirty {
+#registerForm .ng-valid.ng-dirty {
   border-color: #5cbb60;
 }
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #e6f1f9 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #fff6e1 inset;
 }
 body {
   background-color: #e6e9ec;

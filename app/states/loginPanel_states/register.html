@@ -1,5 +1,5 @@
 <p>Create an account!</p>
-<form name="form" ng-submit="form.submitForm(form.$valid, data)" novalidate>
+<form name="form" id="registerForm" ng-submit="submit('registration', form.$valid, user)" novalidate>
 
     <div class="form-row"> <!-- Email -->
         <label for="register_email" class="control-label">Email</label>           
@@ -18,7 +18,7 @@
     </div>
     <div class="form-row"> <!-- Password 1 -->
         <label for="register_pass1" class="control-label">Password</label>
-        <p ng-show="form.password.$error.required && form.password.$dirty" class="help-block">Please enter a password</p>
+        <p ng-show="form.password.$error.required && form.password.$dirty" class="help-block">Please enter a password.</p>
         <p ng-show="form.confirm.$error.equals && form.confirm.$dirty" class="help-block">Your passwords do not match.</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="password" type="password" placeholder="Enter password" id="register_pass1" 
@@ -31,7 +31,7 @@
     </div>
     <div class="form-row"> <!-- Password 2 -->
         <label for="register_pass2" class="control-label">Confirm Password</label>
-        <p ng-show="form.confirm.$error.required && form.confirm.$dirty" class="help-block">Please confirm your password</p>
+        <p ng-show="form.confirm.$error.required && form.confirm.$dirty" class="help-block">Please confirm your password.</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="off" type="password" placeholder="Re-enter password" id="register_pass2"
                     name="confirm" equals="{{user.password}}" ng-model="user.confirm" required>
@@ -100,15 +100,15 @@
     </div>
 
     <div class="form-row"> <!-- Submit Button -->
-            <button type="button" class="btn btn-info" 
+            <button type="submit" class="btn btn-info" 
                 ng-disabled="form.$invalid">
                 Create Account
             </button>
     </div>
+    </form>
         <p style="margin-top:30px;"> Already have an account? </p>
-    <div class="form-row">
+    <div class="row">
             <a href="/login" role="button" class="btn btn-default">
                 Sign In
             </a>
     </div>
-</form>
