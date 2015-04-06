@@ -37,7 +37,8 @@ gulp.task('less', function(done) {
 gulp.task('server', function() {
 	gulp.src('app')
 		.pipe(server({
-			port: 8000
+			port: 8000,
+			fallback: 'index.html'
 		}));
 
 });

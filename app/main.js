@@ -57,10 +57,11 @@
                 $window.alert(data.email + " tried to use the " + form + " form.");
             } else {
                 $window.alert("Invalid");
+
             };
         };
     });
-    
+
 // Directives
     app.directive('disableValidators', function() {
         return {
