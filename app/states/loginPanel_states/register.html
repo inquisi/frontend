@@ -6,7 +6,7 @@
         <p ng-show="form.email.$invalid && form.email.$dirty" class="help-block">Please enter a valid email.</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="email" type="email" placeholder="Enter email" id="register_email" 
-                    name="email" ng-model="user.email" required>
+                    name="email" ng-model="user.email" required ng-model-options="{updateOn: 'blur'}">
                 <span ng-show="form.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
                 <span class="form-control-feedback" 
                       ng-hide="form.email.$pristine" 
@@ -22,7 +22,7 @@
         <p ng-show="form.confirm.$error.equals && form.confirm.$dirty" class="help-block">Your passwords do not match.</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="password" type="password" placeholder="Enter password" id="register_pass1" 
-                    name="password" ng-model="user.password" equals="{{user.confirm}}" required>
+                    name="password" ng-model="user.password" equals="{{user.confirm}}" required ng-model-options="{updateOn: 'blur'}">
                 <span ng-show="form.password.$pristine" class="form-control-feedback text-muted fui-lock"></span>
                 <span ng-hide="form.password.$pristine" class="form-control-feedback"
                       ng-class="(form.password.$error.required || form.password.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
@@ -47,7 +47,7 @@
         <p ng-show="form.fname.$invalid && form.fname.$dirty || form.lname.$invalid && form.lname.$dirty" class="help-block">Please enter your name.</p>
                 <div class="input-group">
                     <input class="form-control" autocomplete="fname" type="text" placeholder="First Name" id="register_name"
-                        name="fname" ng-model="user.first_name" required>
+                        name="fname" ng-model="user.first_name" required ng-model-options="{updateOn: 'blur'}">
                     <span ng-show="form.fname.$pristine"
                           class="form-control-feedback text-muted fui-user"></span>
                     <span class="form-control-feedback" 
@@ -60,7 +60,7 @@
 
             <div class="input-group">
                     <input class="form-control" autocomplete="lname" type="text" placeholder="Last Name"
-                        name="lname" ng-model="user.last_name" required>
+                        name="lname" ng-model="user.last_name" required ng-model-options="{updateOn: 'blur'}">
                     <span ng-show="form.lname.$pristine"
                           class="form-control-feedback text-muted fui-user"></span>
                     <span class="form-control-feedback" 
@@ -88,7 +88,7 @@
         <p ng-show="form.institution.$invalid && form.institution.$dirty" class="help-block">Please enter your institution.</p>
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Enter institution" id="register_institution" 
-                    name="institution" ng-model="user.institution" required>
+                    name="institution" ng-model="user.institution" required ng-model-options="{updateOn: 'blur'}">
                 <span ng-show="form.institution.$pristine" class="form-control-feedback text-muted fui-home"></span>
                 <span class="form-control-feedback" 
                       ng-hide="form.institution.$pristine" 
@@ -100,8 +100,7 @@
     </div>
 
     <div class="form-row"> <!-- Submit Button -->
-            <button type="submit" class="btn btn-info" 
-                ng-disabled="form.$invalid">
+            <button type="submit" class="btn btn-info">
                 Create Account
             </button>
     </div>

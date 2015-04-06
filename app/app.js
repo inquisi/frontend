@@ -9,29 +9,25 @@
             .state('loginPanel', {
                 url: '/login',
                 abstract: true,
-                templateUrl : 'states/loginPanel.html',
-                controller  : 'loginPanelController'
+                templateUrl : 'states/loginPanel.html'
             })
 
             // route for the login page
             .state('loginPanel.login', {
                 url: "",
-                templateUrl : 'states/loginPanel_states/login.html',
-                controller  : 'loginController'
+                templateUrl : 'states/loginPanel_states/login.html'
             })
 
             // route for the registration page
             .state('loginPanel.register', {
                 url: '^/register',
-                templateUrl : 'states/loginPanel_states/register.html',
-                controller  : 'registerController'
+                templateUrl : 'states/loginPanel_states/register.html'
             })
 
             // route for the password reset page
             .state('loginPanel.reset', {
                 url: '^/reset',
-                templateUrl : 'states/loginPanel_states/reset.html',
-                controller  : 'resetController'
+                templateUrl : 'states/loginPanel_states/reset.html'
             });
 
         // use the HTML5 History API
@@ -64,27 +60,7 @@
             };
         };
     });
-
-    app.controller('loginPanelController', function($scope) {
-        // create a message to display in our view
-        $scope.message = 'login panel!';
-    });
-
-    app.controller('loginController', function($scope) {
-        // create a message to display in our view
-        $scope.message = 'login page!';
-    });
-
-    app.controller('registerController', function($scope) {
-        // create a message to display in our view
-        $scope.message = 'Registration!';
-    });
-
-    app.controller('resetController', function($scope) {
-        // create a message to display in our view
-        $scope.message = 'Reset password!';
-    });
-
+    
 // Directives
     app.directive('disableValidators', function() {
         return {
