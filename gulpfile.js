@@ -40,7 +40,6 @@ gulp.task('server', function() {
 			port: 8000,
 			fallback: 'index.html'
 		}));
-
 });
 
 gulp.task('default', function() {
