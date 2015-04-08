@@ -18,7 +18,6 @@ module.exports = function(config) {
             'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js',
             'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js',
-            'app/lib/angular-ui-router.min.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'app/app.js',
             'app/spec/**.js'

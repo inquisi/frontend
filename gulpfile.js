@@ -5,8 +5,8 @@ var server = require('gulp-webserver');
 var less = require('gulp-less');
 
 var paths = {
-	'js': ['app/**/*.js', '!app/spec/**/*.js', '!app/app.js', '!app/lib/angular-mocks/*.js'],
-	'less': ['app/less/**/*.less']
+	'js': ['app/**/*.js', '!app/js/spec/**/*.js', '!app/app.js', '!app/js/lib/angular-mocks/*.js'],
+	'less': ['app/styles/less/**/*.less']
 }
 
 gulp.task('concat', function(done) {
@@ -17,7 +17,7 @@ gulp.task('concat', function(done) {
 });
 
 gulp.task('less', function(done) {
-	gulp.src('app/less/app.less')
+	gulp.src('app/styles/less/app.less')
 		.pipe(less({
 			// paths: []
 		}))
