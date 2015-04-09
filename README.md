@@ -3,6 +3,11 @@
 ####Welcome to iNQUiSi's Frontend Repo! 
 Want to go to the backend? Go [there](https://github.com/inquisi/backend) now!
 
+####Installation
+You need to install node.
+You need to do `npm install`.
+You need the packages `karma`, `karma-phantomjs-launcher`, `gulp` installed globally with `npm install -g PACKAGE_NAME`.
+
 ####Goals
 The frontend will support users in the following roles:
 - Instructor

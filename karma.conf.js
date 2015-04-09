@@ -18,11 +18,15 @@ module.exports = function(config) {
             'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js',
             'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js',
-            'bower_components/angular-mocks/angular-mocks.js',
+            'app/js/lib/**/*.js',
             'app/app.js',
-            'app/spec/**.js'
+            'app/js/spec/**/*.js'
         ],
 
+        plugins: [
+            'karma-jasmine', 
+            'karma-phantomjs-launcher'
+        ],
 
         // list of files to exclude
         exclude: [
