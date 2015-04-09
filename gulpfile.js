@@ -52,6 +52,8 @@ gulp.task('server', function() {
 });
 
 gulp.task('default', function() {
+    gulp.start('concat');
+    gulp.start('less');
     gulp.watch(paths.js, ['concat']);
     gulp.watch(paths.less, ['less']);
     gulp.start('server');
