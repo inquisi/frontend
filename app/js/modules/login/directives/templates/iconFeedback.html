@@ -1,0 +1,7 @@
+<span ng-show="{{ngModel}}.$pristine" class="form-control-feedback text-muted fui-{{fuiIcon}}"></span>
+                <span class="form-control-feedback" 
+                      ng-hide="{{ngModel}}.$pristine" 
+                      ng-class="
+                        {true: "green fui-check",
+                         false: "red fui-cross"}
+                         [{{ngModel}}.$valid]"></span>

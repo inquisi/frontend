@@ -1,4 +1,4 @@
-describe('validationController', function() {
+describe('roleController', function() {
 
     var scope;
 
@@ -6,18 +6,15 @@ describe('validationController', function() {
         module('inquisi');
         inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            $controller("validationController", {
+            $controller("roleController", {
                 $scope: scope
             });
         });
     });
 
-    describe("Registration", function() {
-        it("should set role to student by default", function() {
-            expect(scope.user.role).not.toBe(null);
-            expect(scope.user.role).toBe("student");
-        });
-
+    it("should set role to student by default", function() {
+        expect(scope.user.role).not.toBe(null);
+        expect(scope.user.role).toBe("student");
     });
 });
 

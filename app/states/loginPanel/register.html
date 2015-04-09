@@ -1,5 +1,5 @@
 <p>Create an account!</p>
-<form name="form" id="registerForm" ng-submit="" novalidate ng-controller="roleController">
+<form name="form" id="registerForm" ng-submit="" novalidate ng-controller="registerController">
 
     <div class="form-row"> <!-- Email -->
         <label for="register_email" class="control-label">Email</label>           
@@ -72,6 +72,7 @@
             </div>
     </div>
 
+  <div ng-controller="roleController">
     <div class="form-row"> <!-- Role -->
         <label for="register_role" class="control-label">Role</label>
                 <div class="input-group">
@@ -98,7 +99,7 @@
                          [form.institution.$valid]"></span>
             </div>
     </div>
-
+    </div>
     <div class="form-row"> <!-- Submit Button -->
             <button type="submit" class="btn btn-info">
                 Create Account

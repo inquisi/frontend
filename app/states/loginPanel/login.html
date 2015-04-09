@@ -1,6 +1,7 @@
 <p>Sign in to continue.</p>
-<form name="login" ng-submit="" novalidate>
+<form name="login" ng-submit="submit()" novalidate ng-controller="loginController">
 	<div class="form-row">
+            <p ng-show="errorMessage !== undefined" class="help-block">{{errorMessage}}</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="email" type="email" placeholder="Email"
                     name="email" ng-model="user.email" disable-Validators>
