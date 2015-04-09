@@ -8,6 +8,66 @@
 	}
 }
 
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 23px;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left:0; top: 2px;
+  width: 17px; height: 17px;
+  border: 1px solid @gray-light;
+  background: transparent;
+  border-radius: 4px;
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  font-family: 'Flat-UI-Icons';
+  content: '\e60a';
+  position: absolute;
+  width: 17px; height: 17px;
+  border-radius: 4px;
+  top: 2px; left: 0px;
+  padding-top: 2px;
+  padding-left: 4px;
+  font-size: 10px;
+  color: #FFF;
+  background-color: @brand-info;
+  transition: all .2s;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 1px solid @brand-info;
+}
+
+/* hover style just for information */
+label:hover:before {
+  border: 1px solid @brand-info !important;
+}
+
+
 
 
 @autofill-bg: lighten(@brand-primary, 35%);

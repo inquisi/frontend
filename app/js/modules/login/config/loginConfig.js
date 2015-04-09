@@ -12,19 +12,19 @@ function loginConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     // route for the login page
     .state('loginPanel.login', {
         url: "",
-        templateUrl: 'states/loginPanel_states/login.html'
+        templateUrl: 'states/loginPanel/login.html'
     })
 
     // route for the registration page
     .state('loginPanel.register', {
         url: '^/register',
-        templateUrl: 'states/loginPanel_states/register.html'
+        templateUrl: 'states/loginPanel/register.html'
     })
 
     // route for the password reset page
     .state('loginPanel.reset', {
         url: '^/reset',
-        templateUrl: 'states/loginPanel_states/reset.html'
+        templateUrl: 'states/loginPanel/reset.html'
     });
 
     // use the HTML5 History API
