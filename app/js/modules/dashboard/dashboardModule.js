@@ -1,5 +1,5 @@
 (function() {
-    angular.module('dashboard', ['']);
+    angular.module('dashboard', []);
 })();
 
 var dashboard = angular.module('dashboard');

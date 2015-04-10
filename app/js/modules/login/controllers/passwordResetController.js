@@ -5,4 +5,4 @@ function passwordResetController($scope) {
     }
 }
 
-login.controller('passwordResetController', passwordResetController);
+login.controller('passwordResetController', ['$scope', passwordResetController]);

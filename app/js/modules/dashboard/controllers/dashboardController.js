@@ -1,5 +1,5 @@
-function dashboardController() {
-
+function dashboardController($scope) {
+    $scope.thing = 'string';
 }
 
-dashboard.controller('dashboardController', dashboardController);
+dashboard.controller('dashboardController', ['$scope', dashboardController]);

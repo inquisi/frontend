@@ -10,4 +10,4 @@ function loginController($scope, $state, AuthService) {
     }
 }
 
-login.controller('loginController', loginController);
+login.controller('loginController', ['$scope', '$state', 'AuthService', loginController]);

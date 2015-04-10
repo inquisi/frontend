@@ -2,7 +2,7 @@ function loginConfig($stateProvider) {
     $stateProvider
     // route for the login page
     .state('loginPanel.login', {
-        url: "",
+        url: '',
         templateUrl: 'states/loginPanel/login.html'
     })
 

@@ -4,4 +4,4 @@ function mainController($scope, $filter) {
     this.copyright = "\u00A9 " + year + " | iNQUiSi";
 }
 
-main.controller('mainController', mainController);
+main.controller('mainController', ['$scope', '$filter', mainController]);

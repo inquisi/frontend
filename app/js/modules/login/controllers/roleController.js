@@ -1,4 +1,4 @@
-function roleController($scope, $http, $window) {
+function roleController($scope) {
     $scope.user = {
         role: "student"
     };
@@ -11,4 +11,4 @@ function roleController($scope, $http, $window) {
     }];
 }
 
-login.controller('roleController', roleController);
+login.controller('roleController', ['$scope', roleController]);

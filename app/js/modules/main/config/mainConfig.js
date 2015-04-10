@@ -13,15 +13,13 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/login',
         abstract: true,
         templateUrl: 'states/loginPanel.html',
-        controller: 'loginController'
     })
 
     // route for the app dashboard
     .state('dashboard', {
         url: '/',
-        // abstract: true,
+        abstract: true,
         templateUrl: 'states/dashboard.html',
-        controller: 'dashboardController'
         // resolve: {
         //     authenticate: authenticate
         // }

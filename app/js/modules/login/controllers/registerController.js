@@ -5,4 +5,4 @@ function registerController($scope) {
     }
 }
 
-login.controller('registerController', registerController);
+login.controller('registerController', ['$scope', registerController]);

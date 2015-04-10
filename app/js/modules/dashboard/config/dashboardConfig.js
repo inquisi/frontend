@@ -4,7 +4,6 @@ function dashboardConfig($stateProvider) {
     // child routes
     .state('dashboard.welcome', {
         url: '',
-        parent: 'dashboard',
         templateUrl: 'states/dashboard/welcome.html'
     })
 }
