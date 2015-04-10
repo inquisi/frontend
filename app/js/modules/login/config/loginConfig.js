@@ -1,14 +1,5 @@
-function loginConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-    $urlRouterProvider.otherwise('/login');
-
+function loginConfig($stateProvider) {
     $stateProvider
-    // route for the loginPanel page
-    .state('loginPanel', {
-        url: '/login',
-        abstract: true,
-        templateUrl: 'states/loginPanel.html'
-    })
-
     // route for the login page
     .state('loginPanel.login', {
         url: "",
@@ -26,9 +17,6 @@ function loginConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '^/reset',
         templateUrl: 'states/loginPanel/reset.html'
     });
-
-    // use the HTML5 History API
-    $locationProvider.html5Mode(true);
 }
 
 login.config(loginConfig);
