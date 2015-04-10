@@ -1,11 +1,12 @@
-function registerController($scope, User) {
+function registerController($scope, $state, User) {
     // function to submit the form after all validation has occurred            
     $scope.submit = function() {
         User.create($scope.user, function(response) {
             // return a token or message
             if (response.status == "success") {
                 var token = response.data.user.token;
-                console.log(token);
+                // Store the token
+                $state.go('dashboard.welcome');
             } else {
                 var errorMessage = response.message;
                 console.log(errorMessage);
@@ -14,4 +15,4 @@ function registerController($scope, User) {
     }
 }
 
-login.controller('registerController', ['$scope', registerController]);
+login.controller('registerController', ['$scope', '$state', 'User', registerController]);
