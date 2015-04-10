@@ -3,7 +3,7 @@ function loginController($scope, $state, AuthService) {
     $scope.submit = function() {
         AuthService.login($scope.user.email, $scope.user.password)
             .then(function() {
-                $state.go('/');
+                $state.go('dashboard');
             }, function(data) {
                 $scope.errorMessage = data.message;
             });

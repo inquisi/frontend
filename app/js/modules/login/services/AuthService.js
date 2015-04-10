@@ -2,7 +2,7 @@ function AuthService($http, $q) {
     this.login = function(email, password) {
         var defer = $q.defer();
 
-        $http.post('/login', {
+        $http.post('http://localhost:3000/login', {
             email: email,
             password: password
         }).success(function(response, status) {
