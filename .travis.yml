@@ -9,3 +9,4 @@ install:
  - npm install -g bower-installer gulp
  - bower-installer
  - gulp buildLocal
+script: npm run testOnce
