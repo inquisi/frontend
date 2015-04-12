@@ -46,13 +46,13 @@ describe('AuthService', function() {
 		});
 
 		it("should post the email and password to the server", function() {
-			$httpBackend.expectPOST('/login', JSON.stringify(userHash)).respond(200, '');
+			$httpBackend.expectPOST('http://localhost:3000/login', JSON.stringify(userHash)).respond(200, '');
 			AuthService.login(userHash.email, userHash.password);
 			$httpBackend.flush();
 		});
 
 		it("should return an error if the request response is a failure", function() {
-			$httpBackend.expectPOST('/login', JSON.stringify(userHash)).respond(200, {
+			$httpBackend.expectPOST('http://localhost:3000/login', JSON.stringify(userHash)).respond(200, {
 				status: 'failure',
 				message: 'Email or password is incorrect',
 				data: ''
@@ -74,7 +74,7 @@ describe('AuthService', function() {
 		});
 
 		it("should return a token if the request response is a success", function() {
-			$httpBackend.expectPOST('/login', JSON.stringify(userHash)).respond(200, {
+			$httpBackend.expectPOST('http://localhost:3000/login', JSON.stringify(userHash)).respond(200, {
 				status: 'success',
 				message: '',
 				data: {

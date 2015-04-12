@@ -1,14 +1,21 @@
 (function() {
-    angular.module('resources', []);
-    // .value('API_ROOT', ['$location',
-    //     function($location) {
-    //         if ($location.path.indexOf('localhost:3000') != -1) {
-    //             return 'http://localhost:3000';
-    //         } else {
-    //             return 'api.inquisi.io';
-    //         }
-    //     }
-    // ]);
+	var resources = angular.module('resources', []);
+	resources.factory('apiRootInterceptor', function() {
+		return {
+			request: function(config) {
+				// If request is being sent to the api
+				if (config.url.indexOf('states') == -1) {
+					config.url = applicationConfig.apiRoot + config.url;
+				}
+				return config;
+			}
+		}
+	});
+	resources.config(['$httpProvider',
+		function($httpProvider) {
+			$httpProvider.interceptors.push('apiRootInterceptor');
+		}
+	]);
 })();
 
 var resources = angular.module('resources');
