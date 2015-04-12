@@ -4,5 +4,7 @@ node_js:
 notifications:
   email: false
   slack: inquisi:tN28qlf1uc3wVDVt0Uqvucha#frontend
-
-#cache: 
+install:
+ - npm install
+ - npm install -g bower-installer
+ - bower-installer
