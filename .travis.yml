@@ -6,5 +6,6 @@ notifications:
   slack: inquisi:tN28qlf1uc3wVDVt0Uqvucha#frontend
 install:
  - npm install
- - npm install -g bower-installer
+ - npm install -g bower-installer gulp
  - bower-installer
+ - gulp buildLocal
