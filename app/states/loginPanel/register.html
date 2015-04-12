@@ -19,10 +19,10 @@
     <div class="form-row"> <!-- Password 1 -->
         <label for="register_pass1" class="control-label">Password</label>
         <p ng-show="form.password.$error.required && form.password.$dirty" class="help-block">Please enter a password.</p>
-        <p ng-show="form.confirm.$error.equals && form.confirm.$dirty" class="help-block">Your passwords do not match.</p>
+        <p ng-show="form.password_confirmation.$error.equals && form.password_confirmation.$dirty" class="help-block">Your passwords do not match.</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="password" type="password" placeholder="Enter password" id="register_pass1" 
-                    name="password" ng-model="user.password" equals="{{user.confirm}}" required ng-model-options="{updateOn: 'blur'}">
+                    name="password" ng-model="user.password" equals="{{user.password_confirmation}}" required ng-model-options="{updateOn: 'blur'}">
                 <span ng-show="form.password.$pristine" class="form-control-feedback text-muted fui-lock"></span>
                 <span ng-hide="form.password.$pristine" class="form-control-feedback"
                       ng-class="(form.password.$error.required || form.password.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
@@ -31,13 +31,13 @@
     </div>
     <div class="form-row"> <!-- Password 2 -->
         <label for="register_pass2" class="control-label">Confirm Password</label>
-        <p ng-show="form.confirm.$error.required && form.confirm.$dirty" class="help-block">Please confirm your password.</p>
+        <p ng-show="form.password_confirmation.$error.required && form.password_confirmation.$dirty" class="help-block">Please confirm your password.</p>
             <div class="input-group">
                 <input class="form-control" autocomplete="off" type="password" placeholder="Re-enter password" id="register_pass2"
-                    name="confirm" equals="{{user.password}}" ng-model="user.confirm" required>
-                <span ng-show="form.confirm.$pristine" class="form-control-feedback text-muted fui-lock"></span>
-                <span ng-hide="form.confirm.$pristine" class="form-control-feedback"
-                      ng-class="(form.confirm.$error.required || form.confirm.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
+                    name="password_confirmation" equals="{{user.password}}" ng-model="user.password_confirmation" required>
+                <span ng-show="form.password_confirmation.$pristine" class="form-control-feedback text-muted fui-lock"></span>
+                <span ng-hide="form.password_confirmation.$pristine" class="form-control-feedback"
+                      ng-class="(form.password_confirmation.$error.required || form.password_confirmation.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
 
             </div>
     </div>
