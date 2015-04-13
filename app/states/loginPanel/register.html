@@ -3,42 +3,39 @@
 
     <div class="form-row"> <!-- Email -->
         <label for="register_email" class="control-label">Email</label>           
-        <p ng-show="form.email.$invalid && form.email.$dirty" class="help-block">Please enter a valid email.</p>
+        <ng-messages for="form.email.$error" class="help-block" ng-if='form.email.$dirty'>
+          <ng-message when="required">Please enter an email</ng-message>
+          <ng-message when="email">Please enter a valid email</ng-message>
+        </ng-messages>
             <div class="input-group">
                 <input class="form-control" autocomplete="email" type="email" placeholder="Enter email" id="register_email" 
                     name="email" ng-model="user.email" required ng-model-options="{updateOn: 'blur'}">
-                <icon-feedback ng-model="user.email" fui-icon="mail"></icon-feedback>
-                <!--<span ng-show="form.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
-                <span class="form-control-feedback" 
-                      ng-hide="form.email.$pristine" 
-                      ng-class="
-                        {true: 'green fui-check',
-                         false: 'red fui-cross'}
-                         [form.email.$valid]"></span> -->
+                <icon-feedback input="email" fui-icon="mail"></icon-feedback>
             </div>
     </div>
     <div class="form-row"> <!-- Password 1 -->
+
         <label for="register_pass1" class="control-label">Password</label>
-        <p ng-show="form.password.$error.required && form.password.$dirty" class="help-block">Please enter a password.</p>
-        <p ng-show="form.password_confirmation.$error.equals && form.password_confirmation.$dirty" class="help-block">Your passwords do not match.</p>
+        <ng-messages for="form.password.$error" class="help-block" ng-if='form.password.$dirty'>
+          <ng-message when="required">Please enter a password</ng-message>
+          <ng-message when="equals">Your passwords do not match</ng-message>
+        </ng-messages>
             <div class="input-group">
                 <input class="form-control" autocomplete="password" type="password" placeholder="Enter password" id="register_pass1" 
                     name="password" ng-model="user.password" equals="{{user.password_confirmation}}" required ng-model-options="{updateOn: 'blur'}">
-                <span ng-show="form.password.$pristine" class="form-control-feedback text-muted fui-lock"></span>
-                <span ng-hide="form.password.$pristine" class="form-control-feedback"
-                      ng-class="(form.password.$error.required || form.password.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
+                <icon-feedback input="password" fui-icon="lock"></icon-feedback>
                 
             </div>
     </div>
     <div class="form-row"> <!-- Password 2 -->
         <label for="register_pass2" class="control-label">Confirm Password</label>
-        <p ng-show="form.password_confirmation.$error.required && form.password_confirmation.$dirty" class="help-block">Please confirm your password.</p>
+        <ng-messages for="form.password_confirmation.$error" class="help-block" ng-if='form.password_confirmation.$dirty'>
+          <ng-message when="required">Please confirm your password</ng-message>
+        </ng-messages>
             <div class="input-group">
                 <input class="form-control" autocomplete="off" type="password" placeholder="Re-enter password" id="register_pass2"
                     name="password_confirmation" equals="{{user.password}}" ng-model="user.password_confirmation" required>
-                <span ng-show="form.password_confirmation.$pristine" class="form-control-feedback text-muted fui-lock"></span>
-                <span ng-hide="form.password_confirmation.$pristine" class="form-control-feedback"
-                      ng-class="(form.password_confirmation.$error.required || form.password_confirmation.$error.equals) ? 'red fui-cross' : 'green fui-check'"></span>
+                <icon-feedback input="password_confirmation" fui-icon="lock"></icon-feedback>
 
             </div>
     </div>
@@ -49,27 +46,13 @@
                 <div class="input-group">
                     <input class="form-control" autocomplete="fname" type="text" placeholder="First Name" id="register_name"
                         name="fname" ng-model="user.first_name" required ng-model-options="{updateOn: 'blur'}">
-                    <span ng-show="form.fname.$pristine"
-                          class="form-control-feedback text-muted fui-user"></span>
-                    <span class="form-control-feedback" 
-                      ng-hide="form.fname.$pristine" 
-                      ng-class="
-                        {true: 'green fui-check',
-                         false: 'red fui-cross'}
-                         [form.fname.$valid]"></span>
+                  <icon-feedback input="fname" fui-icon="user"></icon-feedback>
                 </div>
 
             <div class="input-group">
                     <input class="form-control" autocomplete="lname" type="text" placeholder="Last Name"
                         name="lname" ng-model="user.last_name" required ng-model-options="{updateOn: 'blur'}">
-                    <span ng-show="form.lname.$pristine"
-                          class="form-control-feedback text-muted fui-user"></span>
-                    <span class="form-control-feedback" 
-                      ng-hide="form.lname.$pristine" 
-                      ng-class="
-                        {true: 'green fui-check',
-                         false: 'red fui-cross'}
-                         [form.lname.$valid]"></span>
+                    <icon-feedback input="lname" fui-icon="user"></icon-feedback>
             </div>
     </div>
 
@@ -86,17 +69,13 @@
 
     <div ng-if="user.role == 'instructor'" class="form-row"> <!-- Institution (conditional) -->
         <label for="register_institution" class="control-label">Institution</label>           
-        <p ng-show="form.institution.$invalid && form.institution.$dirty" class="help-block">Please enter your institution.</p>
+        <ng-messages for="form.organization.$error" class="help-block" ng-if='form.organization.$dirty'>
+          <ng-message when="required">Please enter an organization</ng-message>
+        </ng-messages>
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Enter institution" id="register_institution" 
-                    name="institution" ng-model="user.institution" required ng-model-options="{updateOn: 'blur'}">
-                <span ng-show="form.institution.$pristine" class="form-control-feedback text-muted fui-home"></span>
-                <span class="form-control-feedback" 
-                      ng-hide="form.institution.$pristine" 
-                      ng-class="
-                        {true: 'green fui-check',
-                         false: 'red fui-cross'}
-                         [form.institution.$valid]"></span>
+                <input class="form-control" type="text" placeholder="Enter organization" id="register_organization" 
+                    name="organization" ng-model="user.organization" required ng-model-options="{updateOn: 'blur'}">
+                <icon-feedback input="organization" fui-icon="home"></icon-feedback>
             </div>
     </div>
     <div class="form-row"> <!-- Submit Button -->

@@ -6,20 +6,28 @@ function iconFeedback() {
         // terminal: true,
         scope: {
             fuiIcon: '@',
-            ngModel: '='
+            input: '='
         }, // {} = isolate, true = child, false/undefined = no change
-        require: '^ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+        require: '^form', // Array = multiple requires, ? = optional, ^ = check parent elements
         restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
         // template: '',
         templateUrl: 'js/modules/login/directives/templates/iconFeedback.html',
         replace: true,
-        link: function(scope, element, attrs, ngModel) {
-            if (!ngModel) return; // do nothing if no ng-model
+        link: function(scope, element, attrs, form) {
+            var parent = scope.$parent;
+            var input = attrs.input;
 
-            // Specify how UI should be updated
-            ngModel.$render = function() {
-                element.html(ngModel.$viewValue || '');
-            };
+            scope.$watch(function() {
+                return form[input].$pristine;
+            }, function() {
+                scope.pristine = form[input].$pristine;
+            });
+
+            scope.$watch(function() {
+                return form[input].$valid;
+            }, function() {
+                scope.valid = form[input].$valid;
+            });
         }
     }
 }
