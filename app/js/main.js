@@ -1,5 +1,5 @@
 (function() {
-    angular.module('inquisi', ['ui.router', 'ngResource', // vendor dependencies
+    angular.module('inquisi', ['ui.router', 'ngResource', 'ngCookies', // vendor dependencies
         'login', 'resources', 'dashboard' // our dependencies
     ]);
 })();
