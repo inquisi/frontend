@@ -7,13 +7,14 @@
             <div class="input-group">
                 <input class="form-control" autocomplete="email" type="email" placeholder="Enter email" id="register_email" 
                     name="email" ng-model="user.email" required ng-model-options="{updateOn: 'blur'}">
-                <span ng-show="form.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
+                <icon-feedback ng-model="user.email" fui-icon="mail"></icon-feedback>
+                <!--<span ng-show="form.email.$pristine" class="form-control-feedback text-muted fui-mail"></span>
                 <span class="form-control-feedback" 
                       ng-hide="form.email.$pristine" 
                       ng-class="
                         {true: 'green fui-check',
                          false: 'red fui-cross'}
-                         [form.email.$valid]"></span>
+                         [form.email.$valid]"></span> -->
             </div>
     </div>
     <div class="form-row"> <!-- Password 1 -->
