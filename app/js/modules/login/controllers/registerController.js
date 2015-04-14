@@ -19,8 +19,7 @@ function registerController($scope, $state, User, AuthService) {
                 AuthService.login(token);
                 $state.go('dashboard.welcome');
             } else {
-                var errorMessage = response.message;
-                console.log(errorMessage);
+                $scope.errorMessage = response.message;
             }
         });
     }

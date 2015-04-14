@@ -1,15 +1,17 @@
 <p>Create an account!</p>
 <form name="form" id="registerForm" ng-submit="submit()" novalidate ng-controller="registerController">
 
+    <p class="alert alert-danger error-message" ng-if="errorMessage != undefined">{{errorMessage}}</p>
+
     <div class="form-row"> <!-- Email -->
         <label for="register_email" class="control-label">Email</label>           
         <ng-messages for="form.email.$error" class="help-block" ng-if='form.email.$dirty'>
-          <ng-message when="required">Please enter an email</ng-message>
-          <ng-message when="email">Please enter a valid email</ng-message>
+            <ng-message when="required">Please enter an email</ng-message>
+            <ng-message when="email">Please enter a valid email</ng-message>
         </ng-messages>
             <div class="input-group">
                 <input class="form-control" autocomplete="email" type="email" placeholder="Enter email" id="register_email" 
-                    name="email" ng-model="user.email" required ng-model-options="{updateOn: 'blur'}">
+                    name="email" ng-model="user.email" required ng-model-options="{updateOn: 'blur'}" api-error>
                 <icon-feedback input="email" fui-icon="mail"></icon-feedback>
             </div>
     </div>
@@ -17,8 +19,8 @@
 
         <label for="register_pass1" class="control-label">Password</label>
         <ng-messages for="form.password.$error" class="help-block" ng-if='form.password.$dirty'>
-          <ng-message when="required">Please enter a password</ng-message>
-          <ng-message when="equals">Your passwords do not match</ng-message>
+            <ng-message when="required">Please enter a password</ng-message>
+            <ng-message when="equals">Your passwords do not match</ng-message>
         </ng-messages>
             <div class="input-group">
                 <input class="form-control" autocomplete="password" type="password" placeholder="Enter password" id="register_pass1" 

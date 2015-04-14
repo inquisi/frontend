@@ -14,7 +14,6 @@ function iconFeedback() {
         templateUrl: 'js/modules/login/directives/templates/iconFeedback.html',
         replace: true,
         link: function(scope, element, attrs, form) {
-            var parent = scope.$parent;
             var input = attrs.input;
 
             scope.$watch(function() {
