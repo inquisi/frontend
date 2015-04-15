@@ -6,10 +6,10 @@ describe('loginController', function() {
         loginController,
         $state,
         $httpBackend,
-        user;
+        user,
+        $templateCache;
 
     beforeEach(function() {
-        module('inquisi');
         inject(function($injector) {
             $rootScope = $injector.get('$rootScope');
             AuthService = $injector.get('AuthService');
@@ -17,7 +17,11 @@ describe('loginController', function() {
             $q = $injector.get('$q');
             $httpBackend = $injector.get('$httpBackend');
             $state = $injector.get('$state');
-            // spyOn($state, 'go');
+            $location = $injector.get('$location');
+            $templateCache = $injector.get('$templateCache');
+
+            $templateCache.put('states/dashboard.html', '');
+            $templateCache.put('states/dashboard/welcome.html', '');
 
             scope = $rootScope.$new();
             user = scope.user = {
@@ -26,47 +30,68 @@ describe('loginController', function() {
             };
             loginController = $controller("loginController", {
                 $scope: scope,
-                $state: $state
+                $state: $state,
+                $location: $location
             });
         });
     });
 
-    xdescribe('User Login', function() {
+    describe('User Login', function() {
         var defer, promise;
+        // How to test promises
+        // 
+        // $q.reject and $q.when will create a new promise that is automatically rejected or resolved, respectively
+        // That promise should be returned from a mock object
+        // Then the function being tested should be called
+        // -Then- $rootScope.$apply() should be called to resolve all promises
+        // Then you should test your expectations
 
         beforeEach(function() {
             defer = $q.defer();
             promise = defer.promise;
 
             spyOn($state, 'go');
-            spyOn(AuthService, 'login').and.returnValue(promise);
+            spyOn(AuthService, 'login')
         });
 
         it('should send user.email and user.password to AuthService', function() {
+            AuthService.login.and.returnValue($q.reject({}));
             scope.submit();
+            $rootScope.$apply();
             expect(AuthService.login).toHaveBeenCalledWith(user.email, user.password);
         });
 
         it('should redirect us to "/" when AuthService returns success', function() {
-            defer.resolve({
+            AuthService.login.and.returnValue($q.when({
                 authenticate: true,
                 token: '12345'
-            });
+            }));
             scope.submit();
-            expect($state.go).toHaveBeenCalledWith('/');
+            $rootScope.$apply();
+
+            expect($state.go).toHaveBeenCalledWith('dashboard.welcome');
         });
 
-        it('should set $scope.errorMessage to "Email or password is invalid." when AuthService returns failure', function() {
-            defer.reject({
+        it('should set $scope.errorMessage to the returned message when AuthService returns a failure', function() {
+            AuthService.login.and.returnValue($q.reject({
                 authenticate: false,
                 message: 'Email or password are invalid'
-            });
-            $httpBackend.expectGET("states/loginPanel.html").respond();
-            $httpBackend.expectGET("states/loginPanel/login.html").respond();
-            $rootScope.$apply();
+            }));
             scope.submit();
+            $rootScope.$apply();
+
             expect(scope.errorMessage).toBe('Email or password are invalid');
         });
 
+        it('should redirect to the state in $rootScope.redirectAfterLogin after login success if present', function() {
+            $rootScope.redirectAfterLogin = 'redirectHereScope'
+            AuthService.login.and.returnValue($q.when({
+                authenticate: true,
+                token: '12345'
+            }));
+            scope.submit();
+            $rootScope.$apply();
+            expect($state.go).toHaveBeenCalledWith('redirectHereScope');
+        });
     });
 });

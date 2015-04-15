@@ -6,7 +6,6 @@ describe('registerController', function() {
         registerController;
 
     beforeEach(function() {
-        module('inquisi');
         inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             userSpy = jasmine.createSpyObj('User', ['create']);

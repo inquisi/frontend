@@ -9,7 +9,6 @@ describe('AuthService', function() {
         $;
 
     beforeEach(function() {
-        module('inquisi');
         inject(function($injector) {
             $rootScope = $injector.get('$rootScope');
             $httpBackend = $injector.get('$httpBackend');
@@ -17,6 +16,7 @@ describe('AuthService', function() {
             $q = $injector.get('$q');
 
             AuthService = $injector.get('AuthService');
+            spyOn(AuthService, 'authenticated').and.returnValue(true);
         });
     });
 

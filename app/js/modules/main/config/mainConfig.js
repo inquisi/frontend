@@ -5,14 +5,15 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     // route for the 404 page
     .state('404', {
         url: '/404',
-        templateUrl: 'states/404.html'
+        templateUrl: 'states/404.html',
+        disableAuth: true
     })
 
     // route for the loginPanel page
     .state('loginPanel', {
         url: '/login',
         abstract: true,
-        templateUrl: 'states/loginPanel.html',
+        templateUrl: 'states/loginPanel.html'
     })
 
     // route for the app dashboard
@@ -20,9 +21,6 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/',
         abstract: true,
         templateUrl: 'states/dashboard.html',
-        // resolve: {
-        //     authenticate: authenticate
-        // }
     })
 
     // use the HTML5 History API
