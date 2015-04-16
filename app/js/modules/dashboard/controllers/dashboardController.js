@@ -1,6 +1,7 @@
 function dashboardController($scope) {
     $scope.open = false;
     $scope.logoSmall = true;
+    $scope.showCourseModal = false;
 
     $scope.toggleLogo = function() {
         if ($scope.logoSmall) {
@@ -49,10 +50,11 @@ function dashboardController($scope) {
     }];
 
     $scope.addCourse = function() {
-        $scope.courses.push({
-            title: 'New Course',
-            id: '1236'
-        });
+        $scope.showCourseModal = true;
+    }
+
+    $scope.closeCourseModal = function() {
+        $scope.showCourseModal = false;
     }
 }
 

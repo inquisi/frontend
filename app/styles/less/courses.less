@@ -1,0 +1,69 @@
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+
+.table>thead>tr{
+	cursor: auto;
+}
+
+table{
+	tr{
+		height: 50px;
+		cursor: pointer;
+
+		&:focus{
+			outline: none;
+			background-color: @gray-lightest;
+			color: @gray-dark;
+		}
+	}
+
+	td{
+		height: 50px;
+		vertical-align: middle;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	a{
+		text-decoration: none;
+		color: inherit;
+
+		&:hover{
+			text-decoration: none;
+			color: darken(@text-color, 10%);
+		}
+	}
+
+	.table-present{
+		min-width: 35px;
+		text-align: center;
+		opacity: 0;
+		transition: 0.2s;
+		-webkit-transition: 0.2s;
+	}
+
+	.thead-present{
+		opacity: 1;
+	}
+
+	.table-opts{
+		min-width: 50px;
+		text-align: center;
+		opacity: 0;
+		transition: 0.2s;
+		-webkit-transition: 0.2s;
+	}
+}
+
+.table-hover {
+  > tbody > tr:hover {
+    .table-present{
+    	opacity: 1;
+    }
+    .table-opts{
+    	opacity: 1;
+    }
+  }
+}

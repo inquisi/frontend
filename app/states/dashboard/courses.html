@@ -1,12 +1,27 @@
 <div class="row">
 	<div class="col-xs-12 dashInfo">
 		<h2>Courses</h2
-		<h4>Uh... words?</h4>
+		<h4>This is a list of current and past courses</h4>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-xs-12 scroller">
-			Scroll Down
+	<div class="col-xs-12 col-no-pad">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td class="table-present thead-present"><i tabindex=0 
+		ng-keypress="$event.which === 13 && addCourse()" class="fui fui-plus" hm-tap="addCourse()"></i></td>
+					<td>Course Name</td>
+					<td>Instructor</td>
+					<td>Term</td>
+					<td class="table-opts"></td>
+					<td>Time</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr courses-row ng-repeat="course in courses"></tr>
+			</tbody>
+		</table>
 	</div>
 </div>
