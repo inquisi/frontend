@@ -16,7 +16,6 @@ describe('AuthService', function() {
             $q = $injector.get('$q');
 
             AuthService = $injector.get('AuthService');
-            spyOn(AuthService, 'authenticated').and.returnValue(true);
         });
     });
 
@@ -24,6 +23,7 @@ describe('AuthService', function() {
         var userHash;
 
         beforeEach(function() {
+            spyOn(AuthService, 'authenticated').and.returnValue(false);
             userHash = {
                 email: 'ntmoore@knox.edu',
                 password: 'root'

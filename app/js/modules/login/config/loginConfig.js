@@ -4,7 +4,12 @@ function loginConfig($stateProvider) {
     .state('loginPanel.login', {
         url: '',
         templateUrl: 'states/loginPanel/login.html',
-        disableAuth: true
+        disableAuth: true,
+        onEnter: function(AuthService, $state) {
+            if (AuthService.authenticated()) {
+                $state.go('dashboard.welcome')
+            }
+        }
     })
 
     // route for the registration page

@@ -4,7 +4,7 @@ function AuthService($http, $q, $cookieStore) {
         try {
             // Cookiestore will try to get a value from cookies in browser then parse them
             // The parsing step throws an error if a cookie isn't found
-            // (Empty string isnt valid json)
+            // (Empty string isnt valid json apparently)
             currentUser = $cookieStore.get('currentUser');
         } catch (e) {
             currentUser = {};
@@ -21,9 +21,9 @@ function AuthService($http, $q, $cookieStore) {
             var token = arg1;
             storeToken(token);
         } else {
-            var defer = $q.defer()
-            email = arg1,
-            password = arg2;
+            var defer = $q.defer(),
+                email = arg1,
+                password = arg2;
 
             $http.post('/login', {
                 email: email,
