@@ -1,5 +1,5 @@
 (function() {
-    angular.module('inquisi', ['ui.router', 'ngResource', 'ngCookies', // vendor dependencies
+    angular.module('inquisi', ['ui.router', 'ngResource', 'ngCookies', 'hmTouchEvents', // vendor dependencies
         'login', 'resources', 'dashboard' // our dependencies
     ])
         .run(function($rootScope, AuthService, $state, $location) {

@@ -1,9 +1,106 @@
+.dashboard{
+	h1, h2, h3, h4, h5, h6 {
+		font-family: @font-family-sans-serif;
+		font-weight: normal;
+	}
+}
+
+.navbar{
+	min-height: 40px;
+}
+
+.navbar-btn{
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  touch-action: manipulation !important;
+  -webkit-user-select: none !important;
+  -webkit-user-drag: none !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  color: @gray-lighter;
+
+  &:hover{
+  	color: @brand-primary;
+  	outline: none;
+  }
+
+  &:focus{
+  	color: lighten(@brand-primary, 12%);
+  	outline: none;
+  }
+}
+
+
 .navbar-fixed-top{
-	background-color: @gray-dark;
+	background-color: @gray;
+	height: 40px;
+	position: fixed;
+	-webkit-backface-visibility: hidden;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased; /* seems to do the same in Safari */
+}
+
+.navbar-toggle{
+	color: @gray-lighter;
+	padding: 8px 8px 0 0;
+	margin: 0;
+}
+
+.navbar-brand{
+	padding: 0 5px 0;
+	height: 40px;
+	margin: 0;
+
+	div{
+		width: 100px;
+		height: 40px;
+		background-position: 0% 0%;
+		background-size: 100%;
+		background-image: url(img/inquisi-responsive-logo.svg);
+	}
+
+	.logo-small{
+		margin-right: -35px;
+		background-position: 0% 100%;
+		margin-left: -37px;
+	}
 }
 
 .dashboard{
+	margin-left: 0;
+	width: 100%;
+	transition: 0.5s;
+	-webkit-transition: 0.5s;
+	
 	.row:first-child{
-		margin-top: 50px;
+		margin-top: 40px;
 	}
+}
+
+.dash-open{
+	margin-left: 250px;
+}
+
+.dashInfo{
+	height: auto;
+	padding: 15px;
+	background-color: @gray-lightest;
+
+	h2, h4{
+		margin: 0;
+	}
+
+	h2{
+		font-size: @font-size-h3;
+	}
+}
+
+.scroller{
+	height: 1000px;
 }
