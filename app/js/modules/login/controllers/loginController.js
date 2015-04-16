@@ -8,7 +8,7 @@ function loginController($rootScope, $scope, $state, AuthService) {
                     delete $rootScope.redirectAfterLogin;
                     $state.go(redirectAfterLogin);
                 } else {
-                    $state.go('dashboard.welcome');
+                    $state.go('dashboard.home');
                 }
             }, function(data) {
                 $scope.errorMessage = data.message;

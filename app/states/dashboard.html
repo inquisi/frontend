@@ -36,7 +36,7 @@
 		<div class="currentCourses"><h5>Current Courses</h5> <i tabindex=0 
 		ng-keypress="$event.which === 13 && addCourse()" hm-tap="addCourse()" 
 		class="fui fui-plus headerIcon"></i></div>
-		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesID({id: courses[$index].id})" icon="home" title="{{courses[$index].title}}"></menu-item>
+		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="home" title="{{courses[$index].title}}"></menu-item>
 	</ul>
 </div>
 

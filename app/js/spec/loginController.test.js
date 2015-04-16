@@ -21,7 +21,7 @@ describe('loginController', function() {
             $templateCache = $injector.get('$templateCache');
 
             $templateCache.put('states/dashboard.html', '');
-            $templateCache.put('states/dashboard/welcome.html', '');
+            $templateCache.put('states/dashboard/home.html', '');
 
             scope = $rootScope.$new();
             user = scope.user = {
@@ -69,7 +69,7 @@ describe('loginController', function() {
             scope.submit();
             $rootScope.$apply();
 
-            expect($state.go).toHaveBeenCalledWith('dashboard.welcome');
+            expect($state.go).toHaveBeenCalledWith('dashboard.home');
         });
 
         it('should set $scope.errorMessage to the returned message when AuthService returns a failure', function() {

@@ -46,15 +46,3 @@ describe('registerController', function() {
     //     expect(scope.user.role).toBe("student");
     // });
 });
-
-// it('should catch invalid emails', function() {
-
-// });
-
-// it('should pass valid emails through', function() {
-
-// });
-
-// it('should redirect users to the dashboard upon submitting a valid form', function() {
-
-// });

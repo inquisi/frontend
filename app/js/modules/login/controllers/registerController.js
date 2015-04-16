@@ -17,7 +17,7 @@ function registerController($scope, $state, User, AuthService) {
             if (response.status == "success") {
                 var token = response.data.user.token;
                 AuthService.login(token);
-                $state.go('dashboard.welcome');
+                $state.go('dashboard.home');
             } else {
                 $scope.errorMessage = response.message;
             }

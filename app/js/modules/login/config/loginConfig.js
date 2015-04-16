@@ -7,7 +7,7 @@ function loginConfig($stateProvider) {
         disableAuth: true,
         onEnter: function(AuthService, $state) {
             if (AuthService.authenticated()) {
-                $state.go('dashboard.welcome')
+                $state.go('dashboard.home')
             }
         }
     })
