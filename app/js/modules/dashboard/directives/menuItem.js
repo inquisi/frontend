@@ -6,7 +6,7 @@ function menuItem() {
         // terminal: true,
         scope: {
             icon: '@',
-            title: '@title',
+            name: '@name',
             uiSref: '@uiSref',
         }, // {} = isolate, true = child, false/undefined = no change
         // controller: function($scope, $element, $attrs, $transclude) {},

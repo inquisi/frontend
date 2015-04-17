@@ -29,12 +29,12 @@
 <div class="menu menu-left" ng-class="{true: 'menu-open'}[open]">
 	<ul>
 		<h5>Main</h5>
-		<menu-item ui-sref="dashboard.home" icon="home" title="Dashboard"></menu-item>
-		<menu-item ui-sref="dashboard.courses" icon="info-circle" title="Courses"></menu-item>
-		<menu-item ui-sref="dashboard.students" icon="user" title="Students"></menu-item>
+		<menu-item ui-sref="dashboard.home" icon="home" name="Dashboard"></menu-item>
+		<menu-item ui-sref="dashboard.courses" icon="info-circle" name="Courses"></menu-item>
+		<menu-item ui-sref="dashboard.students" icon="user" name="Students"></menu-item>
 
 		<div class="currentCourses"><h5>Current Courses</h5> <i tabindex="0" hm-tap="showCourseModal()" class="fui fui-plus headerIcon"></i></div>
-		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" title="{{courses[$index].name}}"></menu-item>
+		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" name="{{courses[$index].name}}"></menu-item>
 	</ul>
 </div>
 

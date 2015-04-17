@@ -13,17 +13,27 @@
 			height: 70px;
 			margin-top: 20px;
 
-			.input-group{
+			.input-group, select{
 				width: 100%;
 			}
 
 			&:last-child{
-				padding-bottom: 50px;
+				margin-bottom: 15px;
 			}
 		}
 
 		.control-label{
 			font-weight: normal;
 		}
+	}
+}
+
+#endDateDiv{
+	margin-top: 20px;
+}
+
+@media (min-width: @screen-sm-min) {
+	#endDateDiv{
+		margin-top: 0;
 	}
 }

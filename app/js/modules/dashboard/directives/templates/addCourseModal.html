@@ -18,27 +18,20 @@
 									</div>
 								</div>
 								</div> <!-- End Form Row -->
+
 								<div class="form-row">
-									<div class="col-xs-12">
-										<label class="control-label">Term</label>
-										<select ng-model="course.term">
-											
-										</select>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="col-xs-6">
+									<div class="col-xs-12 col-sm-6">
 										<label class="control-label">Start Date</label>
 										<div class="input-group">
 											<span class="input-group-addon fui fui-calendar"></span>
-											<input class="form-control" ng-model="course.startDate" name="startDate">
+											<input type="date" class="form-control" ng-model="course.date.start" name="startDate">
 										</div>
 									</div>
-									<div class="col-xs-6">
+									<div class="col-xs-12 col-sm-6" id="endDateDiv">
 										<label class="control-label">End Date</label>
 										<div class="input-group">
 											<span class="input-group-addon fui fui-calendar"></span>
-											<input class="form-control" ng-model="course.endDate" name="endDate">
+											<input type="date" class="form-control" ng-model="course.date.end" name="endDate">
 										</div>
 									</div>
 								</div>

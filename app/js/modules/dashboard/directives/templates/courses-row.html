@@ -2,7 +2,8 @@
 	<td class="table-present"><a><i class="fui fui-play"></i></a></td>
 	<td>{{courses[$index].name}}</td>
 	<td>Jaime Spacco</td>
-	<td>{{courses[$index].term}}</td>
+	<td class="collapse-xs">{{courses[$index].date.start | date : 'MM/dd/yyyy'}}</td>
+	<td class="collapse-xs">{{courses[$index].date.end | date : 'MM/dd/yyyy'}}</td>
 	<td class="table-opts"><i class="fui fui-eye"></i></td>
-	<td>MWF 9:20 AM</td>
+	<td class="collapse-xs">MWF 9:20 AM</td>
 </tr>

@@ -36,34 +36,39 @@ function dashboardController($scope) {
         }
     }
 
-    $scope.reverse = function(array) {
-        var copy = [].concat(array);
-        return copy.reverse();
-    }
-
-
     $scope.courses = [{
         id: '1234',
         name: 'CS 141',
-        term: 'SP 2015'
+        date: {
+            start: '3/09/2015',
+            end: '6/01/2015',
+        }
     }, {
         id: '1235',
         name: 'CS 292',
-        term: 'FA 2015'
+        date: {
+            start: '9/01/2016',
+            end: '11/12/2016'
+        }
     }];
 
     $scope.addCourse = function() {
         $scope.courses.push({
             id: '1568',
             name: $scope.course.name,
-            term: $scope.course.term
+            date: {
+                start: $scope.course.date.start,
+                end: $scope.course.date.end
+            }
         });
-        $scope.course.name = "";
-        $scope.course.term = "";
-        $scope.course.startDate = "";
-        $scope.course.endDate = "";
 
-        console.log($scope.course);
+        console.log($scope.course.date.start);
+
+        $scope.course.name = "";
+        $scope.course.date.start = "";
+        $scope.course.date.end = "";
+
+
         $scope.courseModalVisible = false;
     }
 
