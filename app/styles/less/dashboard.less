@@ -10,15 +10,17 @@
 }
 
 .navbar-btn{
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  touch-action: manipulation !important;
-  -webkit-user-select: none !important;
-  -webkit-user-drag: none !important;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-  color: @gray-lighter;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	background-color: transparent;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	touch-action: manipulation !important;
+	-webkit-user-select: none !important;
+	-webkit-user-drag: none !important;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+	color: @gray-lighter;
 
   &:hover{
   	color: @brand-primary;
@@ -29,6 +31,10 @@
   	color: lighten(@brand-primary, 12%);
   	outline: none;
   }
+}
+
+.pan{
+	height: 100%;
 }
 
 
@@ -55,7 +61,7 @@
 .navbar-brand{
 	padding: 0 5px 0;
 	height: 40px;
-	margin: 0;
+	margin: -2px auto 0;
 
 	div{
 		width: 100px;

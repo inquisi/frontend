@@ -33,7 +33,10 @@
 		<menu-item ui-sref="dashboard.courses" icon="info-circle" name="Courses"></menu-item>
 		<menu-item ui-sref="dashboard.students" icon="user" name="Students"></menu-item>
 
-		<div class="currentCourses"><h5>Current Courses</h5> <i tabindex="0" hm-tap="showCourseModal()" class="fui fui-plus headerIcon"></i></div>
+		<div class="currentCourses">
+			<h5>Current Courses</h5> 
+			<i tabindex="0" hm-tap="showCourseModal()" class="fui fui-plus headerIcon"></i>
+		</div>
 		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" name="{{courses[$index].name}}"></menu-item>
 	</ul>
 </div>

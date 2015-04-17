@@ -12,6 +12,7 @@
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     border: none;
+    overflow-y: auto;
 
     .active{
 		li{
@@ -57,12 +58,28 @@
 
 		.currentCourses{
 			margin-top: 125px;
+			padding-top: 15px;
+			width: 100%;
+			margin-bottom: 10px;
+			display: block;
+			height: 30px;
+
+			h5{
+				margin-top: 0;
+				display: inline-block;
+				float: left;
+			}
+
+			i{
+				margin-top: -2px;
+				display: inline-block;
+				float: right;
+				margin-right: 15px;
+			}
 		}
 
 		.headerIcon{
-			width: 20px;
 			text-align: center;
-			margin-left: 40%;
 
 			&:focus{
 				color: @brand-info;
