@@ -33,14 +33,13 @@
 		<menu-item ui-sref="dashboard.courses" icon="info-circle" title="Courses"></menu-item>
 		<menu-item ui-sref="dashboard.students" icon="user" title="Students"></menu-item>
 
-		<div class="currentCourses"><h5>Current Courses</h5> <i tabindex=0 
-		ng-keypress="$event.which === 13 && addCourse()" hm-tap="addCourse()" 
-		class="fui fui-plus headerIcon"></i></div>
-		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="home" title="{{courses[$index].title}}"></menu-item>
+		<div class="currentCourses"><h5>Current Courses</h5> <i tabindex="0" hm-tap="showCourseModal()" class="fui fui-plus headerIcon"></i></div>
+		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" title="{{courses[$index].name}}"></menu-item>
 	</ul>
 </div>
 
-<add-course-modal ng-show="showCourseModal"></add-course-modal>
+
+<add-course-modal ng-show="courseModalVisible"></add-course-modal>
 
 <div class="container dashboard" hm-tap="closeMenu()" ng-class="{true: 'dash-open'}[open]">
 		<ui-view />

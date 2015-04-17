@@ -8,6 +8,40 @@
 @import "dashboard.less";
 @import "dashMenu.less";
 @import "courses.less";
+@import "coursesModal.less";
+
+.modal{
+    display: block;
+    pointer-events: none;
+    -webkit-user-select: text     !important;
+    -moz-user-select: text        !important;
+    -ms-user-select: text         !important;
+}
+
+.modal-dialog{
+    margin-top: 50px; 
+    pointer-events: auto;
+}
+
+.modal-backdrop{
+    background-color: @gray-darker;
+    width: 100%;
+    height: 100%;
+    z-index: 1039;
+    opacity: 0.3;
+}
+
+@media (min-width: @screen-md-min) {
+    .modal-dialog{
+        margin-top: 50px; 
+    }
+}
+
+.modal.ng-hide-add, .modal.ng-hide-remove {
+  /* this is required as of 1.3x to properly
+     apply all styling in a show/hide animation */
+  transition: 0.2s linear all;
+}
 
 html, body {
     width: 100%;
@@ -62,4 +96,13 @@ h1, h2, h3, h4, h5, h6{
 .col-no-pad{
     padding-left: 0;
     padding-right: 0;
+}
+
+
+@media (min-width: @screen-md-min){
+    *{
+          -webkit-user-select: text     !important;
+          -moz-user-select: text        !important;
+          -ms-user-select: text         !important;
+      }
 }

@@ -40,8 +40,6 @@ table{
 		min-width: 35px;
 		text-align: center;
 		opacity: 0;
-		transition: 0.2s;
-		-webkit-transition: 0.2s;
 	}
 
 	.thead-present{
@@ -52,9 +50,14 @@ table{
 		min-width: 50px;
 		text-align: center;
 		opacity: 0;
-		transition: 0.2s;
-		-webkit-transition: 0.2s;
 	}
+}
+
+.collapse-xs{
+    display:none;
+    width:0;
+    height:0;
+    opacity:0;
 }
 
 .table-hover {
@@ -66,4 +69,13 @@ table{
     	opacity: 1;
     }
   }
+}
+
+@media (min-width: @screen-sm-min) {
+	.collapse-xs{
+        display:table-cell;
+        width:auto;
+        height:auto;
+        opacity:1;  
+	}
 }
