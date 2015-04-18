@@ -1,9 +1,11 @@
 <tr tabindex=0 ui-sref="dashboard.coursesDetail({id: courses[$index].id})">
-	<td class="table-present"><a><i class="fui fui-play"></i></a></td>
-	<td>{{courses[$index].name}}</td>
-	<td>Jaime Spacco</td>
+	<td class="table-present collapse-xs"><a><i class="fui fui-play"></i></a></td>
+	<td class="table-courseName">
+		{{courses[$index].name}}
+		<span class="table-courseSub">Jaime Spacco</span>
+	</td>
+	<td class="collapse-xs">Jaime Spacco</td>
 	<td class="collapse-xs">{{courses[$index].date.start | date : 'MM/dd/yyyy'}}</td>
 	<td class="collapse-xs">{{courses[$index].date.end | date : 'MM/dd/yyyy'}}</td>
 	<td class="table-opts"><i class="fui fui-eye"></i></td>
-	<td class="collapse-xs">MWF 9:20 AM</td>
 </tr>

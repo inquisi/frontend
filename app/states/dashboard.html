@@ -1,4 +1,4 @@
-<div ng-controller="dashboardController" class="pan" hm-panright="openMenu()" hm-panleft="closeMenu()" hm-recognizer-options='{"type":"pan","directions":"DIRECTION_HORIZONTAL"}'>
+<div ng-controller="dashboardController" class="pan" hm-panright="openMenu()" hm-panleft="closeMenu()" hm-recognizer-options='{"type":"pan","directions":"DIRECTION_HORIZONTAL", "threshold":80}'>
 <div class="container-fluid">
 	<nav class="navbar nav-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -13,7 +13,7 @@
 			      </button>
 		      </div>
 
-		      <div class="pull-right">
+		      <div class="pull-right navbar-menu-right">
 			      <button type="button" class="navbar-btn navbar-user" hm-tap="">
 			        <i class="fui fui-user"></i>
 			      </button>
@@ -37,7 +37,9 @@
 			<h5>Current Courses</h5> 
 			<i tabindex="0" hm-tap="showCourseModal()" class="fui fui-plus headerIcon"></i>
 		</div>
+		<div class="coursesMenu">
 		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" name="{{courses[$index].name}}"></menu-item>
+		</div>
 	</ul>
 </div>
 

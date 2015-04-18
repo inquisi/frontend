@@ -7,24 +7,24 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     .state('dashboard.home', {
         url: '',
         templateUrl: 'states/dashboard/home.html',
-        // disableAuth: true
+        disableAuth: true
     })
     // other page
     .state('dashboard.courses', {
         url: '^/courses',
         templateUrl: 'states/dashboard/courses.html',
-        // disableAuth: true
+        disableAuth: true
     })
 
     .state('dashboard.students', {
         url: '^/students',
         templateUrl: 'states/dashboard/students.html',
-        // disableAuth: true
+        disableAuth: true
     })
 
     .state('dashboard.coursesDetail', {
         url: 'courses/:id',
-        // disableAuth: true,
+        disableAuth: true,
         params: {
             id: null
         },

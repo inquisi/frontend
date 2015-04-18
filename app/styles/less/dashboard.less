@@ -7,6 +7,8 @@
 
 .navbar{
 	min-height: 40px;
+	position: absolute !important;
+	width: 100%;
 }
 
 .navbar-btn{
@@ -41,7 +43,6 @@
 .navbar-fixed-top{
 	background-color: @gray;
 	height: 40px;
-	position: fixed;
 	-webkit-backface-visibility: hidden;
     /* Force hardware acceleration */
     transform: translateZ(0);
@@ -72,29 +73,37 @@
 	}
 
 	.logo-small{
-		margin-right: -35px;
+		margin-right: -45px;
 		background-position: 0% 100%;
-		margin-left: -37px;
+		margin-left: -45px;
 	}
+}
+
+.navbar-menu{
+	display: block;
+	margin-left: 35px;
+}
+.navbar-menu-right{
+	margin-right: 25px;
 }
 
 .dashboard{
-	margin-left: 0;
+	position: absolute !important;
+	left: 0;
 	width: 100%;
 	transition: 0.5s;
 	-webkit-transition: 0.5s;
-	
-	.row:first-child{
-		margin-top: 40px;
-	}
+	top: 40px;
+	height: 100%;
+	overflow: auto;
 }
 
 .dash-open{
-	margin-left: 250px;
+	left: 250px;
 }
 
 .dashInfo{
-	height: auto;
+	height: 75px;
 	padding: 15px;
 	background-color: @gray-lightest;
 
@@ -104,6 +113,21 @@
 
 	h2{
 		font-size: @font-size-h3;
+
+		i{	
+			display: inline-block;
+			height: @font-size-h2;
+			margin-top: 10px;
+		}
+	}
+}
+
+@media (min-width: @screen-sm-min){
+	.navbar-brand{
+		.logo-small{
+			margin-right: -35px;
+			margin-left: -37px;
+		}
 	}
 }
 
