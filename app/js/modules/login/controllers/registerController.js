@@ -1,12 +1,12 @@
 function registerController($scope, $state, User, AuthService) {
     $scope.user = {
-        role: "student"
+        role: "Student"
     };
     $scope.objects = [{
-        id: "student",
+        id: "Student",
         value: "Student"
     }, {
-        id: "instructor",
+        id: "Snstructor",
         value: "Instructor"
     }];
 
