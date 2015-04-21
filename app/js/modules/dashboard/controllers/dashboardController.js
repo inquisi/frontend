@@ -1,4 +1,4 @@
-function dashboardController($scope, $modal, $window) {
+function dashboardController($scope, Course, $modal, $window) {
     $scope.open = false;
     $scope.courseOptsVisible = false;
 
@@ -64,10 +64,27 @@ function dashboardController($scope, $modal, $window) {
         modalInstance.result.then(function(newCourse) {
             $scope.courses.push(newCourse)
         }, function() {});
+
+        Course.query(function(response) {
+            $scope.courses = response.data;
+        })
+
+        $scope.addCourse = function() {
+            Course.save({
+                name: $scope.course.name,
+                start: $scope.course.start,
+                finish: $scope.course.finish
+            }, function(response) {
+                if (response.status == "success") {
+                    $scope.courses.push(response.data.course);
+                }
+            });
+
+            $scope.courseModalVisible = false;
+        }
+
+
     }
-
-
 }
 
-
-dashboard.controller('dashboardController', ['$scope', '$modal', '$window', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', 'Course', '$modal', '$window', dashboardController]);

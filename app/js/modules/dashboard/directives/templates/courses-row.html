@@ -5,8 +5,8 @@
 		<span class="table-courseSub">Jaime Spacco</span>
 	</td>
 	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">Jaime Spacco</td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].date.start | date : 'MM/dd/yyyy'}}</td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].date.end | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].start | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].end | date : 'MM/dd/yyyy'}}</td>
 	<td ng-if="mobile" class="table-opts" hm-tap="openCourseOpts()"><i class="fui fui-plus-circle"></i></td>
 	<td ng-if="!mobile" class="table-opts">
 		<div class="dropdown" dropdown>
@@ -20,4 +20,5 @@
 			</ul>
 		</div>
 	</td>
+
 </tr>
