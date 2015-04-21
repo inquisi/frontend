@@ -36,24 +36,24 @@ function dashboardController($scope, Course) {
 		}
 	}
 
-	$scope.courses = [{
-		id: '1234',
-		name: 'CS 141',
-		date: {
-			start: '3/09/2015',
-			end: '6/01/2015',
-		}
-	}, {
-		id: '1235',
-		name: 'CS 292',
-		date: {
-			start: '9/01/2016',
-			end: '11/12/2016'
-		}
-	}];
+	// $scope.courses = [{
+	// 	id: '1234',
+	// 	name: 'CS 141',
+	// 	date: {
+	// 		start: '3/09/2015',
+	// 		end: '6/01/2015',
+	// 	}
+	// }, {
+	// 	id: '1235',
+	// 	name: 'CS 292',
+	// 	date: {
+	// 		start: '9/01/2016',
+	// 		end: '11/12/2016'
+	// 	}
+	// }];
 
-	Course.query(function(courses) {
-		console.log(courses)
+	Course.query(function(response) {
+		$scope.courses = response.data;
 	})
 
 	$scope.addCourse = function() {
