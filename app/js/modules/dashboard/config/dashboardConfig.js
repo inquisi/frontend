@@ -29,9 +29,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             id: null
         },
         templateUrl: 'states/dashboard/coursesDetail.html',
-        controller: function($scope, $stateParams) {
-            $scope.id = $stateParams.id;
-        }
+        controller: 'coursesDetailController'
     })
 }
 

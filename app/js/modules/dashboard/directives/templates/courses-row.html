@@ -6,7 +6,7 @@
 	</td>
 	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">Jaime Spacco</td>
 	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].start | date : 'MM/dd/yyyy'}}</td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].end | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].finish | date : 'MM/dd/yyyy'}}</td>
 	<td ng-if="mobile" class="table-opts" hm-tap="openCourseOpts()"><i class="fui fui-plus-circle"></i></td>
 	<td ng-if="!mobile" class="table-opts">
 		<div class="dropdown" dropdown>
