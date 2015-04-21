@@ -6,8 +6,6 @@ function AuthService($http, $q, $cookieStore) {
             // The parsing step throws an error if a cookie isn't found
             // (Empty string isnt valid json apparently)
             currentUser = $cookieStore.get('currentUser');
-        } catch (e) {
-            currentUser = {};
         } finally {
             currentUser = currentUser || {};
         }
