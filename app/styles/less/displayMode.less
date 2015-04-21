@@ -1,0 +1,42 @@
+.display-mode {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+ 
+.display-mode span {
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+}
+
+.display-mode{
+	.sm, .md, .lg{
+		display: none;
+	}
+}
+
+@media (min-width: @screen-sm-min){
+	.display-mode{
+		.xs, .md, .lg{
+			display: none;
+		}
+	}
+}
+
+@media (min-width: @screen-md-min){
+	.display-mode{
+		.xs, .sm, .lg{
+			display: none;
+		}
+	}
+}
+
+@media (min-width: @screen-lg-min){
+	.display-mode{
+		.xs, .sm, .md{
+			display: none;
+		}
+	}
+}

@@ -6,14 +6,14 @@
 		    <div class="navbar">
 			    <div class="pull-left">
 			      <a class="navbar-brand" href="/" tabindex=-1><div ng-class="{true: 'logo-small'}[logoSmall]"></div></a>
-			      <button type="button" class="navbar-btn navbar-menu visible-xs" hm-tap="toggleMenu()">
-			        <span class="sr-only">Toggle navigation</span>
+			      <button type="button" class="navbar-btn navbar-menu open-sidebar visible-xs" hm-tap="toggleMenu()">
+			        <span class="sr-only">Toggle sidebar</span>
 			        <i class="fui fui-list" ng-if="!open"></i>
 			        <i class="fui fui-cross" ng-if="open"></i>
 			      </button>
 		      </div>
 
-		      <div class="pull-right navbar-menu-right">
+		      <div ng-if="!mobile" class="pull-right navbar-menu-right">
 			      <button type="button" class="navbar-btn navbar-user" hm-tap="">
 			        <i class="fui fui-user"></i>
 			      </button>
@@ -33,9 +33,15 @@
 		<menu-item ui-sref="dashboard.courses" icon="info-circle" name="Courses"></menu-item>
 		<menu-item ui-sref="dashboard.students" icon="user" name="Students"></menu-item>
 
+		<div ng-if="mobile" class="profile-menu">
+			<h5>Profile</h5>
+			<menu-item icon="user" name="Profile"></menu-item>
+			<menu-item icon="gear" name="Settings"></menu-item>
+		</div>
+
 		<div class="currentCourses">
 			<h5>Current Courses</h5> 
-			<i tabindex="0" hm-tap="showCourseModal()" class="fui fui-plus headerIcon"></i>
+			<i tabindex="0" hm-tap="openCourseModal()" class="fui fui-plus headerIcon"></i>
 		</div>
 		<div class="coursesMenu">
 		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" name="{{courses[$index].name}}"></menu-item>
@@ -43,8 +49,7 @@
 	</ul>
 </div>
 
-
-<add-course-modal ng-show="courseModalVisible"></add-course-modal>
+<course-opts></course-opts>
 
 <div class="container dashboard" hm-tap="closeMenu()" ng-class="{true: 'dash-open'}[open]">
 		<ui-view />

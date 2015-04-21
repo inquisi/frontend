@@ -1,16 +1,27 @@
-function dashboardController($scope) {
+function dashboardController($scope, $modal, $window) {
     $scope.open = false;
-    $scope.logoSmall = true;
-    $scope.courseModalVisible = false;
-    $scope.mobile = true;
+    $scope.courseOptsVisible = false;
 
-    $scope.toggleLogo = function() {
-        if ($scope.logoSmall) {
-            $scope.logoSmall = false;
-        } else {
-            $scope.logoSmall = true;
+    // Initiate courses
+    $scope.courses = [{
+        id: '1234',
+        name: 'CS 141',
+        date: {
+            start: '3/09/2015',
+            end: '6/01/2015',
         }
-    }
+    }, {
+        id: '1235',
+        name: 'CS 292',
+        date: {
+            start: '9/01/2016',
+            end: '11/12/2016'
+        }
+    }];
+
+    // $scope.removeCourse = function(index) {
+    //     $scope.courses.splice(index, 1);
+    // }
 
     $scope.openMenu = function() {
         if ($scope.open) {
@@ -36,49 +47,27 @@ function dashboardController($scope) {
         }
     }
 
-    $scope.courses = [{
-        id: '1234',
-        name: 'CS 141',
-        date: {
-            start: '3/09/2015',
-            end: '6/01/2015',
-        }
-    }, {
-        id: '1235',
-        name: 'CS 292',
-        date: {
-            start: '9/01/2016',
-            end: '11/12/2016'
-        }
-    }];
+    // Modal stuff
+    $scope.openCourseModal = function(size) {
 
-    $scope.addCourse = function() {
-        $scope.courses.push({
-            id: '1568',
-            name: $scope.course.name,
-            date: {
-                start: $scope.course.date.start,
-                end: $scope.course.date.end
+        var modalInstance = $modal.open({
+            templateUrl: 'states/partials/addCourseModal.html',
+            controller: 'addCourseModalInstanceCtrl',
+            size: size,
+            resolve: {
+                course: function() {
+                    return $scope.course;
+                }
             }
         });
 
-        console.log($scope.course.date.start);
-
-        $scope.course.name = "";
-        $scope.course.date.start = "";
-        $scope.course.date.end = "";
-
-
-        $scope.courseModalVisible = false;
+        modalInstance.result.then(function(newCourse) {
+            $scope.courses.push(newCourse)
+        }, function() {});
     }
 
-    $scope.showCourseModal = function() {
-        $scope.courseModalVisible = true;
-    }
 
-    $scope.closeCourseModal = function() {
-        $scope.courseModalVisible = false;
-    }
 }
 
-dashboard.controller('dashboardController', ['$scope', dashboardController]);
+
+dashboard.controller('dashboardController', ['$scope', '$modal', '$window', dashboardController]);

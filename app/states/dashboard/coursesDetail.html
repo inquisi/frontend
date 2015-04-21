@@ -1,12 +1,40 @@
 <div class="row">
 	<div class="col-xs-12 dashInfo">
-		<h2>Single Course</h2
-		<h4>{{id}}</h4>
+		<h2>Course Name</h2
+		<h4>start date – end date</h4>
 	</div>
 </div>
-
 <div class="row">
-	<div class="col-xs-12 scroller">
-			Scroll Down
+	<div class="col-xs-12 col-sm-6 col-lg-4 col-no-pad">
+		<table class="table table-hover table-upcoming">
+			<thead>
+				<tr>
+					<th>Upcoming Sessions</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr session-row></tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-lg-4 col-no-pad">
+		<table class="table table-hover table-past">
+			<thead>
+				<tr>
+					<th>Past Sessions</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr session-row></tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-12 col-lg-4">
+		<h5>Course Overview</h5>
+		<div id="courseDetail-students"></div>
+		<div id="courseDetail-responseRate"></div>
+		<div id="courseDetail-sessions"></div>
 	</div>
 </div>

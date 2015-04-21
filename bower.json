@@ -1,31 +1,36 @@
 {
-    "name": "frontend",
-    "version": "0.0.0",
-    "homepage": "https://github.com/inquisi/frontend",
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "angular-ui-router": "~0.2.13",
-        "angular-mocks": "~1.3.15",
-        "angular-cookies": "~1.3.15",
-        "angular-resource": "~1.3.15",
-        "angular-messages": "~1.3.15",
-        "ryanmullins-angular-hammer": "~2.1.10"
+  "name": "frontend",
+  "version": "0.0.0",
+  "homepage": "https://github.com/inquisi/frontend",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.13",
+    "angular-mocks": "~1.3.15",
+    "angular-cookies": "~1.3.15",
+    "angular-resource": "~1.3.15",
+    "angular-messages": "~1.3.15",
+    "ryanmullins-angular-hammer": "~2.1.10",
+    "angular-bootstrap": "~0.12.1",
+    "angular-screenmatch": "~1.0.1"
+  },
+  "install": {
+    "path": "app/js/lib",
+    "sources": {
+      "angular-ui-router": "bower_components/angular-ui-router/release/angular-ui-router.min.js"
     },
-    "install": {
-        "path": "app/js/lib",
-        "sources": {
-            "angular-ui-router": "bower_components/angular-ui-router/release/angular-ui-router.min.js"
-        },
-        "ignore": [
-            "angular"
-        ]
-    }
+    "ignore": [
+      "angular"
+    ]
+  },
+  "resolutions": {
+    "angular": "1.3.15"
+  }
 }

@@ -1,0 +1,47 @@
+.table-upcoming{
+	thead{
+		tr{
+			height: 50px;
+		}
+	}
+}
+
+.table-past{
+	color: lighten(@gray, 5%);
+
+	thead{
+		tr{
+			height: 50px;
+		}
+	}
+
+	tbody{
+		tr{
+			background-color: @gray-lighter;
+
+			&:hover{
+				background-color: darken(@gray-lighter, 3%);
+			}
+
+			&:focus{
+				background-color: darken(@gray-lighter, 3%);
+				color: lighten(@gray, 5%);
+			}
+		}
+	}
+}
+
+@media (min-width: @screen-sm-min){
+	.table-upcoming{
+		width: 98%;
+		float: left;
+	}
+	.table-past{
+		width: 98%;
+		float: right;
+	}
+}
+
+#session-row-next{
+	background-color: @gray-lightest;
+}
