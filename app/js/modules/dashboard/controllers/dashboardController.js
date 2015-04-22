@@ -1,4 +1,4 @@
-function dashboardController($scope, Course, $modal, $window) {
+function dashboardController($scope, Course, $modal, $window, $position) {
     $scope.open = false;
     $scope.courseOptsVisible = false;
 
@@ -28,6 +28,14 @@ function dashboardController($scope, Course, $modal, $window) {
 
     $scope.courses = Course.query(function(response) {
         $scope.courses = response.data;
+    });
+
+    $scope.$watch('courses', function() {
+        if ($scope.courses.length < 1 || $scope.courses.length == undefined) {
+            $scope.coursePrompt = true;
+        } else {
+            $scope.coursePrompt = false;
+        }
     });
 
     // Modal stuff

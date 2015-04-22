@@ -41,7 +41,7 @@
 
 		<div class="currentCourses">
 			<h5>Current Courses</h5> 
-			<i tabindex="0" hm-tap="openCourseModal()" class="fui fui-plus headerIcon"></i>
+			<i tabindex="0" hm-tap="openCourseModal()" class="fui fui-plus headerIcon" popover-placement="right" popover="Add a course here" popover-trigger="{{{true: 'mouseenter', false: 'mouseleave'}[coursePrompt]}}"></i>
 		</div>
 		<div class="coursesMenu">
 		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({id: courses[$index].id})" icon="bookmark" name="{{courses[$index].name}}"></menu-item>
