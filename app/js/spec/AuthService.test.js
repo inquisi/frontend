@@ -78,7 +78,12 @@ describe('AuthService', function() {
                     message: '',
                     data: {
                         user: {
-                            token: "12345"
+                            first_name: "Nate",
+                            last_name: "Moore",
+                            email: "nate@gmail.com",
+                            role: "student",
+                            trial: null,
+                            token: "token12345"
                         }
                     }
                 });
@@ -96,7 +101,7 @@ describe('AuthService', function() {
 
                 expect(authServiceReturn).toEqual({
                     authenticated: true,
-                    token: '12345'
+                    token: 'token12345'
                 });
             });
 
@@ -105,7 +110,7 @@ describe('AuthService', function() {
             xit('should set currentUser.token to the return value of a successful response', function() {
                 AuthService.login(userHash.email, userHash.password);
                 inject(function($cookieStore) {
-                    expect($cookieStore.get('currentUser').token).toBe("12345");
+                    expect($cookieStore.get('currentUser').token).toBe("token12345");
                 });
             });
         });
@@ -115,7 +120,7 @@ describe('AuthService', function() {
         it('should return true if currentUser.token cookie is present', function() {
             inject(function($cookieStore) {
                 $cookieStore.put('currentUser', {
-                    token: "12345"
+                    token: "token12345"
                 });
                 expect(AuthService.authenticated()).toBe(true);
             });

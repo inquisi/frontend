@@ -14,6 +14,21 @@ function AuthService($http, $q, $cookieStore) {
         $cookieStore.put('currentUser', currentUser);
     }
 
+    function storeUser(user) {
+        var currentUser;
+        try {
+            // Cookiestore will try to get a value from cookies in browser then parse them
+            // The parsing step throws an error if a cookie isn't found
+            // (Empty string isnt valid json apparently)
+            currentUser = $cookieStore.get('currentUser');
+        } finally {
+            currentUser = currentUser || {};
+        }
+        currentUser = user;
+
+        $cookieStore.put('currentUser', currentUser);
+    }
+
     this.login = function(arg1, arg2) {
         if (arg2 == undefined) {
             var token = arg1;
@@ -28,7 +43,7 @@ function AuthService($http, $q, $cookieStore) {
                 password: password
             }).success(function(response, status) {
                 if (response.status == 'success') {
-                    storeToken(response.data.user.token);
+                    storeUser(response.data.user);
                     defer.resolve({
                         authenticated: true,
                         token: response.data.user.token
