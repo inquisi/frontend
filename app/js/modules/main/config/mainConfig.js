@@ -21,6 +21,12 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/',
         abstract: true,
         templateUrl: 'states/dashboard.html',
+        resolve: {
+            courses: function(Course) {
+                return Course.query().$promise;
+            }
+        },
+        controller: 'dashboardController'
     })
 
     // use the HTML5 History API

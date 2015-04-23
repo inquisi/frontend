@@ -1,27 +1,18 @@
-function coursesDetailController($scope, Course, Session, $stateParams, $modal) {
-    var courseId = $stateParams.id * 1;
+function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
+    var today = new Date();
 
-    $scope.$watch('courses', function() {
-        $scope.course = _.find($scope.$parent.courses, {
-            id: courseId
-        });
-    });
+    $scope.course = course;
 
-    $scope.sessions = Session.query({
-        course_id: courseId
-    }, function(response) {
-        $scope.sessions = response.data;
-        $scope.sessions = _.sortBy($scope.sessions, 'date');
-    });
-
-    $scope.$watch('sessions', function() {
+    $scope.$watchCollection('sessions', function() {
         $scope.upcoming = _.filter($scope.sessions, function(session) {
-            return new Date(session.date) >= new Date();
+            return new Date(session.date) >= today;
         });
         $scope.past = _.filter($scope.sessions, function(session) {
-            return new Date(session.date) < new Date();
+            return new Date(session.date) < today;
         });
     });
+
+    $scope.sessions = _.sortBy(sessions.data, 'date');
 
     $scope.openSessionModal = function() {
 
@@ -35,7 +26,9 @@ function coursesDetailController($scope, Course, Session, $stateParams, $modal) 
         }, function() {});
 
         var addSession = function(session) {
-            Session.save(session, function(response) {
+            Session.save(_.merge(session, {
+                course_id: $stateParams.courseId * 1
+            }), function(response) {
                 if (response.status == "success") {
                     $scope.sessions.push(response.data.session);
                 }
@@ -44,4 +37,4 @@ function coursesDetailController($scope, Course, Session, $stateParams, $modal) 
     }
 }
 
-dashboard.controller('coursesDetailController', ['$scope', 'Course', 'Session', '$stateParams', '$modal', coursesDetailController]);
+dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', coursesDetailController]);

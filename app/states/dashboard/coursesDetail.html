@@ -1,14 +1,17 @@
+<div ui-view / >
+
 <div class="row">
 	<div class="col-xs-10 col-sm-12 dashInfo">
-		<h2>{{course.name}}</h2
+		<h2>{{course.name}}</h2>
 		<h4>{{course.start | date}} – {{course.finish | date}}</h4>
 	</div>
 	<div class="col-xs-2 visible-xs dashInfo">
 		<h2><i class="fui fui-plus" tabindex=0 hm-tap="openSessionModal()"></i></h2>
 	</div>
 </div>
+
 <div class="row">
-	<div class="col-xs-12 col-sm-6 col-no-pad">
+	<div class="col-xs-12 col-sm-6 col-no-pad" id="upcoming-sessions">
 		<table class="table table-hover table-upcoming">
 			<thead>
 				<tr>
@@ -17,11 +20,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in upcoming"></tr>
+				<tr session-row ng-repeat="session in upcoming | orderBy:'date':false" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessionsDetail({sessionId: upcoming[$index].id})"></tr>
+				<tr ng-if="!upcoming.length"><td>No Upcoming Sessions</td><td></td></tr>
 			</tbody>
 		</table>
 	</div>
-	<div class="col-xs-12 col-sm-6 col-no-pad">
+	<div class="col-xs-12 col-sm-6 col-no-pad" id="past-sessions">
 		<table class="table table-hover table-past">
 			<thead>
 				<tr>
@@ -30,7 +34,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in past"></tr>
+				<tr session-row ng-repeat="session in past | orderBy:'date':true" ui-sref="sessionsDetail({sessionId: past[$index].id})"></tr>
+				<tr ng-if="!past.length"><td>No Past Sessions</td><td></td></tr>
 			</tbody>
 		</table>
 	</div>

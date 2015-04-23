@@ -1,7 +1,7 @@
 (function() {
-    resources.factory('Course', ['$resource',
+    resources.factory('Question', ['$resource',
         function($resource) {
-            return $resource('/courses/:courseId', {}, {
+            return $resource('/questions/:questionId', {}, {
                 query: {
                     isArray: false
                 }

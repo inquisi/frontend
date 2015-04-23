@@ -1,12 +1,12 @@
 <tr tabindex=0>
 	<td ng-if="!mobile" class="table-present collapse-xs"><a><i class="fui fui-play"></i></a></td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="table-courseName">
+	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="table-courseName">
 		{{courses[$index].name}}
 		<span class="table-courseSub">{{currentUser.first_name + " " + currentUser.last_name}}</span>
 	</td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{currentUser.first_name + " " + currentUser.last_name}}</td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].start | date : 'MM/dd/yyyy'}}</td>
-	<td ui-sref="dashboard.coursesDetail({id: courses[$index].id})" class="collapse-xs">{{courses[$index].finish | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="collapse-xs">{{currentUser.first_name + " " + currentUser.last_name}}</td>
+	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="collapse-xs">{{courses[$index].start | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="collapse-xs">{{courses[$index].finish | date : 'MM/dd/yyyy'}}</td>
 	<td ng-if="mobile" class="table-opts" hm-tap="openCourseOpts()"><i class="fui fui-plus-circle"></i></td>
 	<td ng-if="!mobile" class="table-opts">
 		<div class="dropdown" dropdown>

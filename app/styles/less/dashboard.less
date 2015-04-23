@@ -119,6 +119,12 @@
 	padding: 15px;
 	background-color: @gray-lightest;
 
+	.breadcrumb{
+		height: 15px;
+		margin-top: -15px;
+		margin-left: -15px;
+	}
+
 	h2, h4{
 		margin: 0;
 	}
@@ -131,6 +137,21 @@
 			height: @font-size-h2;
 			margin-top: 10px;
 		}
+	}
+	h4{
+		margin-top: 5px;
+		font-size: @font-size-base;
+		text-transform: none;
+	}
+}
+
+.dashInfo-stack{
+	h2, h4{
+		display: inline-block;
+	}
+	h4{
+		font-size: @font-size-h5;
+		margin-left: 3px;
 	}
 }
 

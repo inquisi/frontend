@@ -1,7 +1,8 @@
-function dashboardController($scope, Course, $modal, $window, $cookieStore) {
+function dashboardController($scope, courses, Course, $modal, $window, $cookieStore) {
     $scope.open = false;
     $scope.currentUser = $cookieStore.get('currentUser');
 
+    $scope.courses = courses.data;
 
     $scope.openMenu = function() {
         if ($scope.open) {
@@ -27,17 +28,6 @@ function dashboardController($scope, Course, $modal, $window, $cookieStore) {
         }
     }
 
-    $scope.courses = Course.query(function(response) {
-        $scope.courses = response.data;
-    });
-
-    // $scope.$watch('courses', function() {
-    //     if ($scope.courses.length < 1 || $scope.courses.length == undefined) {
-    //         $scope.coursePrompt = true;
-    //     } else {
-    //         $scope.coursePrompt = false;
-    //     }
-    // });
 
     // Modal stuff
     $scope.openCourseModal = function(size) {
@@ -69,4 +59,4 @@ function dashboardController($scope, Course, $modal, $window, $cookieStore) {
     }
 }
 
-dashboard.controller('dashboardController', ['$scope', 'Course', '$modal', '$window', '$cookieStore', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', dashboardController]);
