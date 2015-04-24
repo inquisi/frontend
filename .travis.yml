@@ -1,28 +1,29 @@
 language: node_js
 node_js:
- - 0.12
+- 0.12
 notifications:
   email: false
   slack: inquisi:tN28qlf1uc3wVDVt0Uqvucha#frontend
 install:
+- git config --global user.email "csehl+travis@knox.edu"
+- git config --global user.name "Travis"
 - npm install
 - npm install -g bower-installer gulp
 - bower-installer
 - gulp buildLocal
-script: npm run testOnce
-after_success:
- - git config --global user.email "csehl+travis@knox.edu"
- - git config --global user.name "Travis"
- - git checkout prod
- - gulp buildProd
- - git add -f app/app.js
- - git add -f app/app.css
- - git commit -am "$TRAVIS_COMMIT"
- - git push origin prod
 branches:
- only:
+  only:
   - master
 cache:
   directories:
-  - ./node_modules
-  - ./bower_components
+  - "./node_modules"
+  - "./bower_components"
+script: npm run testOnce
+after_success:
+- "./travis/commit.sh"
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- git push -f https://github.com/inquisi/frontend.git prod
+env:
+  global:
+    secure: zg3yMTYKcVnXK/WpoA04iL/u5NPDCb9hUL5g6FUlmQMnTGrP4N0EZ6uk+wMkP7UcMt4daT424k5QVYTy5tGfUk58dyzfFXUYl3s1HVprvQ1w/6SVHkbxhF7BUCuas2/LXOGWq4qm2Wg3r+tUFM31tlbfzvnV+82wET4ZX1x8MUI=
