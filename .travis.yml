@@ -12,7 +12,14 @@ install:
 script: npm run testOnce
 after_success: 
  - gulp buildProd
- - ./travis/pushToProdBranch.sh
+ - git checkout prod
+ - git add -A
+ - git commit -am "$TRAVIS_COMMIT"
+ - git push origin/prod
 branches:
  only:
   - master
+cache:
+  directories:
+  - ./node_modules
+  - ./bower_components
