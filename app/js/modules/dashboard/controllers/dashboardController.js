@@ -1,7 +1,6 @@
 function dashboardController($scope, courses, Course, $modal, $window, $cookieStore) {
     $scope.open = false;
     $scope.currentUser = $cookieStore.get('currentUser');
-
     $scope.courses = courses.data;
 
     $scope.openMenu = function() {
