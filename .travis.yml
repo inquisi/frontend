@@ -11,3 +11,6 @@ install:
  - gulp buildProd
 script: npm run testOnce
 after_success: pushToProdBranch.sh
+branches:
+ only:
+  - master
