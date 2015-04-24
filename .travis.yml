@@ -8,5 +8,6 @@ install:
  - npm install
  - npm install -g bower-installer gulp
  - bower-installer
- - gulp buildLocal
+ - gulp buildProd
 script: npm run testOnce
+after_success: pushToProdBranch.sh
