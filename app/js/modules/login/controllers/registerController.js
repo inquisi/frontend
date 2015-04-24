@@ -6,7 +6,7 @@ function registerController($scope, $state, User, AuthService) {
         id: "Student",
         value: "Student"
     }, {
-        id: "Snstructor",
+        id: "Instructor",
         value: "Instructor"
     }];
 
