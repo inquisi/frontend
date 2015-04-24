@@ -5,17 +5,20 @@ notifications:
   email: false
   slack: inquisi:tN28qlf1uc3wVDVt0Uqvucha#frontend
 install:
- - npm install
- - npm install -g bower-installer gulp
- - bower-installer
- - gulp buildLocal
+- npm install
+- npm install -g bower-installer gulp
+- bower-installer
+- gulp buildLocal
 script: npm run testOnce
-after_success: 
- - gulp buildProd
+after_success:
+ - git config --global user.email "csehl+travis@knox.edu"
+ - git config --global user.name "Travis"
  - git checkout prod
- - git add -A
+ - gulp buildProd
+ - git add -f app/app.js
+ - git add -f app/app.css
  - git commit -am "$TRAVIS_COMMIT"
- - git push origin/prod
+ - git push origin prod
 branches:
  only:
   - master
