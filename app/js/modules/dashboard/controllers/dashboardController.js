@@ -1,4 +1,4 @@
-function dashboardController($scope, courses, Course, $modal, $window, $cookieStore) {
+function dashboardController($scope, courses, Course, $modal, $window, $cookieStore, screenmatch) {
     $scope.open = false;
     $scope.currentUser = $cookieStore.get('currentUser');
     $scope.courses = courses.data;
@@ -58,4 +58,4 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
     }
 }
 
-dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', 'screenmatch', dashboardController]);

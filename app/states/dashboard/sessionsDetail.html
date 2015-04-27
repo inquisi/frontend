@@ -11,6 +11,37 @@
 		</div>
 	</div>
 </div>
-<div>
-Something goes here
+
+<div class="btn-group btn-group-add-question" dropdown>
+	<div class="add-question" dropdown-toggle><i class="fui fui-new"></i></div>
+      <ul class="dropdown-menu" role="menu">
+        <li hm-tap="addMCQuestion()"><a>Mulitple Choice</a></li>
+        <li hm-tap="addSAQuestion()"><a>Short Answer</a></li>
+        <li hm-tap="addFIQuestion()"><a>Fill-in the Blank</a></li>
+        <li hm-tap="addNUQuesiton()"><a>Number</a></li>
+        <li class="divider"></li>
+        <li><a>Cancel</a></li>
+      </ul>
+</div>
+
+<div class="question-control-container" sv-root sv-part="questions" sv-on-sort="onSort($item, $indexFrom, $indexTo)">
+	<div sv-placeholder class="question-thumb-placeholder"></div>
+    <div tabindex="0" id="'question-thumb-' + $index" class="question-thumb" ng-if="horiz" ng-repeat='question in questions' sv-element ui-sref="questionsDetail({index: $index, question: questions[$index]})">
+	    <div class="question-index">{{$index + 1}}</div>
+	    <h2>{{question.name}}</h2>
+	    <ul>
+	    	<li ng-repeat="answer in question.answers track by $index">{{answer}}</li>
+	    </ul>
+    </div>
+    <div tabindex="0" id="'question-thumb-' + $index" class="question-thumb" ng-if="!horiz" ng-repeat='question in questions' sv-element ui-sref="questionsDetail({index: $index, question: questions[$index]})" ui-sref-active="question-active">
+    	<div class="question-index">{{$index + 1}}</div>
+	    <h2>{{question.name}}</h2>
+	    <ul>
+	    	<li ng-repeat="answer in question.answers track by $index">{{answer}}</li>
+	    </ul>
+    </div>
+</div>
+
+<div class="question-container" ng-if="!dragging">
+		<div ui-view></div>
 </div>

@@ -11,6 +11,8 @@
 @import "courseOpts.less";
 @import "coursesModal.less";
 @import "courseDetail.less";
+@import "sessionsDetail.less";
+@import "questionsDetail.less";
 
 .modal{
     display: block;
@@ -44,6 +46,10 @@
   width: 5px;
   height: 5px;
   background-color: rgba(65, 69, 73, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: rgba(182, 193, 203, 0.5);
 }
 
 .breadcrumb{
@@ -116,6 +122,12 @@ h1, h2, h3, h4, h5, h6{
     padding-left: 0;
     padding-right: 0;
 }
+
+*{
+      -webkit-user-select: none     !important;
+      -moz-user-select: none        !important;
+      -ms-user-select: none         !important;
+  }
 
 @media (min-width: @screen-sm-min){
     html, body {

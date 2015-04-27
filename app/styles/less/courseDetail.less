@@ -6,11 +6,6 @@
 	overflow: hidden;
 }
 
-#upcoming-sessions, #past-sessions{
-	height: 100%;
-	overflow: auto;
-}
-
 .table-upcoming{
 	margin-bottom: 35px;
 	thead{
@@ -64,9 +59,11 @@
 
 @media (min-width: @screen-sm-min){
 	.table-upcoming{
-		width: 98%;
+		width: 99%;
+		float: left;
 	}
 	.table-past{
-		width: 98%;
+		width: 99%;
+		float: right;
 	}
 }
