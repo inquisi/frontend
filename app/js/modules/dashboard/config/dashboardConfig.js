@@ -20,9 +20,10 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     })
 
     .state('dashboard.coursesDetail', {
-        url: 'courses/:courseId',
+        url: 'courses/{courseId}',
         params: {
-            courseId: null
+            courseId: null,
+            callback: null
         },
         resolve: {
             course: function(courses, $stateParams) {
@@ -44,7 +45,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     })
 
     .state('sessionsDetail', {
-        url: '/sessions/:sessionId',
+        url: '/sessions/{sessionId}',
         parent: 'dashboard.coursesDetail',
         views: {
             "@dashboard": { // absolutely target the unnamed view in the dashboard state
@@ -72,6 +73,16 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 }).$promise;
             }
         }
+    })
+
+    .state('questionsDetail', {
+        parent: 'sessionsDetail',
+        templateUrl: 'states/partials/questions/mc.html',
+        params: {
+            index: null,
+            question: null
+        },
+        controller: 'questionsDetailController'
     })
 }
 

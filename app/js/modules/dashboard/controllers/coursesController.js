@@ -14,7 +14,7 @@ function coursesController($scope, $modal) {
         });
 
         modalInstance.result.then(function(value) {
-            console.log(value)
+            value();
         }, function() {});
     }
 

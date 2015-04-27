@@ -1,6 +1,7 @@
 function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
     var today = new Date();
 
+    var callback = $stateParams.callback;
     $scope.course = course;
 
     $scope.$watchCollection('sessions', function() {
@@ -35,6 +36,10 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
             });
         }
     }
+
+    if (callback == 'openSessionModal') {
+        $scope.openSessionModal();
+    } else {}
 }
 
 dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', coursesDetailController]);

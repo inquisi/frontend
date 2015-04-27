@@ -1,11 +1,14 @@
-function openCourseOptsInstanceCtrl($scope, $modalInstance) {
+function openCourseOptsInstanceCtrl($scope, $state, $modalInstance) {
 
     $scope.present = function() {
         $modalInstance.close("present");
     };
 
-    $scope.addSession = function() {
-        $modalInstance.close("add session");
+    $scope.addSession = function(course) {
+        $modalInstance.close($state.go(dashboard.coursesDetail, {
+            id: course.id,
+            callback: 'openSessionModal'
+        }));
     };
 
     $scope.loop = function() {
@@ -25,4 +28,4 @@ function openCourseOptsInstanceCtrl($scope, $modalInstance) {
     };
 }
 
-dashboard.controller('openCourseOptsInstanceCtrl', ['$scope', '$modalInstance', openCourseOptsInstanceCtrl]);
+dashboard.controller('openCourseOptsInstanceCtrl', ['$scope', '$state', '$modalInstance', openCourseOptsInstanceCtrl]);

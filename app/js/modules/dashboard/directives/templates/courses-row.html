@@ -7,13 +7,13 @@
 	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="collapse-xs">{{currentUser.first_name + " " + currentUser.last_name}}</td>
 	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="collapse-xs">{{courses[$index].start | date : 'MM/dd/yyyy'}}</td>
 	<td ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" class="collapse-xs">{{courses[$index].finish | date : 'MM/dd/yyyy'}}</td>
-	<td ng-if="mobile" class="table-opts" hm-tap="openCourseOpts()"><i class="fui fui-plus-circle"></i></td>
+	<td ng-if="mobile" class="table-opts" hm-tap="openCourseOpts(courses[$index])"><i class="fui fui-plus-circle"></i></td>
 	<td ng-if="!mobile" class="table-opts">
 		<div class="dropdown" dropdown>
 			<div class="dropdown-toggle" dropdown-toggle><i class="fui fui-plus-circle"></i></div>
 			<ul class="dropdown-menu" role="menu">
 				<li><a href="#">Present Next Session</a></li>
-				<li><a href="#">Add Session</a></li>
+				<li><a ui-sref="dashboard.coursesDetail({courseId: courses[$index].id, callback: 'openSessionModal'})">Add Session</a></li>
 				<li class="divider"></li>
 				<li><a href="#">Upload Presentation</a></li>
 				<li><a href="#">Ask Question</a></li>
