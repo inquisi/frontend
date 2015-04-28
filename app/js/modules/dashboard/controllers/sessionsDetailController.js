@@ -1,26 +1,20 @@
 function sessionsDetailController($scope, focus, screenmatch, course, session, questions, Question, $state, $stateParams) {
-    $scope.course = course;
-    $scope.session = session;
-
-    $scope.questions = [{
-        name: 'What is 2 + 2?',
-        answers: ['1', '2', '3', '4']
-    }, {
-        name: 'What is A + B?',
-        answers: ['A', 'B', 'C', 'D']
-    }];
-
     screenmatch.when('xs, sm', function() {
         $scope.horiz = true;
     }, function() {
         $scope.horiz = false;
     });
 
+    $scope.course = course;
+    $scope.session = session;
+
+    $scope.questions = questions.data;
+
     $scope.onSort = function(item, indexFrom, indexTo) {
         if ($state.current.name == 'questionsDetail') {
             $state.go('questionsDetail', {
                 index: indexTo,
-                question: item
+                questionId: item.id
             });
         }
     }
@@ -30,19 +24,24 @@ function sessionsDetailController($scope, focus, screenmatch, course, session, q
     var goToNewQuestion = function() {
         $state.go('questionsDetail', {
             index: ($scope.questions.length - 1),
-            question: $scope.questions[$scope.questions.length - 1]
+            questionId: $scope.questions[$scope.questions.length - 1].id
         });
     }
 
     $scope.addMCQuestion = function() {
-        $scope.questions.push({
-            title: 'Question',
-            answers: ['A', 'B', 'C', 'D']
-        });
-
-        focus('question-thumb-' + ($scope.questions.length - 1));
-
-        goToNewQuestion();
+        Question.save({
+                session_id: session.id,
+                category: 'MC',
+                name: 'Question',
+                order: $scope.questions.length
+            },
+            function(response) {
+                if (response.status == "success") {
+                    $scope.questions.push(response.data.question);
+                    focus('question-thumb-' + ($scope.questions[$scope.questions.length - 1].order));
+                    goToNewQuestion();
+                }
+            });
     };
 }
 

@@ -80,9 +80,26 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         templateUrl: 'states/partials/questions/mc.html',
         params: {
             index: null,
-            question: null
+            questionId: null
         },
-        controller: 'questionsDetailController'
+        controller: 'questionsDetailController',
+        resolve: {
+            question: function(questions, $stateParams) {
+                return _.find(questions.data, {
+                    id: $stateParams.questionId * 1
+                });
+            },
+            answers: function(course, session, questions, Answer, $stateParams) {
+                var question = _.find(questions.data, {
+                    id: $stateParams.questionId * 1
+                });
+                return Answer.query({
+                    course_id: course.id,
+                    session_id: session.id,
+                    question_id: question.id
+                }).$promise;
+            }
+        }
     })
 }
 
