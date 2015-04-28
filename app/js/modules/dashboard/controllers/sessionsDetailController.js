@@ -2,13 +2,7 @@ function sessionsDetailController($scope, focus, screenmatch, course, session, q
     $scope.course = course;
     $scope.session = session;
 
-    $scope.questions = [{
-        name: 'What is 2 + 2?',
-        answers: ['1', '2', '3', '4']
-    }, {
-        name: 'What is A + B?',
-        answers: ['A', 'B', 'C', 'D']
-    }];
+    $scope.questions = questions.data;
 
     screenmatch.when('xs, sm', function() {
         $scope.horiz = true;
@@ -25,7 +19,7 @@ function sessionsDetailController($scope, focus, screenmatch, course, session, q
         }
     }
 
-    $scope.$watchCollection('questions', function() {});
+    // $scope.$watchCollection('questions', function() {});
 
     var goToNewQuestion = function() {
         $state.go('questionsDetail', {
@@ -35,10 +29,20 @@ function sessionsDetailController($scope, focus, screenmatch, course, session, q
     }
 
     $scope.addMCQuestion = function() {
-        $scope.questions.push({
-            title: 'Question',
-            answers: ['A', 'B', 'C', 'D']
-        });
+        var question = {
+            name: "Question",
+            category: "MC",
+            order: $scope.questions.length,
+            course_id: $stateParams.courseId * 1,
+            session_id: $stateParams.sessionId * 1
+        };
+
+        Question.save(question,
+            function(response) {
+                if (response.status == "success") {
+                    $scope.questions.push(response.data.question);
+                }
+            });
 
         focus('question-thumb-' + ($scope.questions.length - 1));
 

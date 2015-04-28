@@ -1,4 +1,4 @@
-function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
+function coursesDetailController($rootScope, $scope, $state, courses, Course, course, Session, sessions, $stateParams, $modal) {
     var today = new Date();
 
     var callback = $stateParams.callback;
@@ -14,6 +14,19 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
     });
 
     $scope.sessions = _.sortBy(sessions.data, 'date');
+
+    $scope.goToSessionsDetail = function(id) {
+        console.log('tapped');
+        debugger
+        $state.go('sessionsDetail', {
+            sessionId: id
+        })
+    }
+
+    $rootScope.$on('$stateChangeError',
+        function(event, toState, toParams, fromState, fromParams, error) {
+            console.log(arguments);
+        });
 
     $scope.openSessionModal = function() {
 
@@ -42,4 +55,4 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
     } else {}
 }
 
-dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', coursesDetailController]);
+dashboard.controller('coursesDetailController', ['$rootScope', '$scope', '$state', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', coursesDetailController]);
