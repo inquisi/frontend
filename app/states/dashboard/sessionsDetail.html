@@ -30,7 +30,7 @@
 	    <div class="question-index">{{$index + 1}}</div>
 	    <h2>{{question.name}}</h2>
 	    <ul>
-	    	<li ng-repeat="answer in question.answers track by $index">{{answer}}</li>
+	    	<li ng-repeat="answer in question.answers track by $index">{{answer.name}}</li>
 	    </ul>
     </div>
     <div tabindex="0" class="question-thumb" hm-tap="addMCQuestion()" ng-if='!questions.length'>

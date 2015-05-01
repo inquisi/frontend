@@ -12,9 +12,26 @@ function questionsDetailController($scope, focus, question, Question, Answer, $s
         }
     }, true);
 
-    // $scope.addAnswer = function() {
-    //     $scope.question.answers.push("");
-    // }
+    $scope.addAnswer = function() {
+        Answer.save({
+            question_id: question.id,
+            name: "A",
+            correct: false,
+            order: $scope.question.answers.length
+        }, function(response) {
+            if (response.status == "success") {
+                $scope.question.answers.push(response.data);
+            }
+        })
+    };
+
+    $scope.$watchCollection('question.answers', function(newVal, oldVal) {
+        var updatedAnswer = _.difference(newVal, oldVal);
+
+        if (updatedAnswer.length > 0) {
+            Answer.update(updatedAnswer[0]);
+        }
+    });
 }
 
 dashboard.controller('questionsDetailController', ['$scope', 'focus', 'question', 'Question', 'Answer', '$stateParams', questionsDetailController]);
