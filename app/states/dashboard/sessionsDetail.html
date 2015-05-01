@@ -39,10 +39,14 @@
 </div>
 
 <div class="question-container">
-		<div ng-if="!question.length" class="question question-empty">
+		<div ng-if="!question.length" class="question-empty">
 			<div class="vertAlign">
-				<i class="fui fui-document"></i>
-				<h1>No questions yet</h1>
+				<img src="img/question-empty.svg">
+				<h1>No questions yet!</h1>
+				<h3>Add one 
+					<span ng-if="horiz">above</span>
+					<span ng-if="!horiz">on the left</span>
+				</h3>
 			</div>
 		</div>
 		<div ui-view></div>
