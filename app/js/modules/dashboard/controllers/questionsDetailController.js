@@ -21,6 +21,8 @@ function questionsDetailController($scope, focus, question, Question, Answer, $s
         }, function(response) {
             if (response.status == "success") {
                 $scope.question.answers.push(response.data);
+                debugger
+                focus("answer-" + ($scope.question.answers.length - 1));
             }
         })
     };
