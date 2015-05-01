@@ -7,6 +7,7 @@ dashboard.directive('contenteditable', function() {
 
             // Specify how UI should be updated
             ngModel.$render = function() {
+                // This is where we sanatize
                 element.html(ngModel.$viewValue || '');
             };
 

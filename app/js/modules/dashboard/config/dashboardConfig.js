@@ -31,10 +31,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     id: $stateParams.courseId * 1
                 });
             },
-            sessions: function(courses, Session, $stateParams) {
-                var course = _.find(courses.data, {
-                    id: $stateParams.courseId * 1
-                });
+            sessions: function(course, Session, $stateParams) {
                 return Session.query({
                     course_id: course.id
                 }).$promise;
@@ -63,10 +60,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     id: $stateParams.sessionId * 1
                 });
             },
-            questions: function(course, sessions, Question, $stateParams) {
-                var session = _.find(sessions.data, {
-                    id: $stateParams.sessionId * 1
-                });
+            questions: function(course, session, Question, $stateParams) {
                 return Question.query({
                     course_id: course.id,
                     session_id: session.id
@@ -88,16 +82,6 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 return _.find(questions.data, {
                     id: $stateParams.questionId * 1
                 });
-            },
-            answers: function(course, session, questions, Answer, $stateParams) {
-                var question = _.find(questions.data, {
-                    id: $stateParams.questionId * 1
-                });
-                return Answer.query({
-                    course_id: course.id,
-                    session_id: session.id,
-                    question_id: question.id
-                }).$promise;
             }
         }
     })

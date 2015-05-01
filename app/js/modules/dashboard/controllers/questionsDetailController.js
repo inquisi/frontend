@@ -1,19 +1,20 @@
-function questionsDetailController($scope, focus, question, Question, answers, Answer, $stateParams) {
+function questionsDetailController($scope, focus, question, Question, Answer, $stateParams) {
     $scope.index = $stateParams.index;
     $scope.question = question;
 
-    $scope.answers = answers.data;
-
-    focus('questionName');
-
-    $scope.editQuestion = function(question) {
-        // Question.update(question, function() {
-        // });
+    $scope.printQuestion = function() {
+        console.log($scope.question);
     }
+
+    $scope.$watch('question', function(newQ, oldQ) {
+        if (!_.isEqual(newQ, oldQ)) {
+            Question.update(question);
+        }
+    }, true);
 
     // $scope.addAnswer = function() {
     //     $scope.question.answers.push("");
     // }
 }
 
-dashboard.controller('questionsDetailController', ['$scope', 'focus', 'question', 'Question', 'answers', 'Answer', '$stateParams', questionsDetailController]);
+dashboard.controller('questionsDetailController', ['$scope', 'focus', 'question', 'Question', 'Answer', '$stateParams', questionsDetailController]);

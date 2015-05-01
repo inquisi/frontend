@@ -7,7 +7,6 @@ function sessionsDetailController($scope, focus, screenmatch, course, session, q
 
     $scope.course = course;
     $scope.session = session;
-
     $scope.questions = questions.data;
 
     $scope.onSort = function(item, indexFrom, indexTo) {

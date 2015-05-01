@@ -71,7 +71,6 @@
 
 	&:focus{
 		outline: none;
-		outline: none;
 		margin: 8px 5px 0;
 		background-color: #FFF;
 		border: 2px solid lighten(@brand-info, 5%);
@@ -112,6 +111,7 @@
 
 	i{
 		font-size: @font-size-h2;
+		color: @gray;
 		display: block;
 		line-height: 120px;
 		width: 100%;
@@ -146,10 +146,9 @@
 }
 
 .question-active{
-	outline: none;
-	margin: 8px 5px 0;
-	background-color: #FFF;
-	border: 2px solid lighten(@brand-info, 5%);
+	margin: 8px 5px 0 !important;
+	background-color: #FFF !important;
+	border: 2px solid lighten(@brand-info, 5%) !important;
 }
 
 .question-container{
@@ -236,10 +235,7 @@
 	.question-thumb{
 		display: block;
 		float: left;
-		background-color: @gray-lightest;
 		margin: 7px 10px;
-		top: 0;
-		left: 0;
 
 		&:focus{
 			margin: 5px 8px;
@@ -269,7 +265,7 @@
 	}
 
 	.question-active{
-		margin: 5px 8px;
+		margin: 5px 8px !important;
 	}
 
 	.question-container{
