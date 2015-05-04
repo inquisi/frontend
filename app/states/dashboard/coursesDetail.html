@@ -4,6 +4,7 @@
 	<div class="col-xs-10 col-sm-12 dashInfo">
 		<h2>{{course.name}}</h2>
 		<h4>{{course.start | date}} – {{course.finish | date}}</h4>
+		<h4>Enrollment Code: {{course.enrollment_token}}</h4>
 	</div>
 	<div class="col-xs-2 visible-xs dashInfo">
 		<h2><i class="fui fui-plus" tabindex=0 hm-tap="openSessionModal()"></i></h2>
