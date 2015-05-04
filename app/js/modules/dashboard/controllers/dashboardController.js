@@ -1,4 +1,4 @@
-function dashboardController($scope, courses, Course, $modal, $window, $cookieStore, screenmatch) {
+function dashboardController($scope, courses, Course, $modal, $window, $cookieStore, screenmatch, CourseService) {
     $scope.open = false;
     $scope.currentUser = $cookieStore.get('currentUser');
     $scope.courses = courses.data;
@@ -30,32 +30,41 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
 
     // Modal stuff
     $scope.openCourseModal = function(size) {
-
-        var modalInstance = $modal.open({
-            templateUrl: 'states/partials/addCourseModal.html',
-            controller: 'addCourseModalInstanceCtrl',
-            size: size,
-            resolve: {
-                course: function() {
-                    return $scope.course;
-                }
-            }
-        });
-
-        modalInstance.result.then(function(course) {
-            addCourse(course);
-        }, function() {});
-
         var addCourse = function(course) {
             Course.save(course, function(response) {
                 if (response.status == "success") {
                     $scope.courses.push(response.data.course);
                 }
             });
+        };
+
+        if ($cookieStore.get('currentUser').role == "Instructor") {
+            var modalInstance = $modal.open({
+                templateUrl: 'states/partials/addCourseModal.html',
+                controller: 'addCourseModalInstanceCtrl',
+                size: size,
+                resolve: {
+                    course: function() {
+                        return $scope.course;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function(course) {
+                addCourse(course);
+            }, function() {});
+        } else if ($cookieStore.get('currentUser').role == "Student") {
+            var modalInstance = $modal.open({
+                templateUrl: 'states/partials/enrollInCourseModal.html',
+                controller: 'enrollInCourseModalInstanceController',
+                size: size
+            });
+
+            modalInstance.result.then(function(enrollmentToken) {
+                CourseService.enrollInCourse(enrollmentToken);
+            }, function() {});
         }
-
-
     }
 }
 
-dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', 'screenmatch', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', dashboardController]);
