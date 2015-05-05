@@ -61,8 +61,11 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
             });
 
             modalInstance.result.then(function(enrollmentToken) {
-                CourseService.enrollInCourse(enrollmentToken);
-            }, function() {});
+                CourseService.enrollInCourse(enrollmentToken).then(function(response) {
+                    var course = response.data.data.course;
+                    $scope.courses.push(course);
+                });
+            });
         }
     }
 }

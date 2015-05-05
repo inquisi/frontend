@@ -1,11 +1,13 @@
-function CourseService($http, $cookieStore, AuthService) {
+function CourseService($http, $cookieStore, AuthService, $q) {
     this.enrollInCourse = function(enrollmentToken) {
         if (AuthService.authenticated()) {
-            $http.post('/courses/enroll', {
+            return $http.post('/courses/enroll', {
                 enrollment_token: enrollmentToken
             });
+        } else {
+            return $q.reject();
         }
     }
 }
 
-services.service('CourseService', ['$http', '$cookieStore', 'AuthService', CourseService]);
+services.service('CourseService', ['$http', '$cookieStore', 'AuthService', '$q', CourseService]);
