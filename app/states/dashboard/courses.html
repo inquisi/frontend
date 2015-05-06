@@ -8,24 +8,52 @@
 			<h2><i class="fui fui-plus" tabindex=0 hm-tap="openCourseModal()"></i></h2>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-xs-12 col-no-pad">
-			<table class="table table-hover">
-				<thead class="hidden-xs">
+	<div class="row" ng-if="currentUser.role == 'Student'">
+		<div class="col-xs-12 col-sm-6 col-no-pad">
+			<table class="table table-hover table-active">
+				<thead>
 					<tr>
-						<th class="table-present thead-present"><i tabindex=0 class="fui fui-plus" hm-tap="openCourseModal()"></i></th>
-						<th>Course Name</th>
-						<th class="collapse-xs">Instructor</th>
-						<th class="collapse-xs table-courseStart">Start Date</th>
-						<th class="collapse-xs">End Date</th>
-						<th class="table-opts"></th>
+						<th>Active Right Now</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr courses-row ng-repeat="course in courses"></tr>
+					<tr courses-row ng-repeat="course in active = ( courses | filter : {active: true} | orderBy:'date':false)"></tr>
+					<tr ng-if="!active.length"><td>Woohoo! No class!</td><td></td></tr>
 				</tbody>
 			</table>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-no-pad">
+			<table class="table table-hover table-inactive">
+				<thead>
+					<tr>
+						<th>Not Active</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr courses-row ng-repeat="course in courses | filter : {active: false} | orderBy:'date':false"></tr>
+					<!-- <tr ng-if="!upcoming.length"><td>No Upcoming Sessions</td><td></td></tr> -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row" ng-if="currentUser.role == 'Instructor'">
+		<div class="col-xs-12 col-no-pad">
+				<table class="table table-hover" ng-if="courses.length > 0">
+								<thead class="hidden-xs">
+												<tr>
+																<th class="table-present thead-present"><i tabindex=0 class="fui fui-plus" hm-tap="openCourseModal()"></i></th>
+																<th>Course Name</th>
+																<th class="collapse-xs">Instructor</th>
+																<th class="collapse-xs table-courseStart">Start Date</th>
+																<th class="collapse-xs">End Date</th>
+																<th class="table-opts"></th>
+												</tr>
+								</thead>
+								<tbody>
+									<tr courses-row ng-repeat="course in courses"></tr>
+					</tbody>
+			</table>
+			<h4 ng-if="courses.length == 0">No classes in session. Woohoo!</h4>
 		</div>
 	</div>
 </div>
