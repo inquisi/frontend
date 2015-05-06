@@ -23,7 +23,12 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'states/dashboard.html',
         resolve: {
             courses: function(Course) {
-                return Course.query().$promise;
+                return Course.query(function(response) {
+                    return 'test';
+                }).$promise;
+            },
+            currentUser: function($cookieStore) {
+                return $cookieStore.get('currentUser');
             }
         },
         controller: 'dashboardController'

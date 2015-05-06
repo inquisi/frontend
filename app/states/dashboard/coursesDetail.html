@@ -4,14 +4,14 @@
 	<div class="col-xs-10 col-sm-12 dashInfo">
 		<h2>{{course.name}}</h2>
 		<h4>{{course.start | date}} – {{course.finish | date}}</h4>
-		<h4>Enrollment Code: {{course.enrollment_token}}</h4>
+		<h4 ng-if="currentUser.role == 'Instructor'">Enrollment Code: {{course.enrollment_token}}</h4>
 	</div>
 	<div class="col-xs-2 visible-xs dashInfo">
 		<h2><i class="fui fui-plus" tabindex=0 hm-tap="openSessionModal()"></i></h2>
 	</div>
 </div>
 
-<div class="row">
+<div class="row" ng-if="currentUser.role == 'Instructor'">
 	<div class="col-xs-12 col-sm-6 col-no-pad" id="upcoming-sessions">
 		<table class="table table-hover table-upcoming">
 			<thead>
@@ -40,4 +40,8 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+
+<div class="row" ng-if="currentUser.role == 'Student'">
+	Show active courses here
 </div>

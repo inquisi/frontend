@@ -6,7 +6,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     // child routes
     .state('dashboard.home', {
         url: '',
-        templateUrl: 'states/dashboard/home.html',
+        templateUrl: 'states/dashboard/home.html'
     })
     // other page
     .state('dashboard.courses', {

@@ -42,4 +42,4 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
     } else {}
 }
 
-dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', coursesDetailController]);
+dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', '$cookieStore', coursesDetailController]);

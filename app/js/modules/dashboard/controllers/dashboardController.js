@@ -1,7 +1,11 @@
-function dashboardController($scope, courses, Course, $modal, $window, $cookieStore, screenmatch, CourseService) {
+function dashboardController($scope, courses, Course, $modal, $window, $cookieStore, screenmatch, CourseService, currentUser) {
     $scope.open = false;
-    $scope.currentUser = $cookieStore.get('currentUser');
+    $scope.currentUser = currentUser;
     $scope.courses = courses.data;
+
+    if ($scope.currentUser.role == "Student") {
+        $scope.courses = _.filter($scope.courses, 'active');
+    }
 
     $scope.openMenu = function() {
         if ($scope.open) {
@@ -38,7 +42,7 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
             });
         };
 
-        if ($cookieStore.get('currentUser').role == "Instructor") {
+        if (currentUser.role == "Instructor") {
             var modalInstance = $modal.open({
                 templateUrl: 'states/partials/addCourseModal.html',
                 controller: 'addCourseModalInstanceCtrl',
@@ -53,7 +57,7 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
             modalInstance.result.then(function(course) {
                 addCourse(course);
             }, function() {});
-        } else if ($cookieStore.get('currentUser').role == "Student") {
+        } else if (currentUser.role == "Student") {
             var modalInstance = $modal.open({
                 templateUrl: 'states/partials/enrollInCourseModal.html',
                 controller: 'enrollInCourseModalInstanceController',
@@ -70,4 +74,4 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
     }
 }
 
-dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', 'currentUser', dashboardController]);
