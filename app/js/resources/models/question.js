@@ -12,6 +12,9 @@
                 },
                 activate: {
                     url: '/questions/:questionId/activate',
+                    params: {
+                        questionId: "@id"
+                    },
                     method: 'POST'
                 }
                 // delete: {

@@ -7,6 +7,9 @@
                 },
                 activate: {
                     url: '/sessions/:sessionId/activate',
+                    params: {
+                        sessionId: "@id"
+                    },
                     method: 'POST'
                 }
             });

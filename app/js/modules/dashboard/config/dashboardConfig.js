@@ -41,19 +41,9 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         controller: 'coursesDetailController'
     })
 
-    .state('sessionsDetail', {
+    .state('sessions', {
         url: '/sessions/{sessionId}',
         parent: 'dashboard.coursesDetail',
-        views: {
-            "@dashboard": { // absolutely target the unnamed view in the dashboard state
-                // this will override inheriting the parent view
-                templateUrl: "states/dashboard/sessionsDetail.html",
-                controller: "sessionsDetailController",
-                params: {
-                    sessionId: null
-                }
-            }
-        },
         resolve: {
             session: function(sessions, $stateParams) {
                 return _.find(sessions.data, {
@@ -66,7 +56,49 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     session_id: session.id
                 }).$promise;
             }
+        },
+        onEnter: function($state, $stateParams) {
+
         }
+    })
+
+    .state('sessions.edit', {
+        views: {
+            "@dashboard": { // absolutely target the unnamed view in the dashboard state
+                // this will override inheriting the parent view
+                templateUrl: "states/dashboard/sessionsEdit.html",
+                controller: "sessionsDetailController",
+                params: {
+                    sessionId: null
+                }
+            }
+        },
+    })
+
+    .state('sessions.read', {
+        views: {
+            "@dashboard": { // absolutely target the unnamed view in the dashboard state
+                // this will override inheriting the parent view
+                templateUrl: "states/dashboard/sessionsRead.html",
+                controller: "sessionsDetailController",
+                params: {
+                    sessionId: null
+                }
+            }
+        },
+    })
+
+    .state('sessions.present', {
+        views: {
+            "@": { // absolutely target the unnamed view in the dashboard state
+                // this will override inheriting the parent view
+                templateUrl: "states/dashboard/sessionsPresent.html",
+                controller: "sessionsDetailController",
+                params: {
+                    sessionId: null
+                }
+            }
+        },
     })
 
     .state('questionsDetail', {

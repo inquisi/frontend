@@ -1,4 +1,4 @@
-function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatch, course, session, questions, Question, $state, $stateParams) {
+function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, $state, $stateParams) {
     screenmatch.when('xs, sm', function() {
         $scope.horiz = true;
     }, function() {
@@ -94,6 +94,11 @@ function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatc
     $scope.togglePresentation = function() {
         $scope.fsState = false;
 
+        Session.activate({
+            id: $scope.session.id,
+            active: true
+        });
+
         function launchFS(element) {
             if (element.requestFullScreen) element.requestFullScreen();
             else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
@@ -127,4 +132,4 @@ function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatc
     }
 }
 
-dashboard.controller('sessionsDetailController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'session', 'questions', 'Question', '$state', '$stateParams', sessionsDetailController]);
+dashboard.controller('sessionsDetailController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', '$state', '$stateParams', sessionsDetailController]);
