@@ -9,6 +9,10 @@
                 },
                 update: {
                     method: 'PUT'
+                },
+                activate: {
+                    url: '/questions/:questionId/activate',
+                    method: 'POST'
                 }
                 // delete: {
                 // 	method: 'DELETE'

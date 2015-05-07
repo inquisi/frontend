@@ -21,7 +21,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in upcoming | orderBy:'date':false" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessionsDetail({sessionId: upcoming[$index].id})"></tr>
+				<tr session-row ng-repeat="session in upcoming" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessionsDetail({sessionId: upcoming[$index].id})"></tr>
 				<tr ng-if="!upcoming.length"><td>No Upcoming Sessions</td><td></td></tr>
 			</tbody>
 		</table>
@@ -35,7 +35,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in past | orderBy:'date':true" ui-sref="sessionsDetail({sessionId: past[$index].id})"></tr>
+				<tr session-row ng-repeat="session in past" ui-sref="sessionsDetail({sessionId: past[$index].id})"></tr>
 				<tr ng-if="!past.length"><td>No Past Sessions</td><td></td></tr>
 			</tbody>
 		</table>

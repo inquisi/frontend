@@ -1,5 +1,5 @@
  dashboard.factory('focus', ['$timeout',
-     function($timeout) {
+     function($timeout, $window) {
          return function(id) {
              // timeout makes sure that it is invoked after any other event has been triggered.
              // e.g. click events that need to run before the focus or
@@ -7,8 +7,9 @@
              // are triggered.
              $timeout(function() {
                  var element = document.getElementById(id);
-                 if (element)
+                 if (element) {
                      element.focus();
+                 }
              });
          }
      }

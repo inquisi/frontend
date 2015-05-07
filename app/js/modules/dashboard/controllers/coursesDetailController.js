@@ -11,6 +11,9 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
         $scope.past = _.filter($scope.sessions, function(session) {
             return new Date(session.date) < today;
         });
+
+        $scope.upcoming = _.sortByOrder($scope.upcoming, 'date', [true]);
+        $scope.past = _.sortByOrder($scope.past, 'date', [false]);
     });
 
     $scope.sessions = _.sortBy(sessions.data, 'date');
