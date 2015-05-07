@@ -35,7 +35,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in past = (sessions | filter : pastFilter | orderBy:'date':false)"></tr>
+				<tr session-row ng-repeat="session in past = (sessions | filter : pastFilter | orderBy:'date':true)" ui-sref="sessionsDetail({sessionId: session.id})"></tr>
 				<tr ng-if="!past.length"><td>No Past Sessions</td><td></td></tr>
 			</tbody>
 		</table>
