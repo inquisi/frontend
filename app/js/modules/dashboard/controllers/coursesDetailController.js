@@ -1,22 +1,15 @@
 function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
-    var today = new Date();
-
     var callback = $stateParams.callback;
     $scope.course = course;
+    $scope.sessions = sessions.data;
 
-    $scope.$watchCollection('sessions', function() {
-        $scope.upcoming = _.filter($scope.sessions, function(session) {
-            return new Date(session.date) >= today;
-        });
-        $scope.past = _.filter($scope.sessions, function(session) {
-            return new Date(session.date) < today;
-        });
+    $scope.upcomingFilter = function(session) {
+        return new Date(session.date) >= new Date();
+    }
 
-        $scope.upcoming = _.sortByOrder($scope.upcoming, 'date', [true]);
-        $scope.past = _.sortByOrder($scope.past, 'date', [false]);
-    });
-
-    $scope.sessions = _.sortBy(sessions.data, 'date');
+    $scope.pastFilter = function(session) {
+        return new Date(session.date) < new Date();
+    }
 
     $scope.openSessionModal = function() {
 

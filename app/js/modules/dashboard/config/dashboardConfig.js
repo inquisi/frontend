@@ -44,6 +44,33 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     .state('sessions', {
         url: '/sessions/{sessionId}',
         parent: 'dashboard.coursesDetail',
+        views: {
+            "@dashboard": { // absolutely target the unnamed view in the dashboard state
+                // this will override inheriting the parent view
+                controller: "sessionsDetailController",
+                params: {
+                    sessionId: null
+                },
+                templateProvider: function($http, $cookieStore) {
+                    // TODO
+                    // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
+                    // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
+                    // a templateProvider function.
+                    // see https://github.com/angular-ui/ui-router/issues/330
+                    currentUser = $cookieStore.get('currentUser');
+                    var template;
+                    if (currentUser.role == "Instructor") {
+                        template = "states/dashboard/sessionsDetail.html";
+                    } else {
+                        template = "states/student/dashboard/sessionsDetail.html";
+                    }
+                    return $http.get(template).then(function(response) {
+                        return response.data;
+                    });
+                }
+
+            }
+        },
         resolve: {
             session: function(sessions, $stateParams) {
                 return _.find(sessions.data, {
@@ -103,7 +130,23 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
 
     .state('questionsDetail', {
         parent: 'sessionsDetail',
-        templateUrl: 'states/partials/questions/mc.html',
+        templateProvider: function($http, $cookieStore) {
+            // TODO
+            // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
+            // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
+            // a templateProvider function.
+            // see https://github.com/angular-ui/ui-router/issues/330
+            currentUser = $cookieStore.get('currentUser');
+            var template;
+            if (currentUser.role == "Instructor") {
+                template = "states/partials/questions/mc.html";
+            } else {
+                template = "states/partials/answers/answer.html";
+            }
+            return $http.get(template).then(function(response) {
+                return response.data;
+            });
+        },
         params: {
             index: null,
             questionId: null
