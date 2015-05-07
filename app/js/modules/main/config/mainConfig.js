@@ -25,7 +25,7 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             courses: function(Course) {
                 return Course.query().$promise;
             },
-            sessions: function(Session) {
+            allUserSessions: function(Session) {
                 return Session.query().$promise;
             },
             currentUser: function($cookieStore) {

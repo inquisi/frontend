@@ -1,6 +1,7 @@
 function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
     var callback = $stateParams.callback;
     $scope.course = course;
+    $scope.sessions = sessions.data;
 
     $scope.upcomingFilter = function(session) {
         return new Date(session.date) >= new Date();
