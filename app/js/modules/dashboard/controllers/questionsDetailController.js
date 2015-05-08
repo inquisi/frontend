@@ -17,23 +17,25 @@ function questionsDetailController($scope, focus, question, Question, Answer, $s
             question_id: question.id,
             name: "A",
             correct: false,
+            catgeory: "mc",
             order: $scope.question.answers.length
         }, function(response) {
             if (response.status == "success") {
                 $scope.question.answers.push(response.data);
-                debugger
                 focus("answer-" + ($scope.question.answers.length - 1));
             }
         })
     };
 
-    $scope.$watchCollection('question.answers', function(newVal, oldVal) {
-        var updatedAnswer = _.difference(newVal, oldVal);
-
-        if (updatedAnswer.length > 0) {
-            Answer.update(updatedAnswer[0]);
+    $scope.$watch('question.answers', function(newVal, oldVal) {
+        if (!_.isEqual(newVal, oldVal)) {
+            for (var i = 0; i < newVal.length; i++) {
+                if (newVal[i].name != oldVal[i].name) {
+                    Answer.update(newVal[i]);
+                }
+            };
         }
-    });
+    }, true);
 }
 
 dashboard.controller('questionsDetailController', ['$scope', 'focus', 'question', 'Question', 'Answer', '$stateParams', questionsDetailController]);

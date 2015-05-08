@@ -1,21 +1,13 @@
-function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, $state, $stateParams) {
+function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, $state, $stateParams) {
     screenmatch.when('xs, sm', function() {
         $scope.horiz = true;
     }, function() {
         $scope.horiz = false;
     });
 
-
     $scope.course = course;
     $scope.session = session;
     $scope.questions = $filter('orderBy')(questions.data, 'order', false);
-
-    if ($scope.questions.length > 0) {
-        $state.go('questionsDetail', {
-            index: 0,
-            questionId: $scope.questions[0].id
-        });
-    }
 
     $scope.onSort = function(indexFrom, indexTo) {
         angular.forEach($scope.questions, function(question, newIndex) {
@@ -94,6 +86,11 @@ function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatc
     $scope.togglePresentation = function() {
         $scope.fsState = false;
 
+        $state.go('sessions.present', {
+            sessionId: $scope.session.id,
+            present: true
+        })
+
         Session.activate({
             id: $scope.session.id,
             active: true
@@ -132,4 +129,4 @@ function sessionsDetailController($rootScope, $scope, $filter, focus, screenmatc
     }
 }
 
-dashboard.controller('sessionsDetailController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', '$state', '$stateParams', sessionsDetailController]);
+dashboard.controller('sessionsEditController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', '$state', '$stateParams', sessionsEditController]);

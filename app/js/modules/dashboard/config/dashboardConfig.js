@@ -42,8 +42,12 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     })
 
     .state('sessions', {
-        url: '/sessions/{sessionId}',
         parent: 'dashboard.coursesDetail',
+        abstract: true,
+        params: {
+            sessionId: null,
+            present: false
+        },
         resolve: {
             session: function(sessions, $stateParams) {
                 return _.find(sessions.data, {
@@ -56,53 +60,47 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     session_id: session.id
                 }).$promise;
             }
-        },
-        onEnter: function($state, $stateParams) {
-
         }
     })
 
     .state('sessions.edit', {
+        url: '/sessions/{sessionId}',
         views: {
             "@dashboard": { // absolutely target the unnamed view in the dashboard state
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsEdit.html",
-                controller: "sessionsDetailController",
-                params: {
-                    sessionId: null
-                }
+                controller: "sessionsEditController",
             }
         },
     })
 
     .state('sessions.read', {
+        url: '/sessions/{sessionId}',
         views: {
             "@dashboard": { // absolutely target the unnamed view in the dashboard state
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsRead.html",
-                controller: "sessionsDetailController",
-                params: {
-                    sessionId: null
-                }
+                controller: "sessionsReadController",
             }
         },
     })
 
     .state('sessions.present', {
+        url: '/sessions/{sessionId}/present',
+        params: {
+            present: true
+        },
         views: {
             "@": { // absolutely target the unnamed view in the dashboard state
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsPresent.html",
-                controller: "sessionsDetailController",
-                params: {
-                    sessionId: null
-                }
+                controller: "sessionsPresentController",
             }
         },
     })
 
     .state('questionsDetail', {
-        parent: 'sessionsDetail',
+        parent: 'sessions.edit',
         templateUrl: 'states/partials/questions/mc.html',
         params: {
             index: null,
