@@ -1,11 +1,18 @@
-function dashboardController($scope, courses, Course, $modal, $window, $cookieStore, screenmatch, CourseService, currentUser) {
+function dashboardController($scope, courses, Course, allUserSessions, $modal, $window, $cookieStore, screenmatch, CourseService, currentUser) {
     $scope.open = false;
     $scope.currentUser = currentUser;
     $scope.courses = courses.data;
+    $scope.sessions = allUserSessions.data;
 
-    if ($scope.currentUser.role == "Student") {
-        $scope.courses = _.filter($scope.courses, 'active');
-    }
+    // attach an active session id to active courses
+    $scope.courses = _.map($scope.courses, function(course) {
+        if (course.active) {
+            course.activeSessionId = _.result(_.findWhere($scope.sessions, {
+                course_id: course.id
+            }), 'id');
+        }
+        return course;
+    });
 
     $scope.openMenu = function() {
         if ($scope.open) {
@@ -74,4 +81,4 @@ function dashboardController($scope, courses, Course, $modal, $window, $cookieSt
     }
 }
 
-dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', 'currentUser', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', 'allUserSessions', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', 'currentUser', dashboardController]);
