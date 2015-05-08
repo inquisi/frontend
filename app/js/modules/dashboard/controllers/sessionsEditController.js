@@ -4,10 +4,16 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     }, function() {
         $scope.horiz = false;
     });
-
     $scope.course = course;
     $scope.session = session;
     $scope.questions = $filter('orderBy')(questions.data, 'order', false);
+
+    if ($scope.questions.length > 0) {
+        $state.go('questionsDetail', {
+            index: $scope.questions[0].order,
+            questionId: $scope.questions[0].id
+        })
+    }
 
     $scope.onSort = function(indexFrom, indexTo) {
         angular.forEach($scope.questions, function(question, newIndex) {
@@ -42,6 +48,7 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
                     $scope.questions.push(response.data.question);
                     focus('question-thumb-' + ($scope.questions[$scope.questions.length - 1].order));
                     goToNewQuestion();
+                    $scope.question = response.data.question;
                 }
             });
     };

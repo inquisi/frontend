@@ -1,12 +1,12 @@
 <tr tabindex=0>
 	<td ng-if="!mobile" class="table-present collapse-xs"><a><i class="fui fui-play"></i></a></td>
-	<td ui-sref="sessions({courseId: course.id, sessionId: course.activeSessionId})" class="table-courseName">
+	<td ui-sref="sessions.read({courseId: course.id, sessionId: course.activeSessionId})" class="table-courseName">
 		{{course.name}}
 		<span class="table-courseSub">{{course.instructor}}</span>
 	</td>
-	<td ui-sref="sessions({courseId: course.id, sessionId: course.activeSessionId})" class="collapse-xs">{{course.instructor}}</td>
-	<td ui-sref="sessions({courseId: course.id, sessionId: course.activeSessionId})" class="collapse-xs">{{course.start | date : 'MM/dd/yyyy'}}</td>
-	<td ui-sref="sessions({courseId: course.id, sessionId: course.activeSessionId})" class="collapse-xs">{{course.finish | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="sessions.read({courseId: course.id, sessionId: course.activeSessionId})" class="collapse-xs">{{course.instructor}}</td>
+	<td ui-sref="sessions.read({courseId: course.id, sessionId: course.activeSessionId})" class="collapse-xs">{{course.start | date : 'MM/dd/yyyy'}}</td>
+	<td ui-sref="sessions.read({courseId: course.id, sessionId: course.activeSessionId})" class="collapse-xs">{{course.finish | date : 'MM/dd/yyyy'}}</td>
 	<td ng-if="mobile" class="table-opts" hm-tap="openCourseOpts(course)"><i class="fui fui-plus-circle"></i></td>
 	<td ng-if="!mobile" class="table-opts">
 		<div class="dropdown" dropdown>
