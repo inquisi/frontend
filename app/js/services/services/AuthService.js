@@ -67,4 +67,4 @@ function AuthService($http, $q, $cookieStore) {
     }
 }
 
-login.service('AuthService', AuthService);
+services.service('AuthService', AuthService);

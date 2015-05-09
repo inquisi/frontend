@@ -4,13 +4,14 @@
 	<div class="col-xs-10 col-sm-12 dashInfo">
 		<h2>{{course.name}}</h2>
 		<h4>{{course.start | date}} – {{course.finish | date}}</h4>
+		<h4 ng-if="currentUser.role == 'Instructor'">Enrollment Code: {{course.enrollment_token}}</h4>
 	</div>
 	<div class="col-xs-2 visible-xs dashInfo">
 		<h2><i class="fui fui-plus" tabindex=0 hm-tap="openSessionModal()"></i></h2>
 	</div>
 </div>
 
-<div class="row">
+<div class="row" ng-if="currentUser.role == 'Instructor'">
 	<div class="col-xs-12 col-sm-6 col-no-pad" id="upcoming-sessions">
 		<table class="table table-hover table-upcoming">
 			<thead>
@@ -20,7 +21,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in upcoming | orderBy:'date':false" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessionsDetail({sessionId: upcoming[$index].id})"></tr>
+				<tr session-row ng-repeat="session in upcoming = (sessions | filter : upcomingFilter | orderBy:'date':false)" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessions.edit({sessionId: upcoming[$index].id})"></tr>
 				<tr ng-if="!upcoming.length"><td>No Upcoming Sessions</td><td></td></tr>
 			</tbody>
 		</table>
@@ -34,7 +35,37 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in past | orderBy:'date':true" ui-sref="sessionsDetail({sessionId: past[$index].id})"></tr>
+				<tr session-row ng-repeat="session in past = (sessions | filter : pastFilter | orderBy:'date':true)" ui-sref="sessions.read({sessionId: past[$index].id})"></tr>
+				<tr ng-if="!past.length"><td>No Past Sessions</td><td></td></tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row" ng-if="currentUser.role == 'Student'">
+	<div class="col-xs-12 col-sm-6 col-no-pad" id="current-sessions" ng-if="(sessions | filter : {active: true}).length > 0">
+		<table class="table table-hover table-current">
+			<thead>
+				<tr>
+					<th>In Session</th>
+					<th  ng-if="!mobile" class="hidden-xs" id="createSession" hm-tap="openSessionModal()"><i class="fui fui-plus"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr session-row ng-repeat="session in current = (sessions | filter : {active: true} | orderBy:'date':false)" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessions.read({sessionId: session.id})"></tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-12 col-sm-6 col-no-pad" id="past-sessions">
+		<table class="table table-hover table-past">
+			<thead>
+				<tr>
+					<th>Past Sessions</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr session-row ng-repeat="session in past = (sessions | filter : {active: false} | orderBy:'date':false)" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessions.read({sessionId: session.id})"></tr>
 				<tr ng-if="!past.length"><td>No Past Sessions</td><td></td></tr>
 			</tbody>
 		</table>

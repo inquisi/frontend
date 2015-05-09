@@ -36,16 +36,16 @@ describe('States', function() {
         });
     });
 
-    describe('loginPanel.login', function() {
-        it('should redirect to dashboard.home when logged in', function() {
-            $httpBackend.expectGET('http://localhost:3000/courses').respond(200, JSON.stringify([]));
-            spyOn(AuthService, 'authenticated').and.returnValue(true);
-            spyOn($state, 'go').and.callThrough();
+    // describe('loginPanel.login', function() {
+    //     it('should redirect to dashboard.home when logged in', function() {
+    //         $httpBackend.expectGET('http://localhost:3000/courses').respond(200, JSON.stringify([]));
+    //         spyOn(AuthService, 'authenticated').and.returnValue(true);
+    //         spyOn($state, 'go').and.callThrough();
 
-            $state.go('loginPanel.login');
-            $rootScope.$digest();
+    //         $state.go('loginPanel.login');
+    //         $rootScope.$digest();
 
-            expect($state.go).toHaveBeenCalledWith('dashboard.home');
-        });
-    });
+    //         expect($state.go).toHaveBeenCalledWith('dashboard.home');
+    //     });
+    // });
 });

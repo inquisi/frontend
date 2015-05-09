@@ -1,8 +1,8 @@
-<div class="question" hm-tap="pushQuestion(index, question)">
-	<h2 contenteditable ng-model="question.name"></h2>
+<div class="question">
+	<h2 contenteditable id="questionName" placeholder="Question Title" ng-model="question.name"></h2>
 
 	<div id="answer-container">
-		<div class="answer" ng-repeat="answer in question.answers track by $index" contenteditable ng-model="question.answers[$index]"></div>
+		<div class="answer" ng-repeat="answer in question.answers track by $index" contenteditable ng-model="question.answers[$index].name" id="{{'answer-' + $index}}"></div>
 		<div class="new-answer" hm-tap="addAnswer()">Add another answer</div>
 	</div>
 </div>

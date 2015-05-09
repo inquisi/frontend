@@ -24,6 +24,12 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         resolve: {
             courses: function(Course) {
                 return Course.query().$promise;
+            },
+            allUserSessions: function(Session) {
+                return Session.query().$promise;
+            },
+            currentUser: function($cookieStore) {
+                return $cookieStore.get('currentUser');
             }
         },
         controller: 'dashboardController'

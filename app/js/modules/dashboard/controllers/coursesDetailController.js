@@ -1,19 +1,15 @@
 function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
-    var today = new Date();
-
     var callback = $stateParams.callback;
     $scope.course = course;
+    $scope.sessions = sessions.data;
 
-    $scope.$watchCollection('sessions', function() {
-        $scope.upcoming = _.filter($scope.sessions, function(session) {
-            return new Date(session.date) >= today;
-        });
-        $scope.past = _.filter($scope.sessions, function(session) {
-            return new Date(session.date) < today;
-        });
-    });
+    $scope.upcomingFilter = function(session) {
+        return new Date(session.date) >= new Date();
+    }
 
-    $scope.sessions = _.sortBy(sessions.data, 'date');
+    $scope.pastFilter = function(session) {
+        return new Date(session.date) < new Date();
+    }
 
     $scope.openSessionModal = function() {
 
@@ -42,4 +38,4 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
     } else {}
 }
 
-dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', coursesDetailController]);
+dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', '$cookieStore', coursesDetailController]);
