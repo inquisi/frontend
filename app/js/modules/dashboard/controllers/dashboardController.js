@@ -40,7 +40,7 @@ function dashboardController($scope, courses, Course, allUserSessions, $modal, $
 
 
     // Modal stuff
-    $scope.openCourseModal = function(size) {
+    $scope.addCourseModal = function(size) {
         var addCourse = function(course) {
             Course.save(course, function(response) {
                 if (response.status == "success") {
@@ -49,35 +49,35 @@ function dashboardController($scope, courses, Course, allUserSessions, $modal, $
             });
         };
 
-        if (currentUser.role == "Instructor") {
-            var modalInstance = $modal.open({
-                templateUrl: 'states/partials/addCourseModal.html',
-                controller: 'addCourseModalInstanceCtrl',
-                size: size,
-                resolve: {
-                    course: function() {
-                        return $scope.course;
-                    }
+        var modalInstance = $modal.open({
+            templateUrl: 'states/partials/addCourseModal.html',
+            controller: 'addCourseModalInstanceCtrl',
+            resolve: {
+                course: function() {
+                    return $scope.course;
                 }
-            });
+            }
+        });
 
-            modalInstance.result.then(function(course) {
-                addCourse(course);
-            }, function() {});
-        } else if (currentUser.role == "Student") {
-            var modalInstance = $modal.open({
-                templateUrl: 'states/partials/enrollInCourseModal.html',
-                controller: 'enrollInCourseModalInstanceController',
-                size: size
-            });
+        modalInstance.result.then(function(course) {
+            addCourse(course);
+        }, function() {});
+    };
 
-            modalInstance.result.then(function(enrollmentToken) {
-                CourseService.enrollInCourse(enrollmentToken).then(function(response) {
+    $scope.enrollInCourseModal = function() {
+        var modalInstance = $modal.open({
+            templateUrl: 'states/partials/enrollInCourseModal.html',
+            controller: 'enrollInCourseModalInstanceController',
+        });
+
+        modalInstance.result.then(function(enrollmentToken) {
+            CourseService.enrollInCourse(enrollmentToken).then(function(response) {
+                if (response.status == "success") {
                     var course = response.data.data.course;
                     $scope.courses.push(course);
-                });
+                }
             });
-        }
+        });
     }
 }
 
