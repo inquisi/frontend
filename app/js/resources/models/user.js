@@ -5,6 +5,10 @@
                 create: {
                     url: '/signup',
                     method: 'POST'
+                },
+                students: {
+                    url: '/user/students',
+                    method: 'GET'
                 }
             });
         }

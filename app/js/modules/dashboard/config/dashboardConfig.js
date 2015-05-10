@@ -17,6 +17,12 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     .state('dashboard.students', {
         url: '^/students',
         templateUrl: 'states/dashboard/students.html',
+        controller: 'studentController',
+        resolve: {
+            students: function(User) {
+                return User.students().$promise;
+            }
+        }
     })
 
     .state('dashboard.coursesDetail', {
