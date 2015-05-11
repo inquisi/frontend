@@ -172,6 +172,8 @@
 	-webkit-box-shadow: 0px 0px 29px -10px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 29px -10px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 29px -10px rgba(0,0,0,0.75);
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .question-empty{
@@ -239,30 +241,11 @@
 
 @media (min-width: @screen-sm-min){
 	.question{
-		display: table;
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		margin: auto;
-		width: 760px;
-		max-width: 760px;
-
-		&:before{
-			content: "";
-		    float: left;
-
-		    /* essentially the aspect ratio. 100% means the
-		       div will remain 100% as tall as it is wide, or
-		       square in other words.  */
-		    padding-bottom: 56.25%;
-		}
-
-		&:after{
-		    content: "";
-		    display: table;
-		    clear: both;
-		}
+		margin: 15px;
 	}
 }
 
@@ -339,11 +322,6 @@
 		top: 75px;
 		bottom: 90px;
 		overflow: auto !important; 
-	}
-
-	.question{
-		width: 95%;
-		max-width: 965px;
 	}
 
 	.question-empty{

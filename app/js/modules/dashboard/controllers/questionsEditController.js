@@ -1,5 +1,6 @@
-function questionsDetailController($scope, focus, question, Question, Answer, $stateParams) {
+function questionsEditController($scope, $filter, focus, question, Question, Answer, $stateParams) {
     $scope.index = $stateParams.index;
+
 
     if (question == undefined) {
         focus('questionName');
@@ -7,18 +8,27 @@ function questionsDetailController($scope, focus, question, Question, Answer, $s
         $scope.question = question;
     }
 
+    $scope.question.answers = $filter('orderBy')($scope.question.answers, 'order', false);
+
     $scope.$watch('question', function(newQ, oldQ) {
         if (!_.isEqual(newQ, oldQ)) {
             Question.update($scope.question);
         }
     }, true);
 
+    $scope.onSortAnswer = function(indexFrom, indexTo) {
+        angular.forEach($scope.question.answers, function(answer, newIndex) {
+            answer.order = newIndex;
+            Answer.update(answer);
+        });
+    }
+
     $scope.addAnswer = function() {
         Answer.save({
             question_id: $scope.question.id,
-            name: "A",
+            name: ("Option " + ($scope.question.answers.length + 1)),
             correct: false,
-            catgeory: "mc",
+            catgeory: "MC",
             order: $scope.question.answers.length
         }, function(response) {
             if (response.status == "success") {
@@ -27,6 +37,11 @@ function questionsDetailController($scope, focus, question, Question, Answer, $s
             }
         })
     };
+
+    $scope.toggleCorrect = function(answer) {
+        answer.correct = !answer.correct;
+        Answer.update(answer);
+    }
 
     $scope.$watch('question.answers', function(newVal, oldVal) {
         if (!_.isEqual(newVal, oldVal)) {
@@ -41,4 +56,4 @@ function questionsDetailController($scope, focus, question, Question, Answer, $s
     }, true);
 }
 
-dashboard.controller('questionsDetailController', ['$scope', 'focus', 'question', 'Question', 'Answer', '$stateParams', questionsDetailController]);
+dashboard.controller('questionsEditController', ['$scope', '$filter', 'focus', 'question', 'Question', 'Answer', '$stateParams', questionsEditController]);

@@ -1,0 +1,8 @@
+<div class="question">
+	<div class="questionRead">
+		<h4>{{question.name}}</h4>
+		<ul id="answer-container">
+			<li class="answer" ng-repeat="answer in question.answers track by $index">{{answer.name}}</li>
+		</ul>
+	</div>
+</div>

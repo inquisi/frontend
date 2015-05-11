@@ -9,7 +9,7 @@ function sessionsReadController($rootScope, $scope, $filter, focus, screenmatch,
     $scope.questions = $filter('orderBy')(questions.data, 'order', false);
 
     if ($scope.questions.length > 0) {
-        $state.go('questionsDetail', {
+        $state.go('questionsRead', {
             index: $scope.questions[0].order,
             questionId: $scope.questions[0].id
         })
