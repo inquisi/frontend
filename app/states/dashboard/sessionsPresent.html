@@ -1,9 +1,11 @@
 <div class="question-present-container">
 	<div ui-view></div>
 </div>
-
 <div class="presentation-controls">
-	<div></div>
-	<div></div>
-	<div></div>
+	<div hm-tap="prevQuestion()" ng-if="canPrevPresent"><i class="fui fui-arrow-left"></i></div>
+	<div class="empty-control" ng-if="!canPrevPresent"></div>
+	<div hm-tap="nextQuestion()" ng-if="canNextPresent"><i class="fui fui-arrow-right"></i></div>
+	<div class="empty-control" ng-if="!canNextPresent"></div>
+	<div hm-tap="toggleFS()"><i class="fui fui-resize"></i></div>
+	<div hm-tap="openSettings()"><i class="fui fui-gear"></i></div>
 </div>
