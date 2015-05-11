@@ -8,20 +8,24 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     $scope.session = session;
     $scope.questions = $filter('orderBy')(questions.data, 'order', false);
 
+    angular.forEach($scope.questions, function(question) {
+        question.answers = $filter('orderBy')(question.answers, 'order', false);
+    });
+
     if ($scope.questions.length > 0) {
-        $state.go('questionsDetail', {
+        $state.go('questionsEdit', {
             index: $scope.questions[0].order,
             questionId: $scope.questions[0].id
         })
     }
 
-    $scope.onSort = function(indexFrom, indexTo) {
+    $scope.onSortQuestion = function(indexFrom, indexTo) {
         angular.forEach($scope.questions, function(question, newIndex) {
             question.order = newIndex;
             Question.update(question);
         });
 
-        $state.go('questionsDetail', {
+        $state.go('questionsEdit', {
             index: indexTo,
             questionId: $scope.questions[indexTo].id
         });
@@ -30,7 +34,7 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     // $scope.$watchCollection('questions', function() {});
 
     var goToNewQuestion = function() {
-        $state.go('questionsDetail', {
+        $state.go('questionsEdit', {
             index: ($scope.questions.length - 1),
             questionId: $scope.questions[$scope.questions.length - 1].id
         });
@@ -80,7 +84,7 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         var index = $state.params.index;
 
         if (index > 0) {
-            $state.go('questionsDetail', {
+            $state.go('questionsEdit', {
                 index: index - 1,
                 questionId: $scope.questions[index - 1].id
             });
@@ -91,40 +95,16 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     }
 
     $scope.togglePresentation = function() {
-        $scope.fsState = false;
-
         $state.go('sessions.present', {
             sessionId: $scope.session.id,
             present: true
         })
-
-        Session.activate({
-            id: $scope.session.id,
-            active: true
-        });
-
-        function launchFS(element) {
-            if (element.requestFullScreen) element.requestFullScreen();
-            else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
-            else if (element.webkitRequestFullScreen) element.webkitRequestFullScreen();
-        }
-
-        function cancelFS() {
-            if (document.cancelFullScreen) document.cancelFullScreen();
-            else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-            else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
-        }
-
-        if ($scope.fsState == false) launchFS(document.documentElement);
-        else cancelFS();
-        $scope.fsState = !$scope.fsState;
     }
-
 
     $scope.goToNextQuestion = function() {
         var index = $state.params.index;
         if (index < $scope.questions.length - 1) {
-            $state.go('questionsDetail', {
+            $state.go('questionsEdit', {
                 index: index + 1,
                 questionId: $scope.questions[index + 1].id
             });

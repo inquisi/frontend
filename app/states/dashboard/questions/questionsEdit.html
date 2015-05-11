@@ -1,0 +1,24 @@
+<div class="question">
+	<div class="questionEdit">
+		<div class="hidden-input">
+			<input type="text" class="form-control" name="questionName" id="questionName" placeholder="Untitled" ng-model="question.name" ng-model-options="{ updateOn: 'blur' }">
+		</div>
+		<div id="answer-container" sv-root sv-part="question.answers" sv-on-sort="onSortAnswer($indexFrom, $indexTo)">
+			<div class="answer-placeholder" sv-placeholder></div>
+			<div class="answer" sv-element ng-repeat="answer in question.answers track by $index">
+				<div class="hidden-input">
+					<div class="answer-handle" sv-handle>
+						<i class="fui fui-list-large-thumbnails"></i>
+						<i class="fui fui-list-large-thumbnails"></i>
+					</div>
+					<div class="mc-select" hm-tap="toggleCorrect(answer)" ng-class="{ 'mc-select-correct': answer.correct, 'mc-select-false': !answer.correct }"></div>
+					<input class="form-control" ng-model="question.answers[$index].name" id="{{'answer-' + $index}}" ng-model-options="{ updateOn: 'blur' }">
+				</div>
+			</div>
+			<div class="new-answer" hm-tap="addAnswer()">
+				<div class="mc-select"></div>
+				<div class="add-text">Add another answer</div>
+			</div>
+		</div>
+	</div>
+</div>
