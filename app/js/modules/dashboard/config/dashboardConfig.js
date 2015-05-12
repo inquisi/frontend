@@ -96,25 +96,31 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsEdit.html",
                 controller: "sessionsEditController",
-                templateProvider: function($http, $cookieStore) {
-                    // TODO
-                    // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
-                    // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
-                    // a templateProvider function.
-                    // see https://github.com/angular-ui/ui-router/issues/330
-                    currentUser = $cookieStore.get('currentUser');
-                    var template;
-                    if (currentUser.role == "Instructor") {
-                        template = "states/dashboard/sessionsEdit.html";
-                    } else {
-                        template = "states/student/dashboard/sessionsEdit.html";
-                    }
-                    return $http.get(template).then(function(response) {
-                        return response.data;
-                    });
-                }
+                // templateProvider: function($http, $cookieStore) {
+                //     // TODO
+                //     // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
+                //     // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
+                //     // a templateProvider function.
+                //     // see https://github.com/angular-ui/ui-router/issues/330
+                //     currentUser = $cookieStore.get('currentUser');
+                //     var template;
+                //     if (currentUser.role == "Instructor") {
+                //         template = "states/dashboard/sessionsEdit.html";
+                //     } else {
+                //         template = "states/student/dashboard/sessionsEdit.html";
+                //     }
+                //     return $http.get(template).then(function(response) {
+                //         return response.data;
+                //     });
+                // }
             }
         },
+        onEnter: function($state, $stateParams, session) {
+            // Redirect to state.read if session.date is in the past
+            if (new Date(session.date) < new Date()) {
+                $state.go('sessions.read', $stateParams);
+            }
+        }
     })
 
     .state('sessions.read', {
@@ -124,6 +130,18 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsRead.html",
                 controller: "sessionsReadController",
+                templateProvider: function($http, $cookieStore) {
+                    currentUser = $cookieStore.get('currentUser');
+                    var template;
+                    if (currentUser.role == "Instructor") {
+                        template = "states/dashboard/sessionsRead.html";
+                    } else {
+                        template = "states/student/dashboard/sessionsRead.html";
+                    }
+                    return $http.get(template).then(function(response) {
+                        return response.data;
+                    });
+                }
             }
         }
     })
