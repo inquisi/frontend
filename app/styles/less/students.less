@@ -1,6 +1,43 @@
+#student-filters{
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+
+.filter-course{
+	margin-top: 15px;
+}
+
+#search-results{
+	background-color: @gray-lighter;
+
+	.student-row{
+	}
+}
+
+#course-filter{
+	width: 100%;
+}
+
 .student{
 	width: 100%;
+	padding: 15px 24px;
 	min-height: 70px;
+	cursor: pointer;
+	border-bottom: 1px solid darken(@gray-lighter, 5%);
+
+	&:hover{
+		background-color: darken(@gray-lighter, 5%);
+		border-bottom: 1px solid darken(@gray-lighter, 8%);
+	}
+
+	&:focus{
+		outline: none;
+		background-color: lighten(@brand-info, 30%)
+	}
+
+	&:last-child{
+		border-bottom: 0;
+	}
 }
 
 .student-avatar{
@@ -8,8 +45,30 @@
 	height: 60px;
 	width: 60px;
 	margin-right: 14px;
+	border-radius: 100%;
+
+	&:after{
+		content: "";
+		background-color: @brand-info;
+		z-index: 10;
+	}
 }
 
 .student-name, .student-courses {
 	text-transform: none;
+}
+
+.student-name{
+	margin-top: 7px;
+}
+
+.student-courses{
+	font-size: @font-size-base;
+	margin-bottom: 7px;
+}
+
+@media (min-width: @screen-sm-min){
+	.filter-course{
+		margin-top: 0;
+	}
 }

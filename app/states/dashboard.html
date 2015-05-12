@@ -40,8 +40,8 @@
 
 		<div class="currentCourses">
 			<h5>Current Courses</h5> 
-			<i ng-if="currentUser.role == 'Instructor'" tabindex="0" hm-tap="addCourseModal()" class="fui fui-plus headerIcon"></i>
-			<button ng-if="currentUser.role == 'Student'" type="button" hm-tap="enrollInCourseModal()" class="btn btn-xs btn-info btn-enroll">Enroll</button>
+			<button ng-if="currentUser.role == 'Instructor'" tabindex="0" type="button" hm-tap="addCourseModal()" class="btn btn-xs btn-info btn-enroll">Add</button>
+			<button ng-if="currentUser.role == 'Student'" tabindex="0" type="button" hm-tap="enrollInCourseModal()" class="btn btn-xs btn-info btn-enroll">Enroll</button>
 		</div>
 		<div class="coursesMenu">
 		<menu-item ng-repeat="course in courses" ui-sref="dashboard.coursesDetail({courseId: courses[$index].id})" icon="bookmark" name="{{courses[$index].name}}"></menu-item>

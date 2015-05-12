@@ -7,10 +7,14 @@ function sessionsPresentController($rootScope, $scope, $filter, focus, screenmat
         question.answers = $filter('orderBy')(question.answers, 'order', false);
     });
 
-    Session.activate({
-        id: $scope.session.id,
-        active: true
-    });
+    if ($scope.fsState = undefined || !$scope.fsState) {
+        debugger
+        $state.go('sessions.edit', {
+            sessionId: $scope.session.id
+        });
+    }
+
+    focus("question-present-container");
 
     $state.go('questionsPresent', {
         index: $scope.questions[0].order,
@@ -62,24 +66,49 @@ function sessionsPresentController($rootScope, $scope, $filter, focus, screenmat
         }
     }
 
-    $scope.toggleFS = function() {
-        $scope.fsState = false;
+    $scope.launchFS = function() {
+        $scope.fsState = true;
 
         function launchFS(element) {
             if (element.requestFullScreen) element.requestFullScreen();
             else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
             else if (element.webkitRequestFullScreen) element.webkitRequestFullScreen();
+
+            focus("question-present-container");
         }
+
+        launchFS(document.documentElement);
+    }
+
+    $scope.cancelFS = function() {
+        $scope.fsState = false;
 
         function cancelFS() {
-            if (document.cancelFullScreen) document.cancelFullScreen();
+            if (document.exitFullscreen) document.exitFullscreen();
             else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-            else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+
+            focus("question-present-container");
         }
 
-        if ($scope.fsState == false) launchFS(document.documentElement);
-        else cancelFS();
-        $scope.fsState = !$scope.fsState;
+        cancelFS();
+    }
+
+    if (document.addEventListener) {
+        document.addEventListener('webkitfullscreenchange', exitHandler, false);
+        document.addEventListener('mozfullscreenchange', exitHandler, false);
+        document.addEventListener('fullscreenchange', exitHandler, false);
+        document.addEventListener('MSFullscreenChange', exitHandler, false);
+    }
+
+    function exitHandler() {
+        if (!document.webkitIsFullScreen || document.mozFullScreen || (document.fullscreenElement && document.fullscreenElement !== null)) {
+            $scope.fsState = false;
+
+            $state.go('sessions.edit', {
+                id: $scope.session.id
+            });
+        }
     }
 }
 

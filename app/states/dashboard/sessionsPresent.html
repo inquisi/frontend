@@ -1,11 +1,21 @@
-<div class="question-present-container">
+<!-- <div class="navigation-controls-hover">
+	<div class="navigation-controls">
+		<div hm-tap="exitPresentation()"><i id="exit-glyph" class="fui fui-exit"></i></div>
+	</div>
+</div> -->
+
+<div id="question-present-container" class="question-present-container" tabindex="0" 
+	  ui-keydown="{left:'prevQuestion()', right:'nextQuestion()'}">
 	<div ui-view></div>
 </div>
+
+<div class="presentation-controls-hover">
 <div class="presentation-controls">
+	<div hm-tap="cancelFS()"><i id="exit-glyph" class="fui fui-exit"></i></div>
 	<div hm-tap="prevQuestion()" ng-if="canPrevPresent"><i class="fui fui-arrow-left"></i></div>
 	<div class="empty-control" ng-if="!canPrevPresent"></div>
 	<div hm-tap="nextQuestion()" ng-if="canNextPresent"><i class="fui fui-arrow-right"></i></div>
 	<div class="empty-control" ng-if="!canNextPresent"></div>
-	<div hm-tap="toggleFS()"><i class="fui fui-resize"></i></div>
 	<div hm-tap="openSettings()"><i class="fui fui-gear"></i></div>
+</div>
 </div>
