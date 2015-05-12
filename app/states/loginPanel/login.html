@@ -1,19 +1,24 @@
 <p>Sign in to continue.</p>
-<form name="login" ng-submit="submit()" novalidate ng-controller="loginController">
 
-    <p class="alert alert-danger error-message" ng-if="errorMessage != undefined">{{errorMessage}}</p>
+
+<form name="login" ng-submit="submit()" novalidate ng-controller="loginController">
+    <div class="alert alert-danger error-message text-center" ng-if="errorMessage != undefined">{{errorMessage}}</div>
+
+    <div class="gravatar">
+        <img src="http://www.gravatar.com/avatar/{{ user.email | gravatar }}?s=200&d=mm" draggable="false">
+    </div>
 
 	<div class="form-row">
             <div class="input-group">
                 <input class="form-control" autocomplete="email" type="email" placeholder="Email"
-                    name="email" ng-model="user.email" disable-Validators>
+                    name="email" ng-model="user.email" ng-model-options="{updateOn: 'blur'}" id="userEmail" disable-Validators>
                 <span class="form-control-feedback text-muted fui-mail"></span>
             </div>
     </div>
     <div class="form-row">
             <div class="input-group">
                 <input class="form-control" autocomplete="password" type="password" placeholder="Password"
-                    name="password" ng-model="user.password" disable-Validators>
+                    name="password" ng-model="user.password" id="userPassword" disable-Validators>
                 <span class="form-control-feedback text-muted fui-lock"></span>
             </div>
     </div>

@@ -13,6 +13,16 @@
                     $state.go('loginPanel.login');
                 }
             });
+            $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams) {
+                console.log('$stateChangeError - fired when an error occurs during transition.');
+                console.log("0: event, 1: toState, 2: toParams, 3: fromState, 4: fromParams");
+                console.log(arguments);
+            });
+            $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams) {
+                console.log('$stateNotFound ' + unfoundState.to + '  - fired when a state cannot be found by its name.');
+                console.log("unfoundState, fromState, fromParams");
+                console.log(unfoundState, fromState, fromParams);
+            });
         }).factory('apiRootInterceptor', ['$cookieStore',
             function($cookieStore) {
                 function tokenParamsExist(request) {
