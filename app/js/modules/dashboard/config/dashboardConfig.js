@@ -117,7 +117,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         onEnter: function($state, $stateParams, session) {
             // Redirect to state.read if session.date is in the past
-            if (new Date(session.date) < new Date()) {
+            if (session.active || new Date(session.date) < new Date()) {
                 $state.go('sessions.read', $stateParams);
             }
         }

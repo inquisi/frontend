@@ -8,7 +8,6 @@ function sessionsPresentController($rootScope, $scope, $filter, focus, screenmat
     });
 
     if ($scope.fsState = undefined || !$scope.fsState) {
-        debugger
         $state.go('sessions.edit', {
             sessionId: $scope.session.id
         });
