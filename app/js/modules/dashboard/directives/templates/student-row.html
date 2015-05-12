@@ -1,5 +1,5 @@
-<div class="student">
-	<img src="http://www.gravatar.com/avatar/{{ student.email | gravatar }}" class="student-avatar">
+<div class="student" tabindex=0>
+	<img src="http://www.gravatar.com/avatar/{{ student.email | gravatar }}" class="student-avatar" draggable="false">
 	<h4 class="student-name">{{student.first_name + " " + student.last_name}}</h4>
 	<h4 class="student-courses">
 		<span ng-repeat="course in student.courses">{{course.name}}{{$last ? '' : ', '}}</span>

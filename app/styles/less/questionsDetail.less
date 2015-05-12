@@ -77,8 +77,7 @@
 		margin-left: 30px;
 
 		&:hover{
-			border-color: @gray-light;
-			background-color: transparent;
+			color: @gray;
 		}
 	}
 
@@ -103,30 +102,40 @@
 .mc-select{
 	height: 13px;
 	width: 13px;
-	border-radius: 3px;
-	border: 1px solid @gray-light;
 	float: left;
-	margin: 11px 10px 0 5px; 
+	margin: 10px 10px 0 5px; 
+	padding: 0;
 	transition: 0.3s;
 	-webkit-transition: 0.3s;
 	cursor: pointer;
+	font-family: 'Flat-UI-Icons';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	font-size: 13px;
+
+	&:before{
+		content: "\e60d";
+	}
 
 	&:hover{
-		background-color: @brand-success;
-		border-color: darken(@brand-success, 7%);
+		color: @brand-success;
 	}
 } 
 
 .mc-select-correct{
-	background-color: @brand-success;
-	border-color: darken(@brand-success, 7%);
+	color: @brand-success;
 	transition: 0.3s;
 	-webkit-transition: 0.3s;
+
+	&:before{
+	  content: "\e60e";
+	}
 }
 
 .mc-select-false{
-	background-color: transparent;
-	border-color: lighten(@brand-danger, 5%);
+	color: lighten(@brand-danger, 5%);
 	transition: 0.3s;
 	-webkit-transition: 0.3s;
 }

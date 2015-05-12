@@ -5,8 +5,26 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-xs-12 scroller">
-			<student-row ng-repeat="student in students">
+<div class="row" id="student-filters">
+	<div class="col-xs-12 col-sm-8 filter-search">
+		<div class="input-group">
+			<span class="input-group-addon fui fui-search"></span>
+			<input class="form-control" ng-model="search.$">
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-4 filter-course">
+		<div class="input-group" id="course-filter">
+			<select class="form-control" ng-model="courseFilter" ng-options="course.id as course.name for course in coursesForFilter">
+				<option value="">All Courses</option>
+			</select>
+			<span class="form-control-feedback text-muted fui fui-triangle-down"></span>
+		</div>
+	</div>
+</div>
+
+<div class="row" id="search-results">
+	<div class="col-xs-12 col-no-pad">
+			<student-row ng-repeat="student in students | filter : search : false | filter : courseFilter : true"
+						 ui-sref="studentsDetail({studentId: student.id})">
 	</div>
 </div>

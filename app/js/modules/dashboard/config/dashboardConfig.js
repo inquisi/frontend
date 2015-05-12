@@ -17,10 +17,31 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     .state('dashboard.students', {
         url: '^/students',
         templateUrl: 'states/dashboard/students.html',
-        controller: 'studentController',
+        controller: 'studentsController',
         resolve: {
             students: function(User) {
                 return User.students().$promise;
+            }
+        }
+    })
+
+    .state('studentsDetail', {
+        parent: 'dashboard.students',
+        url: '^/students/{studentId}',
+        params: {
+            studentId: null
+        },
+        resolve: {
+            student: function(students, $stateParams) {
+                return _.find(students.data, {
+                    id: $stateParams.studentId * 1
+                });
+            }
+        },
+        views: {
+            '@dashboard': {
+                templateUrl: 'states/dashboard/studentsDetail.html',
+                controller: 'studentsDetailController',
             }
         }
     })
@@ -51,8 +72,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         parent: 'dashboard.coursesDetail',
         abstract: true,
         params: {
-            sessionId: null,
-            present: false
+            sessionId: null
         },
         resolve: {
             session: function(sessions, $stateParams) {

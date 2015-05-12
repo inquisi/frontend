@@ -94,11 +94,22 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         }
     }
 
-    $scope.togglePresentation = function() {
+    $scope.launchPresentation = function() {
+        $scope.fsState = true;
+
+        function launchFS(element) {
+            if (element.requestFullScreen) element.requestFullScreen();
+            else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
+            else if (element.webkitRequestFullScreen) element.webkitRequestFullScreen();
+        }
+
+        launchFS(document.documentElement);
+
         $state.go('sessions.present', {
             sessionId: $scope.session.id,
             present: true
         })
+
     }
 
     $scope.goToNextQuestion = function() {
