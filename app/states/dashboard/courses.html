@@ -20,7 +20,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr student-courses-row ng-repeat="course in active = ( courses | filter : {active: true} | orderBy:'date':false)" ui-sref="sessions.read({courseId: course.id, sessionId: course.activeSessionId})"></tr>
+					<tr student-courses-row ng-repeat="course in active = ( courses | filter : {active: true} | orderBy:'date':false)" ui-sref="sessions.answer({courseId: course.id, sessionId: course.activeSessionId})"></tr>
 					<tr ng-if="!active.length"><td>Woohoo! No class!</td><td></td></tr>
 				</tbody>
 			</table>
@@ -33,7 +33,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr student-courses-row ng-repeat="course in courses | filter : {active: false} | orderBy:'date':false" ui-sref="sessions.read({courseId: course.id, sessionId: course.activeSessionId})"></tr>
+					<tr student-courses-row ng-repeat="course in courses | filter : {active: false} | orderBy:'date':false" ui-sref="dashboard.coursesDetail({courseId: course.id})"></tr>
 					<!-- <tr ng-if="!upcoming.length"><td>No Upcoming Sessions</td><td></td></tr> -->
 				</tbody>
 			</table>
@@ -53,7 +53,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr courses-row ng-repeat="course in courses"></tr>
+					<tr courses-row ng-repeat="course in courses" ></tr>
 				</tbody>
 			</table>
 			<h4 ng-if="courses.length == 0">No classes in session. Woohoo!</h4>

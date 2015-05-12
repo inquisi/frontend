@@ -111,15 +111,15 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         url: '/sessions/{sessionId}',
         views: {
             "@dashboard": {
-                controller: "sessionsReadController",
-                templateUrl: "states/student/dashboard/sessionsRead.html"
+                controller: "sessionsAnswerController",
+                templateUrl: "states/student/dashboard/sessionsAnswer.html"
             }
         },
         onEnter: function($state, $stateParams, session) {
             // Redirect to state.read if session.date is in the past
-            if (session.active || new Date(session.date) < new Date()) {
-                $state.go('sessions.read', $stateParams);
-            }
+            // if (session.active || new Date(session.date) < new Date()) {
+            //     $state.go('sessions.read', $stateParams);
+            // }
         }
     })
 
