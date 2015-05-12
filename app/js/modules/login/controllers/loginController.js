@@ -22,7 +22,6 @@ function loginController($rootScope, $scope, $state, AuthService, focus) {
                     }
                 }, function(data) {
                     $scope.errorMessage = data.message;
-                    debugger
                 });
         }
     }

@@ -1,4 +1,4 @@
-function dashboardController($scope, courses, Course, allUserSessions, $modal, $window, $cookieStore, screenmatch, CourseService, currentUser) {
+function dashboardController($scope, $state, courses, Course, allUserSessions, $modal, $window, $cookieStore, screenmatch, CourseService, currentUser) {
     $scope.open = false;
     $scope.currentUser = currentUser;
     $scope.courses = courses.data;
@@ -45,6 +45,7 @@ function dashboardController($scope, courses, Course, allUserSessions, $modal, $
             Course.save(course, function(response) {
                 if (response.status == "success") {
                     $scope.courses.push(response.data.course);
+                    $state.reload();
                 }
             });
         };
@@ -81,4 +82,4 @@ function dashboardController($scope, courses, Course, allUserSessions, $modal, $
     }
 }
 
-dashboard.controller('dashboardController', ['$scope', 'courses', 'Course', 'allUserSessions', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', 'currentUser', dashboardController]);
+dashboard.controller('dashboardController', ['$scope', '$state', 'courses', 'Course', 'allUserSessions', '$modal', '$window', '$cookieStore', 'screenmatch', 'CourseService', 'currentUser', dashboardController]);
