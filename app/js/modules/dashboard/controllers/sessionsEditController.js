@@ -50,7 +50,6 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
             function(response) {
                 if (response.status == "success") {
                     $scope.questions.push(response.data.question);
-                    // $scope.questions now has a version of the question on the client side, and there is one on the server side. Sync?!
                     focus('question-thumb-' + ($scope.questions[$scope.questions.length - 1].order));
                     goToNewQuestion();
                     $scope.question = response.data.question;

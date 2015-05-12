@@ -7,12 +7,6 @@ function sessionsPresentController($rootScope, $scope, $filter, focus, screenmat
         question.answers = $filter('orderBy')(question.answers, 'order', false);
     });
 
-    if ($scope.fsState = undefined || !$scope.fsState) {
-        $state.go('sessions.edit', {
-            sessionId: $scope.session.id
-        });
-    }
-
     focus("question-present-container");
 
     $state.go('questionsPresent', {

@@ -1,7 +1,6 @@
 function questionsEditController($scope, $filter, focus, question, Question, Answer, $stateParams) {
     $scope.index = $stateParams.index;
 
-
     if (question == undefined) {
         focus('questionName');
     } else {

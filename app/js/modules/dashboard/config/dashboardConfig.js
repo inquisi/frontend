@@ -96,24 +96,23 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             "@dashboard": { // absolutely target the unnamed view in the dashboard state
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsEdit.html",
-                controller: "sessionsEditController",
-                // templateProvider: function($http, $cookieStore) {
-                //     // TODO
-                //     // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
-                //     // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
-                //     // a templateProvider function.
-                //     // see https://github.com/angular-ui/ui-router/issues/330
-                //     currentUser = $cookieStore.get('currentUser');
-                //     var template;
-                //     if (currentUser.role == "Instructor") {
-                //         template = "states/dashboard/sessionsEdit.html";
-                //     } else {
-                //         template = "states/student/dashboard/sessionsEdit.html";
-                //     }
-                //     return $http.get(template).then(function(response) {
-                //         return response.data;
-                //     });
-                // }
+                controller: "sessionsEditController"
+            }
+        },
+        onEnter: function($state, $stateParams, session) {
+            // Redirect to state.read if session.date is in the past
+            if (session.active || new Date(session.date) < new Date()) {
+                $state.go('sessions.read', $stateParams);
+            }
+        }
+    })
+
+    .state('sessions.answer', {
+        url: '/sessions/{sessionId}',
+        views: {
+            "@dashboard": {
+                controller: "sessionsReadController",
+                templateUrl: "states/student/dashboard/sessionsRead.html"
             }
         },
         onEnter: function($state, $stateParams, session) {
@@ -150,13 +149,13 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     .state('sessions.present', {
         url: '/sessions/{sessionId}/present',
         views: {
-            "@": { // absolutely target the unnamed view in the dashboard state
-                // this will override inheriting the parent view
-                templateUrl: "states/dashboard/sessionsPresent.html",
+            "@": {
                 controller: "sessionsPresentController",
+                templateUrl: "states/dashboard/sessionsPresent.html"
             }
         }
     })
+
 
     .state('questionsEdit', {
         parent: 'sessions.edit',
@@ -167,6 +166,23 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             questionId: null
         },
         controller: 'questionsEditController',
+        resolve: {
+            question: function(questions, $stateParams) {
+                return _.find(questions.data, {
+                    id: $stateParams.questionId * 1
+                });
+            }
+        }
+    })
+
+    .state('questionsAnswer', {
+        parent: 'sessions.answer',
+        templateUrl: "states/student/dashboard/questions/questionsAnswer.html",
+        params: {
+            index: null,
+            questionId: null
+        },
+        controller: 'questionsAnswerController',
         resolve: {
             question: function(questions, $stateParams) {
                 return _.find(questions.data, {
@@ -211,23 +227,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
 
     .state('questionsPresent', {
         parent: 'sessions.present',
-        templateProvider: function($http, $cookieStore) {
-            // TODO
-            // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
-            // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
-            // a templateProvider function.
-            // see https://github.com/angular-ui/ui-router/issues/330
-            currentUser = $cookieStore.get('currentUser');
-            var template;
-            if (currentUser.role == "Instructor") {
-                template = "states/dashboard/questions/questionsPresent.html";
-            } else {
-                template = "states/dashboard/questions/questionsAnswer.html";
-            }
-            return $http.get(template).then(function(response) {
-                return response.data;
-            });
-        },
+        templateUrl: 'states/dashboard/questions/questionsPresent.html',
         params: {
             index: null,
             questionId: null
