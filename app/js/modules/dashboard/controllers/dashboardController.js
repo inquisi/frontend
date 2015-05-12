@@ -61,7 +61,7 @@ function dashboardController($scope, courses, Course, allUserSessions, $modal, $
 
         modalInstance.result.then(function(course) {
             addCourse(course);
-        }, function() {});
+        });
     };
 
     $scope.enrollInCourseModal = function() {

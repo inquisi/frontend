@@ -25,6 +25,6 @@
 <div class="row" id="search-results">
 	<div class="col-xs-12 col-no-pad">
 			<student-row ng-repeat="student in students | filter : search : false | filter : courseFilter : true"
-						 ui-sref="studentsDetail({studentId: student.id})">
+						 ui-sref="studentsDetail({studentId: student.id})"></student-row>
 	</div>
 </div>

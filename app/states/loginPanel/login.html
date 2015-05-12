@@ -1,5 +1,11 @@
 <p>Sign in to continue.</p>
+
+
 <form name="login" ng-submit="submit()" novalidate ng-controller="loginController">
+
+    <div class="gravatar">
+        <img src="http://www.gravatar.com/avatar/{{ user.email | gravatar }}?s=200&d=mm" draggable="false">
+    </div>
 
     <p class="alert alert-danger error-message" ng-if="errorMessage != undefined">{{errorMessage}}</p>
 

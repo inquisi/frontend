@@ -1,6 +1,7 @@
 function dashboardConfig($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.when('/courses/', '/courses');
+    $urlRouterProvider.when('/students/', '/students');
 
     $stateProvider
     // child routes
