@@ -200,6 +200,29 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     id: $stateParams.questionId * 1
                 });
             }
+        },
+        onEnter: function($stateParams, websocketDispatcher, currentUser) {
+            // Activate a question
+            websocketDispatcher.trigger('questions.activate', {
+                question_id: $stateParams.questionId,
+                token: currentUser.token
+            }, function(response) {
+                console.log('activate success!', response);
+            }, function(response) {
+                console.log('activate failure', response);
+            });
+
+        },
+        onExit: function($stateParams, websocketDispatcher, currentUser) {
+            // Deactivate a question
+            websocketDispatcher.trigger('questions.deactivate', {
+                question_id: $stateParams.questionId,
+                token: currentUser.token
+            }, function(response) {
+                console.log('deactivate success!', response);
+            }, function(response) {
+                console.log('deactivate failure', response);
+            });
         }
     })
 }

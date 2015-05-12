@@ -30,6 +30,9 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             },
             currentUser: function($cookieStore) {
                 return $cookieStore.get('currentUser');
+            },
+            websocketDispatcher: function() {
+                return new WebSocketRails(applicationConfig.websocketRoot);
             }
         },
         controller: 'dashboardController'
