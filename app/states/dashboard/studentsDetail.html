@@ -11,7 +11,7 @@
 
 <div class="row student-focus">
 	<div class="col-xs-12">
-		<img src="http://www.gravatar.com/avatar/{{ student.email | gravatar }}?s=150&d=mm" class="student-avatar" draggable="false">
+	    <gravatar class="student-avatar" email="{{student.email}}" size="150"></gravatar>
 		<div class="student-name">
 			<h2>{{student.first_name + " " + student.last_name}}</h2>
 		</div>
