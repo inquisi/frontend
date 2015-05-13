@@ -94,6 +94,13 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         }
     }
 
+    $scope.sessionActivate = function() {
+        Session.activate({
+            id: session.id,
+            active: true
+        });
+    }
+
     $scope.launchPresentation = function() {
         $scope.fsState = true;
 

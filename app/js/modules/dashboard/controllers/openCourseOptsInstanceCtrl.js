@@ -7,7 +7,7 @@ function openCourseOptsInstanceCtrl($scope, $state, $modalInstance) {
     $scope.addSession = function(course) {
         $modalInstance.close($state.go(dashboard.coursesDetail, {
             id: course.id,
-            callback: 'openSessionModal'
+            callback: 'openAddSessionModal'
         }));
     };
 

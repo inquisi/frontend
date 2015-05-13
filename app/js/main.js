@@ -2,7 +2,7 @@
     angular.module('inquisi', ['ui.router', 'ui.keypress', 'ngResource', 'ngSanitize', 'ngCookies', 'hmTouchEvents', 'ui.bootstrap', 'angularCharts', 'angular.screenmatch', 'angular-sortable-view', 'angular-md5', // vendor dependencies
         'resources', 'services', 'login', 'dashboard' // our dependencies
     ])
-        .run(function($rootScope, AuthService, $state, $location) {
+        .run(function($rootScope, AuthService, $state, $location, $modalStack) {
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 if (!toState.disableAuth && !AuthService.authenticated()) {
                     $rootScope.redirectAfterLogin = toState.name;
@@ -12,6 +12,9 @@
                     event.preventDefault();
                     $state.go('loginPanel.login');
                 }
+            });
+            $rootScope.$on('$stateChangeSuccess', function() {
+                $modalStack.dismissAll();
             });
             $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams) {
                 console.log('$stateChangeError - fired when an error occurs during transition.');
