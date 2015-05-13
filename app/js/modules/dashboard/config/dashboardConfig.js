@@ -64,6 +64,9 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     course_id: course.id
                 }).$promise;
             }
+            // students: function(Course){
+            //     return Course.query()
+            // }
         },
         templateUrl: 'states/dashboard/coursesDetail.html',
         controller: 'coursesDetailController'

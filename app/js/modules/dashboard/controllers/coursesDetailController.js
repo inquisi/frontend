@@ -11,8 +11,54 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
         return new Date(session.date) < new Date();
     }
 
-    $scope.openSessionModal = function() {
+    $scope.openEnrollmentCodeModal = function() {
+        var modalInstance = $modal.open({
+            templateUrl: 'states/partials/enrollmentCodeModal.html',
+            size: 'lg',
+            controller: function($scope, $modalInstance) {
+                $scope.course = course;
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            }
+        });
+    }
 
+    $scope.openStudentsModal = function() {
+        var modalInstance = $modal.open({
+            templateUrl: 'states/partials/studentsModal.html',
+            controller: function($scope, $modalInstance) {
+                $scope.course = course;
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            }
+        });
+    }
+
+    $scope.openSessionsModal = function() {
+        var modalInstance = $modal.open({
+            templateUrl: 'states/partials/sessionsModal.html',
+            controller: function($scope, $modalInstance) {
+                $scope.course = course;
+                $scope.sessions = sessions.data;
+
+                $scope.upcomingFilter = function(session) {
+                    return new Date(session.date) >= new Date();
+                }
+
+                $scope.pastFilter = function(session) {
+                    return new Date(session.date) < new Date();
+                }
+
+                $scope.cancel = function() {
+                    $modalInstance.dismiss('cancel');
+                };
+            }
+        });
+    }
+
+    $scope.openAddSessionModal = function() {
         var modalInstance = $modal.open({
             templateUrl: 'states/partials/addSessionModal.html',
             controller: 'addSessionModalInstanceCtrl'
@@ -33,8 +79,8 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
         }
     }
 
-    if (callback == 'openSessionModal') {
-        $scope.openSessionModal();
+    if (callback == 'openAddSessionModal') {
+        $scope.openAddSessionModal();
     } else {}
 }
 
