@@ -6,6 +6,7 @@
 
 #student-indicator{
 	cursor: pointer;
+	height: 48px;
 
 	&:hover{
 		#student-indicator-icon{
@@ -48,13 +49,21 @@
 	-moz-box-shadow: 1px 1px 0px 0px rgba(65,69,73,0.75);
 	box-shadow: 1px 1px 0px 0px rgba(65,69,73,0.75);
 }
-.dropdown-student-indicator:hover>.dropdown-menu {
-  display: block;
+.dropdown-student-indicator{
+	width: 48px;
+	float: right; 
+
+	&:hover>.dropdown-menu {
+	  display: block;
+	}
 }
 
 .student-dropdown-menu{
-	top: 57px;
-	left: -32px;
+	position: relative;
+	max-width: 160px;
+	top: 10px;
+	right: 56px;
+	left: auto;
 	border: 0;
 	background-color: rgba(97, 102, 107, 0.9);
 	color: @gray-lightest;
@@ -93,7 +102,7 @@
 		}
 
 		&:hover{
-			background-color: rgba(97, 102, 107, 1);
+			background-color: darken(@gray-dark, 5%);
 			color: darken(@gray-lightest, 5%)
 		}
 
