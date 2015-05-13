@@ -94,10 +94,14 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         }
     }
 
-    $scope.sessionActivate = function() {
+    $scope.sessionActivate = function(active) {
         Session.activate({
             id: session.id,
-            active: true
+            active: active
+        }, function(response) {
+            if (response.status == "success") {
+                $scope.session = response.data.session;
+            }
         });
     }
 

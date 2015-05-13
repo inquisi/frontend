@@ -28,7 +28,8 @@
 	</div>
 
 	<div class="col-xs-4 col-sm-3 col-md-2 dashInfo">
-		<div class="btn-md btn-success btn-flat" hm-tap="sessionActivate()">Start Session</div>
+		<div ng-if="session.active" class="btn-md btn-danger btn-flat" hm-tap="sessionActivate(false)">End Session</div>
+		<div ng-if="!session.active" class="btn-md btn-success btn-flat" hm-tap="sessionActivate(true)">Start Session</div>
 	</div>
 </div>
 
