@@ -8,8 +8,10 @@ function dashboardController($scope, $state, courses, Course, allUserSessions, $
     $scope.courses = _.map($scope.courses, function(course) {
         if (course.active) {
             course.activeSessionId = _.result(_.findWhere($scope.sessions, {
-                course_id: course.id
+                course_id: course.id,
+                active: true
             }), 'id');
+
         }
         return course;
     });

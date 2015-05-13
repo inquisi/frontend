@@ -1,5 +1,5 @@
 function coursesController($scope, $modal) {
-    debugger
+
     $scope.openCourseOpts = function(course) {
 
         var modalInstance = $modal.open({
