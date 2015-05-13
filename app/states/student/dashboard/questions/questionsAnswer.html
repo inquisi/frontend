@@ -1,1 +1,4 @@
-<h1> Hello, world! </h1>
+<h1 ng-if="!question"> It looks like your professor hasn't started class yet! </h1>
+<div ng-if="!!question" class="answers">
+	<answer-row ng-repeat="answer in question.answers | orderBy : 'order'">
+</div>

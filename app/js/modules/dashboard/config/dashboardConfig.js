@@ -99,10 +99,16 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 controller: "sessionsEditController"
             }
         },
-        onEnter: function($state, $stateParams, session) {
-            // Redirect to state.read if session.date is in the past
-            if (session.active || new Date(session.date) < new Date()) {
-                $state.go('sessions.read', $stateParams);
+        onEnter: function($state, $stateParams, session, currentUser) {
+            if (currentUser.role == "Student") {
+                if (session.active) {
+                    $state.go('sessions.answer', $stateParams);
+                }
+            } else {
+                // Redirect to state.read if session.date is in the past
+                if (session.active || new Date(session.date) < new Date()) {
+                    $state.go('sessions.read', $stateParams);
+                }
             }
         }
     })
@@ -115,11 +121,10 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 templateUrl: "states/student/dashboard/sessionsAnswer.html"
             }
         },
-        onEnter: function($state, $stateParams, session) {
-            // Redirect to state.read if session.date is in the past
-            // if (session.active || new Date(session.date) < new Date()) {
-            //     $state.go('sessions.read', $stateParams);
-            // }
+        resolve: {
+            sessionChannel: function($stateParams, websocketDispatcher) {
+                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId)
+            }
         }
     })
 
@@ -179,7 +184,6 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         parent: 'sessions.answer',
         templateUrl: "states/student/dashboard/questions/questionsAnswer.html",
         params: {
-            index: null,
             questionId: null
         },
         controller: 'questionsAnswerController',

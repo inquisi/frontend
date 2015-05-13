@@ -8,8 +8,9 @@ function sessionsAnswerController($scope, $filter, course, session, questions, $
     });
 
     $state.go('questionsAnswer', {
-        index: $scope.questions[0].order,
-        questionId: $scope.questions[0].id
+        questionId: _.find($scope.questions, {
+            active: true
+        }).id
     });
 };
 
