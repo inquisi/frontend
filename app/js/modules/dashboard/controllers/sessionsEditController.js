@@ -1,4 +1,4 @@
-function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, $state, $stateParams) {
+function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, sessionChannel, $state, $stateParams) {
     screenmatch.when('xs, sm', function() {
         $scope.horiz = true;
     }, function() {
@@ -18,6 +18,15 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
             questionId: $scope.questions[0].id
         })
     }
+
+    sessionChannel.bind('student_subscribe', function(user) {
+        console.log(user)
+    });
+
+    // sessionChannel.bind('subscriber_part', function() {
+    //     debugger
+    // });
+
 
     $scope.onSortQuestion = function(indexFrom, indexTo) {
         angular.forEach($scope.questions, function(question, newIndex) {
@@ -138,4 +147,4 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     }
 }
 
-dashboard.controller('sessionsEditController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', '$state', '$stateParams', sessionsEditController]);
+dashboard.controller('sessionsEditController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', 'sessionChannel', '$state', '$stateParams', sessionsEditController]);

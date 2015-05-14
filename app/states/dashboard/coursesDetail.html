@@ -12,7 +12,7 @@
 
 <div class="row courseInfo" ng-if="currentUser.role == 'Instructor'">
 	<div class="col-xs-6 col-sm-3">
-		<div class="course-stat" id="stat-green" hm-tap="openEnrollmentCodeModal()">
+		<div class="course-stat stat-enroll" id="stat-green" hm-tap="openEnrollmentCodeModal()">
 			<span class="fui fui-alert-circle"></span>
 			<div class="object">
 				<h4>{{course.enrollment_token}}</h4>
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="col-xs-6 col-sm-3">
-		<div class="course-stat" id="stat-blue" hm-tap="openStudentsModal()">
+		<div class="course-stat stat-students" id="stat-blue" hm-tap="openStudentsModal()">
 			<span class="fui fui-user"></span>
 			<div class="object">
 				<h4>2</h4>
@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	<div class="col-xs-6 col-sm-3">
-		<div class="course-stat" id="stat-red" hm-tap="openSessionsModal()">
+		<div class="course-stat stat-sessions" id="stat-red" hm-tap="openSessionsModal()">
 			<span class="fui fui-tag"></span>
 			<div class="object">
 				<h4>{{sessions.length}}</h4>
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="col-xs-6 col-sm-3">
-		<div class="course-stat" id="stat-purple">
+		<div class="course-stat stat-questions" id="stat-purple">
 			<span class="fui fui-chat"></span>
 			<div class="object">
 				<h4>456</h4>

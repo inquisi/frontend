@@ -102,6 +102,11 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 controller: "sessionsEditController"
             }
         },
+        resolve: {
+            sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
+                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
+            }
+        },
         onEnter: function($state, $stateParams, session, currentUser) {
             if (currentUser.role == "Student") {
                 if (session.active) {
@@ -125,8 +130,16 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             }
         },
         resolve: {
-            sessionChannel: function($stateParams, websocketDispatcher) {
-                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId)
+            sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
+                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
+                // {
+                //     user: {
+                //         role: currentUser.role,
+                //         first_name: currentUser.first_name,
+                //         last_name: currentUser.last_name
+                //         // id: currentUser.id
+                //     }
+                // });
             }
         }
     })

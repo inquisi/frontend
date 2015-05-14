@@ -108,6 +108,10 @@
 	.stat-color-variant(@brand-danger);
 }
 
+.stat-sessions, .stat-questions{
+	margin-top: 15px;
+}
+
 #enrollment-code-modal{
 	font-family: @font-family-sans-serif;
 	font-weight: normal;
@@ -198,6 +202,9 @@
 }
 
 @media (min-width: @screen-sm-min){
+	.stat-sessions, .stat-questions{
+		margin-top: 0;
+	}
 	#enrollment-code-modal{
 		font-size: 150px;
 	}
