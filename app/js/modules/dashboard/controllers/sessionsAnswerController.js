@@ -5,6 +5,10 @@ function sessionsAnswerController($scope, $filter, course, session, questions, $
 
     angular.forEach($scope.questions, function(question) {
         question.answers = $filter('orderBy')(question.answers, 'order', false);
+
+        if (question.active) {
+            $scope.question = question;
+        }
     });
 
     sessionChannel.bind('question_activate', function(question) {
