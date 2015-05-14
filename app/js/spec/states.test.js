@@ -3,20 +3,18 @@ describe('States', function() {
         $state,
         AuthService,
         $httpBackend,
-        $templateCache,
-        service;
-
+        $templateCache;
     var injectEverything = function($injector) {
         $rootScope = $injector.get('$rootScope');
         $state = $injector.get('$state');
         AuthService = $injector.get('AuthService');
         $httpBackend = $injector.get('$httpBackend');
         $location = $injector.get('$location');
-        service = $injector.get('service');
 
         $templateCache = $injector.get('$templateCache');
         $templateCache.put('states/loginPanel.html', '');
         $templateCache.put('states/loginPanel/login.html', '');
+        $templateCache.put('states/loginPanel/loginPanel.html', '');
         $templateCache.put('states/dashboard.html', '');
         $templateCache.put('states/dashboard/home.html', '');
         $templateCache.put('states/dashboard/courses.html', '');
@@ -30,6 +28,7 @@ describe('States', function() {
         beforeEach(function() {
             inject(injectEverything);
         });
+
         it('when not logged in should redirect the user to /login and add a ref param', function() {
             spyOn(AuthService, 'authenticated').and.returnValue(false);
 
