@@ -161,6 +161,9 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 controller: "sessionsPresentController",
                 templateUrl: "states/dashboard/sessionsPresent.html"
             }
+        },
+        onExit: function(websocketDispatcher) {
+            websocketDispatcher.trigger('questions.deactivate_all', {});
         }
     })
 
