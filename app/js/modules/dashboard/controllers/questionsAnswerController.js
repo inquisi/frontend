@@ -1,17 +1,7 @@
-function questionsAnswerController($scope, $state, $stateParams, question, sessionChannel) {
+function questionsAnswerController($scope, $state, $stateParams, question) {
     $scope.question = question;
 
-    sessionChannel.bind('question_activate', function(question) {
-        $state.go('questionsAnswer', {
-            sessionId: $stateParams.sessionId,
-            courseId: $stateParams.courseId,
-            questionId: question.id
-        });
-    });
 
-    sessionChannel.bind('session_end', function() {
-        $state.go('sessions.read', $stateParams);
-    });
 
     $scope.submitAnswer = function(answerId) {
         console.log('answerId', answerId)
@@ -19,4 +9,4 @@ function questionsAnswerController($scope, $state, $stateParams, question, sessi
     }
 };
 
-dashboard.controller('questionsAnswerController', ['$scope', '$state', '$stateParams', 'question', 'sessionChannel', questionsAnswerController]);
+dashboard.controller('questionsAnswerController', ['$scope', '$state', '$stateParams', 'question', questionsAnswerController]);
