@@ -1,9 +1,8 @@
-<h1 ng-if="!question"> It looks like your professor hasn't started class yet! </h1>
-<div ng-if="!!question">
-	<div class="question row">
-		{{question.name}}
-	</div>
-	<div class="answers">
-		<answer-row ng-repeat="answer in question.answers | orderBy : 'order'">
-	</div>
+<div class="question row">
+	{{question.name}}
+</div>
+<div class="answers">
+	<answer-row ng-repeat="answer in question.answers | orderBy : 'order'"
+				hm-tap="submitAnswer(answer.id)"
+				ng-class="{'selected-answer': answer.id === selectedAnswerId}">
 </div>

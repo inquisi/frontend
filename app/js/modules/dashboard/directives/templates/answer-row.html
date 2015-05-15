@@ -1,3 +1,4 @@
 <div class="answer-row row">
-	<span class="answer" ngClick="submitAnswer(answer.id)">{{answer.name}}</span>
+	<span class="answer">{{answer.name}}</span>
+	<span ng-if="answerSubmitted"><i class="fui fui-check-circle"></i></span>
 </div>
