@@ -1,5 +1,6 @@
 function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/404');
+    var dispatcher = new WebSocketRails(applicationConfig.websocketRoot)
 
     $stateProvider
     // route for the 404 page
@@ -32,7 +33,7 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
                 return $cookieStore.get('currentUser');
             },
             websocketDispatcher: function() {
-                return new WebSocketRails(applicationConfig.websocketRoot);
+                return dispatcher;
             }
         },
         controller: 'dashboardController'

@@ -90,7 +90,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr session-row ng-repeat="session in current = (sessions | filter : {active: true} | orderBy:'date':false)" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessions.read({sessionId: session.id})"></tr>
+				<tr session-row ng-repeat="session in current = (sessions | filter : {active: true} | orderBy:'date':false)" ng-class="{true: 'session-row-next'}[$first]"  ui-sref="sessions.answer({sessionId: session.id})"></tr>
 			</tbody>
 		</table>
 	</div>

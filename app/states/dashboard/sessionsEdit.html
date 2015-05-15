@@ -15,14 +15,12 @@
 		<div class="dropdown dropdown-student-indicator" dropdown ng-if="session.active">
 			<div id="student-indicator" dropdown-toggle>
 				<div id="student-indicator-icon"><i class="fui fui-user"></i></div>
-				<div id="student-indicator-num">3</div>
+				<div id="student-indicator-num">{{connectedStudents.length}}</div>
 			</div>
-			<ul class="dropdown-menu student-dropdown-menu" role="menu">
+			<ul class="dropdown-menu student-dropdown-menu" ng-if="connectedStudents.length" role="menu">
 				<!-- ng-if="session.activeStudents > 0" -->
 				<!-- <li ng-reapeat="student in session.activeStudents">{{student}}</li> -->
-				<li> <span class="online-indicator"></span> Cody Sehl </li>
-				<li> <span class="online-indicator"></span> Nate Moore </li>
-				<li> <span class="online-indicator"></span> Michael Gerten </li>
+				<li ng-repeat="student in connectedStudents"> <span class="online-indicator"></span>{{student.first_name + " " + student.last_name}}</li>
 			</ul>
 		</div>
 	</div>

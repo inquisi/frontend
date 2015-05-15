@@ -104,7 +104,9 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         resolve: {
             sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
-                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
+                if (currentUser.role == "Instructor") {
+                    return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
+                }
             }
         },
         onEnter: function($state, $stateParams, session, currentUser) {
@@ -131,15 +133,16 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         resolve: {
             sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
-                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
-                // {
-                //     user: {
-                //         role: currentUser.role,
-                //         first_name: currentUser.first_name,
-                //         last_name: currentUser.last_name
-                //         // id: currentUser.id
-                //     }
-                // });
+                return channel = websocketDispatcher.subscribe('session_' + $stateParams.sessionId, function() {
+                    websocketDispatcher.trigger('student.join_session', {
+                        user: {
+                            email: currentUser.email,
+                            first_name: currentUser.first_name,
+                            last_name: currentUser.last_name
+                        },
+                        channel_name: channel.name
+                    });
+                });
             }
         }
     })

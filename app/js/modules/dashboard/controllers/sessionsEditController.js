@@ -7,6 +7,7 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     $scope.course = course;
     $scope.session = session;
     $scope.questions = $filter('orderBy')(questions.data, 'order', false);
+    $scope.connectedStudents = [];
 
     angular.forEach($scope.questions, function(question) {
         question.answers = $filter('orderBy')(question.answers, 'order', false);
@@ -19,14 +20,19 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         })
     }
 
-    sessionChannel.bind('student_subscribe', function(user) {
-        console.log(user)
+    sessionChannel.bind('student.join_session', function(user) {
+        $scope.connectedStudents.push(user);
+        console.log('adding user', user);
+        $scope.$digest();
     });
 
-    // sessionChannel.bind('subscriber_part', function() {
-    //     debugger
-    // });
-
+    sessionChannel.bind('student.leave_session', function(user) {
+        _.remove($scope.connectedStudents, {
+            email: user.email
+        });
+        console.log('removing user', user);
+        $scope.$digest();
+    });
 
     $scope.onSortQuestion = function(indexFrom, indexTo) {
         angular.forEach($scope.questions, function(question, newIndex) {
