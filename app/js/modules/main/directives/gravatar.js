@@ -19,6 +19,7 @@ function gravatar(md5) {
 
             el.bind('error', function() {
                 el.attr('src', defaultImg);
+                console.log("Don't freak out. If we can't find your gravatar we want to return a 404.");
             });
         },
         template: '<img src="{{url}}" draggable="false">'
