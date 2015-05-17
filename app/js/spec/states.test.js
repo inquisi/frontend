@@ -59,13 +59,13 @@ describe('States', function() {
 
     xdescribe('sessions.edit', function() {
         it('should redirect to sessions.read if the given session is in the past', function() {
-            // module(function($provide) {
-            //     $provide.service('session', function() {
-            //         return {
-            //             hello: 'world'
-            //         }
-            //     });
-            // });
+            module(function($provide) {
+                $provide.service('session', function() {
+                    return {
+                        hello: 'world'
+                    }
+                });
+            });
             inject(injectEverything);
             spyOn(service).and.returnValue(function() {
                 return {
@@ -81,6 +81,16 @@ describe('States', function() {
             $rootScope.$digest();
 
             expect($state.go).toHaveBeenCalledWith('sessions.read');
+        });
+    });
+
+    xdescribe('sessions.answer', function() {
+        it('should trigger a student.join_session event on enter', function() {
+
+        });
+
+        it('should trigger a student.leave_session event on exit', function() {
+
         });
     });
 });

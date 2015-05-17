@@ -1,4 +1,4 @@
-function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, sessionChannel, $state, $stateParams) {
+function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch, course, Session, session, questions, Question, sessionChannel, $state, $stateParams, websocketDispatcher) {
     screenmatch.when('xs, sm', function() {
         $scope.horiz = true;
     }, function() {
@@ -21,9 +21,16 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         })
     }
 
+    websocketDispatcher.trigger('session.connected_students', {
+            channel_name: "session_" + $scope.session.id
+        },
+        function(students) {
+            $scope.connectedStudents = students;
+            $scope.$digest();
+        });
+
     sessionChannel.bind('student.join_session', function(user) {
         $scope.connectedStudents.push(user);
-        console.log('adding user', user);
         $scope.$digest();
     });
 
@@ -31,7 +38,6 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
         _.remove($scope.connectedStudents, {
             id: user.id
         });
-        console.log('removing user', user);
         $scope.$digest();
     });
 
@@ -154,4 +160,4 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     }
 }
 
-dashboard.controller('sessionsEditController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', 'sessionChannel', '$state', '$stateParams', sessionsEditController]);
+dashboard.controller('sessionsEditController', ['$rootScope', '$scope', '$filter', 'focus', 'screenmatch', 'course', 'Session', 'session', 'questions', 'Question', 'sessionChannel', '$state', '$stateParams', 'websocketDispatcher', sessionsEditController]);
