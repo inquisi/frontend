@@ -20,7 +20,7 @@
 			<ul class="dropdown-menu student-dropdown-menu" ng-if="connectedStudents.length" role="menu">
 				<!-- ng-if="session.activeStudents > 0" -->
 				<!-- <li ng-reapeat="student in session.activeStudents">{{student}}</li> -->
-				<li ng-repeat="student in connectedStudents"> <span class="online-indicator"></span>{{student.first_name + " " + student.last_name}}</li>
+				<li ng-repeat="student in connectedStudents" ui-sref="studentsDetail({studentId: student.id})"> <span class="online-indicator"></span>{{student.first_name + " " + student.last_name}}</li>
 			</ul>
 		</div>
 	</div>
