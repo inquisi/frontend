@@ -29,7 +29,7 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
 
     sessionChannel.bind('student.leave_session', function(user) {
         _.remove($scope.connectedStudents, {
-            email: user.email
+            id: user.id
         });
         console.log('removing user', user);
         $scope.$digest();

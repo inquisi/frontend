@@ -155,29 +155,21 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         resolve: {
             sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
-                return channel = websocketDispatcher.subscribe('session_' + $stateParams.sessionId, function() {
-                    websocketDispatcher.trigger('student.join_session', {
-                        user: {
-                            email: currentUser.email,
-                            first_name: currentUser.first_name,
-                            last_name: currentUser.last_name
-                        },
-                        channel_name: channel.name
-                    });
-                });
+                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
             }
         },
+        onEnter: function(websocketDispatcher, sessionChannel, currentUser) {
+            websocketDispatcher.trigger('student.join_session', {
+                user: {
+                    id: currentUser.id,
+                    first_name: currentUser.first_name,
+                    last_name: currentUser.last_name
+                },
+                channel_name: sessionChannel.name
+            });
+        },
         onExit: function(websocketDispatcher, currentUser) {
-            // we should automatically disconnect the student here
-            // something like below?
-
-            // websocketDispatcher.trigger('student.leave_session', {
-            //     user: {
-            //         email: currentUser.email,
-            //         first_name: currentUser.first_name,
-            //         last_name: currentUser.last_name
-            //     }
-            // });
+            websocketDispatcher.trigger('student.leave_session');
         }
     })
 
