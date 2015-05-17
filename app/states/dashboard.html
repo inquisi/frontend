@@ -13,7 +13,7 @@
 		      </div>
 
 		      <div ng-if="!mobile" class="pull-right navbar-menu-right">
-			      <button type="button" class="navbar-btn navbar-user" hm-tap="">
+			      <button type="button" class="navbar-btn navbar-user" ui-sref="dashboard.profile">
 			        <i class="fui fui-user"></i>
 			      </button>
   			      <button type="button" class="navbar-btn navbar-settings" hm-tap="">
@@ -34,7 +34,7 @@
 
 		<div ng-if="mobile" class="profile-menu">
 			<h5>Profile</h5>
-			<menu-item icon="user" ui-sref="dashboard.noop" name="Profile"></menu-item>
+			<menu-item icon="user" ui-sref="dashboard.profile" name="Profile"></menu-item>
 			<menu-item icon="gear" ui-sref="dashboard.noop" name="Settings"></menu-item>
 		</div>
 

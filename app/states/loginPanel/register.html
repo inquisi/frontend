@@ -63,15 +63,13 @@
                 <div class="input-group">
                     <select class="form-control" id="register_role"
                          name="role" ng-model="user.role" ng-options="value.id as value.value for value in objects" required>
-                        <option value="Student">Student</option>
-                        <option value="Instructor">Instructor</option>
                     </select>
                     <span class="form-control-feedback text-muted fui fui-triangle-down"></span>
                 </div>
     </div>
 
-    <div ng-if="user.role == 'instructor'" class="form-row"> <!-- Institution (conditional) -->
-        <label for="register_institution" class="control-label">Institution</label>           
+    <div ng-if="user.role == 'Instructor'" class="form-row"> <!-- Organization (conditional) -->
+        <label for="register_institution" class="control-label">Organization</label>           
         <ng-messages for="form.organization.$error" class="help-block" ng-if='form.organization.$dirty'>
           <ng-message when="required">Please enter an organization</ng-message>
         </ng-messages>

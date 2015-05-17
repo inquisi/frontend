@@ -4,6 +4,7 @@ function sessionsEditController($rootScope, $scope, $filter, focus, screenmatch,
     }, function() {
         $scope.horiz = false;
     });
+
     $scope.course = course;
     $scope.session = session;
     $scope.questions = $filter('orderBy')(questions.data, 'order', false);

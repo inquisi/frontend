@@ -47,6 +47,28 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         }
     })
 
+    .state('dashboard.profile', {
+        url: '^/profile',
+        controller: 'profileController',
+        templateProvider: function($http, $cookieStore) {
+            // TODO
+            // One would expect to use the 'currentUser' resolve'd defined in mainConfig.js
+            // but it looks like there's a bug in ui-router that doesn't allow injecting resolves into
+            // a templateProvider function.
+            // see https://github.com/angular-ui/ui-router/issues/330
+            currentUser = $cookieStore.get('currentUser');
+            var template;
+            if (currentUser.role == "Instructor") {
+                template = "states/dashboard/profile.html";
+            } else {
+                template = "states/dashboard/profile.html";
+            }
+            return $http.get(template).then(function(response) {
+                return response.data;
+            });
+        },
+    })
+
     .state('dashboard.coursesDetail', {
         url: 'courses/{courseId}',
         params: {
@@ -144,6 +166,18 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     });
                 });
             }
+        },
+        onExit: function(websocketDispatcher, currentUser) {
+            // we should automatically disconnect the student here
+            // something like below?
+
+            // websocketDispatcher.trigger('student.leave_session', {
+            //     user: {
+            //         email: currentUser.email,
+            //         first_name: currentUser.first_name,
+            //         last_name: currentUser.last_name
+            //     }
+            // });
         }
     })
 
