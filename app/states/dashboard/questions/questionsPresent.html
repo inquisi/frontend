@@ -2,7 +2,12 @@
 	<div class="questionRead">
 		<h4>{{question.name}}</h4>
 		<ul id="answer-container">
-			<li class="answer" ng-repeat="answer in question.answers track by $index">{{answer.name}}</li>
+			<li class="answer" ng-repeat="answer in question.answers track by $index">
+				<span class="answer-name">{{answer.name}}</span>
+				<span class="answer-response">
+					<span class="response-num">num</span>
+				</span>
+			</li>
 		</ul>
 	</div>
 </div>

@@ -13,18 +13,57 @@
 		text-align: center;
 	}
 
-	ul{
+	#answer-container{
 		list-style: none;
 		padding-left: 0;
 
-		li{
+		.answer{
 			min-height: 40px;
 			font-size: 36px;
 			line-height: 50px;
 			width: 100%;
-			margin: 3px auto 0;
-			padding: 15px 50px;
+			margin: 3px 0;
 			background-color: #FFF;
 		}
+	}
+}
+
+
+.answer-name{
+	padding: 15px 50px;
+	margin-right: 0;
+	width: 80%;
+	display: inline-block;
+}
+.answer-response{
+	padding: 10px 15px 10px 0;
+	height: 100%;
+	margin-left: 0;
+	float: right;
+	width: 20%;
+	display: inline-block;
+	text-align: right;
+	color: #FFF;
+
+	.response-num{
+		display: inline-block;
+		font-size: @font-size-large;
+		background-color: @brand-info;
+		margin: 0;
+		padding: 0 15px;
+		border-radius: 40px;
+		height: 40px;
+		min-width: 40px;
+		width: auto;
+		line-height: 40px;
+	}
+}
+
+@media (min-width: @screen-sm-min){
+	.answer-name{
+		width: 90%;
+	}
+	.answer-response{
+		width: 10%;
 	}
 }
