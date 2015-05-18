@@ -85,10 +85,12 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 return Session.query({
                     course_id: course.id
                 }).$promise;
+            },
+            students: function(User, course) {
+                return User.students({
+                    course_id: course.id
+                }).$promise;
             }
-            // students: function(Course){
-            //     return Course.query()
-            // }
         },
         templateUrl: 'states/dashboard/coursesDetail.html',
         controller: 'coursesDetailController'

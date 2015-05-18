@@ -1,7 +1,9 @@
-function coursesDetailController($scope, courses, Course, course, Session, sessions, $stateParams, $modal) {
+function coursesDetailController($scope, courses, Course, course, Session, sessions, students, $stateParams, $modal) {
     var callback = $stateParams.callback;
     $scope.course = course;
     $scope.sessions = sessions.data;
+
+    $scope.course.enrolled_students = students.data;
 
     $scope.upcomingFilter = function(session) {
         return new Date(session.date) >= new Date();
@@ -84,4 +86,4 @@ function coursesDetailController($scope, courses, Course, course, Session, sessi
     } else {}
 }
 
-dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', '$stateParams', '$modal', '$cookieStore', coursesDetailController]);
+dashboard.controller('coursesDetailController', ['$scope', 'courses', 'Course', 'course', 'Session', 'sessions', 'students', '$stateParams', '$modal', '$cookieStore', coursesDetailController]);
