@@ -66,7 +66,13 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             return $http.get(template).then(function(response) {
                 return response.data;
             });
-        },
+        }
+    })
+
+    .state('dashboard.settings', {
+        url: '^/settings',
+        templateUrl: 'states/dashboard/settings.html',
+        controller: 'settingsController'
     })
 
     .state('dashboard.coursesDetail', {
