@@ -5,7 +5,7 @@
 			<li class="answer" ng-repeat="answer in question.answers track by $index">
 				<span class="answer-name">{{answer.name}}</span>
 				<span class="answer-response">
-					<span class="response-num">num</span>
+					<span class="response-num">{{ (question.responses | filter: {answer_id: answer.id}).length }}</span>
 				</span>
 			</li>
 		</ul>

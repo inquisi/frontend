@@ -113,6 +113,9 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                     course_id: course.id,
                     session_id: session.id
                 }).$promise;
+            },
+            sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
+                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
             }
         }
     })
@@ -124,13 +127,6 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
                 // this will override inheriting the parent view
                 templateUrl: "states/dashboard/sessionsEdit.html",
                 controller: "sessionsEditController"
-            }
-        },
-        resolve: {
-            sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
-                if (currentUser.role == "Instructor") {
-                    return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
-                }
             }
         },
         onEnter: function($state, $stateParams, session, currentUser) {
@@ -153,11 +149,6 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             "@dashboard": {
                 controller: "sessionsAnswerController",
                 templateUrl: "states/student/dashboard/sessionsAnswer.html"
-            }
-        },
-        resolve: {
-            sessionChannel: function($stateParams, websocketDispatcher, currentUser) {
-                return websocketDispatcher.subscribe('session_' + $stateParams.sessionId);
             }
         },
         onEnter: function(websocketDispatcher, sessionChannel, currentUser) {
@@ -207,7 +198,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
             }
         },
         onExit: function(websocketDispatcher) {
-            websocketDispatcher.trigger('questions.deactivate_all', {});
+            websocketDispatcher.trigger('question.deactivate_all', {});
         }
     })
 
@@ -296,7 +287,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         onEnter: function($stateParams, websocketDispatcher, currentUser) {
             // Activate a question
-            websocketDispatcher.trigger('questions.activate', {
+            websocketDispatcher.trigger('question.activate', {
                 question_id: $stateParams.questionId,
                 token: currentUser.token
             }, function(response) {
@@ -308,7 +299,7 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         onExit: function($stateParams, websocketDispatcher, currentUser) {
             // Deactivate a question
-            websocketDispatcher.trigger('questions.deactivate', {
+            websocketDispatcher.trigger('question.deactivate', {
                 question_id: $stateParams.questionId,
                 token: currentUser.token
             }, function(response) {
