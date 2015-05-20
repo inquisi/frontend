@@ -1,10 +1,10 @@
 <div ng-controller="coursesController" class="courses">
 	<div class="row">
-		<div class="col-xs-10 col-sm-12 dashInfo">
+		<div class="col-xs-9 col-sm-12 dashInfo">
 			<h2>Courses</h2>
 			<h4>Your current and past courses</h4>
 		</div>
-		<div class="col-xs-2 visible-xs dashInfo">
+		<div class="col-xs-3 visible-xs dashInfo">
 			<h2>
 				<i ng-if="currentUser.role == 'Instructor'" class="fui fui-plus" tabindex=0 hm-tap="addCourseModal()"></i>
 				<div ng-if="currentUser.role == 'Student'" hm-tap="enrollInCourseModal()" class="btn-md btn-info btn-flat">Enroll</div>
