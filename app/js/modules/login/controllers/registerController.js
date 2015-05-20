@@ -1,4 +1,6 @@
-function registerController($scope, $state, User, AuthService) {
+function registerController($scope, $state, User, AuthService, focus) {
+    focus('register_email');
+
     $scope.user = {
         role: "Student"
     };
@@ -25,4 +27,4 @@ function registerController($scope, $state, User, AuthService) {
     }
 }
 
-login.controller('registerController', ['$scope', '$state', 'User', 'AuthService', registerController]);
+login.controller('registerController', ['$scope', '$state', 'User', 'AuthService', 'focus', registerController]);

@@ -1,4 +1,6 @@
 function loginController($rootScope, $scope, $state, AuthService, focus) {
+    focus('userEmail');
+
     // function to submit the form after all validation has occurred            
     $scope.submit = function() {
         if ($scope.user == undefined) {
