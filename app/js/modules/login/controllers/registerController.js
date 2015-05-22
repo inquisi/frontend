@@ -18,8 +18,8 @@ function registerController($scope, $state, User, AuthService, focus) {
             // return a token or message
             if (response.status == "success") {
                 var token = response.data.user.token;
-                AuthService.login(token);
-                $state.go('dashboard.home');
+                AuthService.login($scope.user.email, $scope.user.password)
+                    .then($state.go('dashboard.home'));
             } else {
                 $scope.errorMessage = response.message;
             }
