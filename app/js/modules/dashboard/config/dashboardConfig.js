@@ -230,16 +230,9 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     .state('questionsAnswer', {
         parent: 'sessions.answer',
         templateUrl: "states/student/dashboard/questions/questionsAnswer.html",
-        params: {
-            questionId: null
-        },
         controller: 'questionsAnswerController',
-        resolve: {
-            question: function(questions, $stateParams) {
-                return _.find(questions.data, {
-                    id: $stateParams.questionId * 1
-                });
-            }
+        params: {
+            question: undefined
         }
     })
 
@@ -285,24 +278,26 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
         },
         controller: 'questionsPresentController',
         resolve: {
-            question: function(questions, $stateParams) {
-                return _.find(questions.data, {
-                    id: $stateParams.questionId * 1
+            question: function(questions, $stateParams, $q, currentUser, websocketDispatcher) {
+                var deferred = $q.defer();
+                websocketDispatcher.trigger('question.activate', {
+                    question_id: $stateParams.questionId,
+                    token: currentUser.token
+                }, function(response) {
+                    deferred.resolve(response.question)
+                }, function(response) {
+                    deferred.reject(response.question);
                 });
+
+                return deferred.promise;
             }
         },
-        onEnter: function($stateParams, websocketDispatcher, currentUser) {
-            // Activate a question
-            websocketDispatcher.trigger('question.activate', {
-                question_id: $stateParams.questionId,
-                token: currentUser.token
-            }, function(response) {
-                console.log('activate success!', response);
-            }, function(response) {
-                console.log('activate failure', response);
-            });
+        // onEnter: function($stateParams, websocketDispatcher, currentUser) {
+        //     // Activate a question
+        //     debugger
 
-        },
+
+        // },
         onExit: function($stateParams, websocketDispatcher, currentUser) {
             // Deactivate a question
             websocketDispatcher.trigger('question.deactivate', {

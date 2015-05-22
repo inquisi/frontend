@@ -1,10 +1,11 @@
-function questionsAnswerController($scope, $state, $stateParams, question, websocketDispatcher, currentUser) {
-    $scope.question = question;
+function questionsAnswerController($scope, $state, $stateParams, websocketDispatcher, currentUser) {
+    $scope.question = $stateParams.question;
 
-    $scope.selectedAnswerId = null;
+    $scope.selectedAnswerId = _.get(_.find($scope.question.responses, {
+        user_id: currentUser.id
+    }), 'answer_id');
+
     $scope.submitAnswer = function(answerId) {
-        console.log('answerId', answerId);
-
         websocketDispatcher.trigger('question.respond', {
             question_id: $scope.question.id,
             answer_id: answerId,
@@ -15,4 +16,4 @@ function questionsAnswerController($scope, $state, $stateParams, question, webso
     }
 };
 
-dashboard.controller('questionsAnswerController', ['$scope', '$state', '$stateParams', 'question', 'websocketDispatcher', 'currentUser', questionsAnswerController]);
+dashboard.controller('questionsAnswerController', ['$scope', '$state', '$stateParams', 'websocketDispatcher', 'currentUser', questionsAnswerController]);

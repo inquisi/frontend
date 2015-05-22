@@ -7,9 +7,6 @@ function questionsPresentController($scope, $filter, focus, question, Question, 
         $scope.question = question;
     }
 
-    $scope.question.answers = $filter('orderBy')($scope.question.answers, 'order', false);
-    $scope.question.responses = [];
-
     sessionChannel.bind('question.respond', function(response) {
         var previousResponse = _.find($scope.question.responses, {
             user_id: response.user_id

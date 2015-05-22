@@ -11,23 +11,22 @@ function sessionsAnswerController($scope, $filter, course, session, questions, $
         }
     });
 
-    sessionChannel.bind('question_activate', function(question) {
+    sessionChannel.bind('question.activate', function(question) {
         $state.go('questionsAnswer', {
             sessionId: $stateParams.sessionId,
             courseId: $stateParams.courseId,
-            questionId: question.id
+            question: question
         });
     });
 
-    sessionChannel.bind('session_end', function() {
+    sessionChannel.bind('session.end', function() {
         $state.go('sessions.answer', $stateParams);
     });
-
     if (_.any($scope.questions, 'active')) {
         $state.go('questionsAnswer', {
-            questionId: _.find($scope.questions, {
+            question: _.find($scope.questions, {
                 active: true
-            }).id
+            })
         });
     }
 };
