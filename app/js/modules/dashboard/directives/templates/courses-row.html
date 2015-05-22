@@ -1,5 +1,5 @@
 <tr tabindex=0>
-	<td ng-if="!mobile" class="table-present collapse-xs"><a><i class="fui fui-play"></i></a></td>
+	<td ng-if="!mobile" class="table-present collapse-xs" ui-sref="sessions.present({courseId: course.activeSessionId})"><a><i class="fui fui-play"></i></a></td>
 	<td ui-sref="dashboard.coursesDetail({courseId: course.id})" class="table-courseName">
 		{{course.name}}
 		<span class="table-courseSub">{{course.instructor}}</span>

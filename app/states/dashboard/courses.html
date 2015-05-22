@@ -11,6 +11,8 @@
 			</h2>
 		</div>
 	</div>
+
+	<!-- Student -->
 	<div class="row" ng-if="currentUser.role == 'Student'">
 		<div class="col-xs-12 col-sm-6 col-no-pad">
 			<table class="table table-hover table-active">
@@ -39,6 +41,8 @@
 			</table>
 		</div>
 	</div>
+
+	<!-- Instructor -->
 	<div class="row" ng-if="currentUser.role == 'Instructor'">
 		<div class="col-xs-12 col-no-pad">
 			<table class="table table-hover" ng-if="courses.length > 0">
