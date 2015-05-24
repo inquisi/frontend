@@ -11,6 +11,13 @@
                         sessionId: "@id"
                     },
                     method: 'POST'
+                },
+                queryAnonymous: {
+                    url: '/sessions/:token/',
+                    params: {
+                        anonymous: true
+                    },
+                    isArray: false
                 }
             });
         }

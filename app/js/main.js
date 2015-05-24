@@ -1,6 +1,6 @@
 (function() {
     angular.module('inquisi', ['ui.router', 'ui.keypress', 'ngResource', 'ngSanitize', 'ngCookies', 'hmTouchEvents', 'ui.bootstrap', 'angularCharts', 'angular.screenmatch', 'angular-sortable-view', 'angular-md5', // vendor dependencies
-        'resources', 'services', 'login', 'dashboard' // our dependencies
+        'resources', 'services', 'login', 'dashboard', 'anonymous' // our dependencies
     ])
         .run(function($rootScope, AuthService, $state, $location, $modalStack) {
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

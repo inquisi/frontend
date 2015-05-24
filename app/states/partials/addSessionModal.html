@@ -25,16 +25,8 @@
 			</div>
 			<div class="form-row form-row-small">
 				<div class="col-xs-12">
-			            <input type="checkbox" id="anonymousCheckbox" value="anonymous" ng-model="session.anonymous">
+			            <input type="checkbox" id="anonymousCheckbox" value="anonymous" ng-model="session.allow_anonymous">
 			            <label for="anonymousCheckbox" class="anonymousCheckboxLabel">Allow anonymous participation</label>
-				</div>
-			</div>
-			<div class="form-row" ng-if="session.anonymous">
-				<div class="col-xs-12">
-					<div class="well anonymousUrl">
-						inquisi.io/s/12345
-						<!-- {{session.url}} -->
-					</div>
 				</div>
 			</div>
 		</div>
