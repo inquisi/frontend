@@ -7,7 +7,13 @@ function dashboardConfig($stateProvider, $urlRouterProvider) {
     // child routes
     .state('dashboard.home', {
         url: '',
-        templateUrl: 'states/dashboard/home.html'
+        templateUrl: 'states/dashboard/home.html',
+        controller: 'dashboardHomeController',
+        resolve: {
+            students: function(User) {
+                return User.students().$promise;
+            }
+        }
     })
     // other page
     .state('dashboard.courses', {

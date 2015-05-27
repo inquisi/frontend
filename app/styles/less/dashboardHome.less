@@ -1,3 +1,122 @@
-#overview{
-	height: 300px;
+.dash-stat-color-variant(@color){
+	background-color: @color;
+	transition: 0.3s;
+
+	span{
+		background-color: darken(@color, 7%);
+		color: @gray-lightest;
+		transition: 0.3s;
+	}
+	.object{
+		h4{
+			color: @gray-lightest;
+			transition: 0.3s;
+		}
+		h3{
+			color: @gray-lighter;
+			transition: 0.3s;
+		}
+	}
+}
+
+.dash-container{
+	margin: 15px 0 0;
+}
+
+.dashHome{
+
+	.alert-row{
+		margin: 15px 0 0;
+	}
+
+	.stats-home{
+		margin: 0 -15px;
+	}
+
+	.dash-stat{
+		height: 250px;
+		padding: 0;
+		width: 100%;
+		height: 70px;
+		border-radius: 6px;
+		background-color: @gray-light;
+
+		span{
+			display: inline-block;
+			width: 25%;
+			height: 70px;
+			float: left;
+			font-size: 24px;
+			padding-top: 17px;
+			text-align: center;
+			background-color: darken(@gray-light, 7%);
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+		}
+
+		.object{
+			display: inline-block;
+			width: 75%;
+			height: 70px;
+			float: left;
+			padding-top: 11px;
+			padding-left: 11px;
+
+			h4{
+				font-size: 24px;
+				margin: 0 0 5px;
+			}
+
+			h3{
+				font-size: @font-size-small;
+				margin: 0;
+			}
+		}
+	}
+
+	#course-stat{
+		cursor: pointer;
+	}
+
+	#student-stat{
+		cursor: pointer;
+	}
+
+	#student-stat, #question-stat{
+		margin-top: 15px;
+	}
+
+	.dash-stat-blue{
+		.dash-stat-color-variant(@brand-info);
+	}
+
+	.dash-stat-red{
+		.dash-stat-color-variant(@brand-danger);
+	}
+
+	.dash-stat-green{
+		.dash-stat-color-variant(@brand-success);
+	}
+
+
+	.dash-stat-orange{
+		.dash-stat-color-variant(@brand-warning);
+	}
+
+	.dash-stat-purple{
+		.dash-stat-color-variant(@brand-callout);
+	}
+
+
+	#messages{
+		.dash-stat-color-variant(@brand-info);
+	}
+}
+
+@media (min-width: @screen-sm-min){
+	.dashHome{
+		#student-stat, #question-stat{
+			margin-top: 0;
+		}
+	}
 }
