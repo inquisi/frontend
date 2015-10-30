@@ -16,10 +16,10 @@
                         questionId: "@id"
                     },
                     method: 'POST'
+                },
+                delete: {
+                 	method: 'DELETE'
                 }
-                // delete: {
-                // 	method: 'DELETE'
-                // }
             });
         }
     ]);

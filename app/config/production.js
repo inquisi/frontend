@@ -2,6 +2,7 @@ applicationConfig = {
     apiRoot: "http://api.inquisi.io",
     apiRoutes: [
         'login',
+        'logout',
         'signup',
         'users',
         'courses',

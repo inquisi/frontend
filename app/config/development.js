@@ -2,6 +2,7 @@ applicationConfig = {
     apiRoot: "http://localhost:3000",
     apiRoutes: [
         'login',
+        'logout',
         'signup',
         'users',
         'courses',

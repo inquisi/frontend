@@ -6,9 +6,15 @@
                     url: '/signup',
                     method: 'POST'
                 },
+                update: {
+                    method: 'PUT'
+                },
                 students: {
                     url: '/user/students',
                     method: 'GET'
+                },
+                delete: {
+                    method: 'DELETE'
                 }
             });
         }
