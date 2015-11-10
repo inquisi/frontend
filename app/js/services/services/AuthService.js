@@ -61,6 +61,33 @@ function AuthService($http, $q, $cookieStore) {
 
     }
 
+    //Michael Code 
+    this.logout = function(arg1) {
+        var defer = $q.defer();
+        t = arg1
+        $http.post('/logout', {
+            token: t
+        }).success(function(response, status) {
+            if (response.status == 'success') {
+                storeUser(response.data.user);
+                defer.resolve({
+                    authenticated: false, //In order to say Im logged
+                    token: response.data.user.token
+                });
+            } else {
+                defer.reject({
+                    authenticated: false,
+                    message: response.message
+                });
+            }
+        });
+
+        return defer.promise;
+        
+
+    }
+    //^^^^^^^
+
     this.authenticated = function() {
         var currentUser = $cookieStore.get('currentUser');
         return !!currentUser && !!currentUser.token;

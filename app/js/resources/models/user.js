@@ -7,6 +7,7 @@
                     method: 'POST'
                 },
                 update: {
+                    url: '/update',
                     method: 'PUT'
                 },
                 students: {
@@ -14,8 +15,17 @@
                     method: 'GET'
                 },
                 delete: {
+                    url: '/delete',
                     method: 'DELETE'
-                }
+                },
+                login: {
+                    url: '/login',
+                    method: 'POST'
+                },
+                logout: {
+                    url: '/logout',
+                    method: 'POST'
+                },
             });
         }
     ]);
